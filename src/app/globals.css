@@ -1239,10 +1239,54 @@ img {
   line-height: 1.7;
 }
 
+.testimonials-controls {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 1.35rem;
+}
+
+.testimonials-arrow {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(227, 106, 47, 0.4);
+  border-radius: 999px;
+  background: #fff;
+  color: #e36a2f;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s var(--ease-out);
+}
+
+.testimonials-arrow:hover:not(:disabled),
+.testimonials-arrow:focus-visible:not(:disabled) {
+  background: #e36a2f;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.testimonials-arrow:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, minmax(280px, 1fr));
   gap: 0;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  scrollbar-width: none;
+}
+
+.testimonials-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .testimonial {
@@ -1595,7 +1639,7 @@ img {
 .connect-panel {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   min-height: 280px;
   padding: clamp(1.75rem, 4vw, 2.75rem);
@@ -2170,23 +2214,23 @@ img {
   }
 
   .testimonials-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+    grid-template-columns: repeat(6, minmax(280px, 1fr));
+    gap: 0;
   }
 
   .testimonial {
-    padding: 1.5rem 0 0;
-    border-right: 0;
-    border-top: 1px solid rgba(227, 106, 47, 0.16);
+    padding: 0 clamp(1.25rem, 2.4vw, 2rem);
+    border-right: 1px solid rgba(227, 106, 47, 0.16);
+    border-top: 0;
   }
 
   .testimonial:first-child {
-    padding-top: 0;
-    border-top: 0;
+    padding-left: 0;
   }
 
   .testimonial:last-child {
     padding-right: 0;
+    border-right: 0;
   }
 
   .why-head,
@@ -2372,6 +2416,10 @@ img {
   .connect {
     overflow-x: auto;
     grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
+
+  .testimonials-grid {
+    grid-template-columns: repeat(6, minmax(260px, 1fr));
   }
 }
 

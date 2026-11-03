@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 const items = [
   {
     quote:
@@ -23,9 +27,67 @@ const items = [
     company: "Potent",
     initials: "AP",
   },
+  {
+    quote:
+      "RoyalTech turned a complex technology roadmap into a clear plan our whole team could follow. Every milestone was delivered with care and transparency.",
+    name: "Neha Verma",
+    role: "Product Director",
+    company: "Northstar Labs",
+    initials: "NV",
+  },
+  {
+    quote:
+      "The new digital experience is faster, easier to use, and much more effective for our customers. RoyalTech brought strong ideas and dependable execution.",
+    name: "Vikram Singh",
+    role: "Growth Lead",
+    company: "Aster Group",
+    initials: "VS",
+  },
+  {
+    quote:
+      "From the first workshop to launch, the team stayed focused on the outcomes that mattered. We now have a stronger foundation for our next stage of growth.",
+    name: "Ananya Mehta",
+    role: "Founder",
+    company: "Brightpath",
+    initials: "AM",
+  },
 ];
 
 export default function Testimonials() {
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateScrollState = () => {
+    const element = testimonialsRef.current;
+    if (!element) return;
+
+    setCanScrollLeft(element.scrollLeft > 0);
+    setCanScrollRight(
+      element.scrollLeft + element.clientWidth < element.scrollWidth - 1,
+    );
+  };
+
+  useEffect(() => {
+    updateScrollState();
+    const element = testimonialsRef.current;
+    if (!element) return;
+
+    element.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      element.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, []);
+
+  const scrollTestimonials = (direction: number) => {
+    testimonialsRef.current?.scrollBy({
+      left: direction * 320,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className="testimonials" id="testimonials">
       <div className="testimonials-shell">
@@ -35,9 +97,29 @@ export default function Testimonials() {
           <p className="testimonials-intro">
             Real feedback from partners who built with RoyalTech Innovation.
           </p>
+          <div className="testimonials-controls" aria-label="Testimonial navigation">
+            <button
+              type="button"
+              className="testimonials-arrow"
+              aria-label="Previous testimonials"
+              onClick={() => scrollTestimonials(-1)}
+              disabled={!canScrollLeft}
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <button
+              type="button"
+              className="testimonials-arrow"
+              aria-label="Next testimonials"
+              onClick={() => scrollTestimonials(1)}
+              disabled={!canScrollRight}
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
         </div>
 
-        <div className="testimonials-grid">
+        <div className="testimonials-grid" ref={testimonialsRef}>
           {items.map((item) => (
             <article key={item.name} className="testimonial">
               <div className="testimonial-top">
