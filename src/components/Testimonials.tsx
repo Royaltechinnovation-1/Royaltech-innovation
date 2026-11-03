@@ -82,8 +82,9 @@ export default function Testimonials() {
   }, []);
 
   const scrollTestimonials = (direction: number) => {
-    testimonialsRef.current?.scrollBy({
-      left: direction * 320,
+    const element = testimonialsRef.current;
+    element?.scrollBy({
+      left: direction * (element.clientWidth + 1),
       behavior: "smooth",
     });
   };
@@ -97,6 +98,9 @@ export default function Testimonials() {
           <p className="testimonials-intro">
             Real feedback from partners who built with RoyalTech Innovation.
           </p>
+        </div>
+
+        <div className="testimonials-carousel">
           <div className="testimonials-controls" aria-label="Testimonial navigation">
             <button
               type="button"
@@ -117,9 +121,7 @@ export default function Testimonials() {
               <span aria-hidden="true">→</span>
             </button>
           </div>
-        </div>
-
-        <div className="testimonials-grid" ref={testimonialsRef}>
+          <div className="testimonials-grid" ref={testimonialsRef}>
           {items.map((item) => (
             <article key={item.name} className="testimonial">
               <div className="testimonial-top">
@@ -147,6 +149,7 @@ export default function Testimonials() {
               </div>
             </article>
           ))}
+          </div>
         </div>
       </div>
     </section>

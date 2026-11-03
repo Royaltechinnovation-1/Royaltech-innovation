@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import BackToTop from "@/components/BackToTop";
 import ConnectWithUs from "@/components/ConnectWithUs";
 import Contact from "@/components/Contact";
 import FAQ from "@/components/FAQ";
@@ -9,6 +10,7 @@ import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import WhatWeDo from "@/components/WhatWeDo";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -58,6 +60,8 @@ export default function HomePage() {
         <ConnectWithUs />
       </main>
       <Footer />
+      <BackToTop />
+      <WhatsAppButton />
     </>
   );
 }
