@@ -2,27 +2,34 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "Services" },
-  { href: "#services", label: "Portfolio" },
-  { href: "#why-us", label: "Our Process" },
-  { href: "#faq", label: "blog" },
-  { href: "#contact", label: "Contact Us" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About Us" },
+  { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
+const heroOverlayPaths = new Set(["/", "/about", "/services", "/contact"]);
+
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const overlaysHero = heroOverlayPaths.has(pathname);
+  const [scrolled, setScrolled] = useState(!overlaysHero);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!overlaysHero) {
+      setScrolled(true);
+      return;
+    }
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [overlaysHero]);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -36,7 +43,7 @@ export default function Header() {
         <div className="header-inner">
           <Link
             className="brand"
-            href="#home"
+            href="/"
             aria-label="RoyalTech Innovation home"
             onClick={closeMenu}
           >
@@ -56,7 +63,7 @@ export default function Header() {
           <nav className={`nav${menuOpen ? " is-open" : ""}`} aria-label="Primary">
             <ul className="nav-list">
               {links.map((link) => (
-                <li key={link.href}>
+                <li key={`${link.href}-${link.label}`}>
                   <Link className="nav-link" href={link.href} onClick={closeMenu}>
                     {link.label}
                   </Link>
@@ -65,7 +72,7 @@ export default function Header() {
               <li className="nav-mobile-only">
                 <Link
                   className="btn btn-soft btn-sm nav-quote"
-                  href="tel:+18005550199"
+                  href="tel:+918570871522"
                   onClick={closeMenu}
                 >
                   Call Now
@@ -75,7 +82,7 @@ export default function Header() {
           </nav>
 
           <div className="header-actions">
-            <Link className="btn btn-soft btn-sm" href="tel:+18005550199">
+            <Link className="btn btn-soft btn-sm" href="tel:+918570871522">
               Call Now
             </Link>
             <button

@@ -1,5 +1,6 @@
 "use client";
 
+import { submitLead } from "@/lib/submitLead";
 import { FormEvent, useState } from "react";
 
 const address = {
@@ -17,16 +18,41 @@ const address = {
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    setSubmitted(true);
-    form.reset();
+
+    const data = new FormData(form);
+    setSending(true);
+    setError("");
+    setSubmitted(false);
+
+    try {
+      await submitLead({
+        name: String(data.get("name") || ""),
+        email: String(data.get("email") || ""),
+        phone: String(data.get("phone") || ""),
+        message: String(data.get("message") || ""),
+        source: "home-contact",
+      });
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -71,7 +97,7 @@ export default function Contact() {
               autoComplete="tel"
               required
               pattern="[0-9+\-\s()]{7,20}"
-              placeholder="+91 98765 43210"
+              placeholder="+91 85708 71522"
             />
           </label>
 
@@ -85,13 +111,19 @@ export default function Contact() {
             />
           </label>
 
-          <button className="contact-submit" type="submit">
-            Send message
+          <button className="contact-submit" type="submit" disabled={sending}>
+            {sending ? "Sending..." : "Send message"}
           </button>
 
           {submitted ? (
             <p className="contact-success" role="status">
               Thanks — we received your message and will get back to you soon.
+            </p>
+          ) : null}
+
+          {error ? (
+            <p className="contact-success" role="alert" style={{ color: "#b42318" }}>
+              {error}
             </p>
           ) : null}
         </form>

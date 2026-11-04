@@ -66,8 +66,8 @@ export default function Services() {
               <div className="offer-body">
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <a className="offer-link" href="#contact">
-                  See our work <span aria-hidden="true">→</span>
+                <a className="offer-link" href="/services">
+                  Learn more <span aria-hidden="true">→</span>
                 </a>
               </div>
             </article>

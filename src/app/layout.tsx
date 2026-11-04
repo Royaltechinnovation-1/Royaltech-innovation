@@ -61,6 +61,14 @@ export const metadata: Metadata = {
       "RoyalTech Innovation | IT Solutions & Digital Transformation Partner",
     description:
       "Build your digital future with a partner you can trust. End-to-end digital solutions, software development, and IT services for growing businesses.",
+    images: [
+      {
+        url: "/logo-mark.jpg",
+        width: 512,
+        height: 512,
+        alt: "RoyalTech Innovation logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -68,6 +76,7 @@ export const metadata: Metadata = {
       "RoyalTech Innovation | IT Solutions & Digital Transformation Partner",
     description:
       "Trusted technology partner for digital transformation, software development, and business technology solutions.",
+    images: ["/logo-mark.jpg"],
   },
   robots: {
     index: true,

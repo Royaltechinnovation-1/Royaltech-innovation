@@ -1,91 +1,25 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const ABOUT_VIDEO = "/kling_20261103_VIDEO_Cinematic__4788_0.mp4";
 
-const moreBlocks = [
-  {
-    title: "Our Mission",
-    line: "Built around your business.",
-    items: [
-      "Customised technology solutions",
-      "Stronger digital presence",
-      "Efficient day-to-day work",
-      "Sustainable growth",
-    ],
-  },
-  {
-    title: "Our Vision",
-    line: "A trusted partner, wherever you are.",
-    items: [
-      "Trusted global technology partner",
-      "Innovative & reliable IT solutions",
-      "Meaningful digital transformation",
-    ],
-  },
-  {
-    title: "Our Goals",
-    line: "Six goals guide our work.",
-    items: [
-      "Fit: solutions customised to each client",
-      "Presence: strengthen digital presence",
-      "Efficiency: software and automation",
-      "Partnership: long-term transparency",
-      "Access: affordable for growing businesses",
-      "Progress: adopt modern technologies",
-    ],
-  },
-  {
-    title: "Our Values",
-    line: "Principles we work by, every day.",
-    items: [
-      "Innovation",
-      "Integrity",
-      "Quality",
-      "Transparency",
-      "Customer satisfaction",
-      "Teamwork",
-    ],
-  },
-  {
-    title: "Our Approach",
-    line: "Business first, technology second.",
-    items: [
-      "Start with your goals",
-      "Tailor what fits",
-      "Build to scale",
-      "Design, develop, market & support",
-    ],
-  },
-];
-
 export default function About() {
-  const [expanded, setExpanded] = useState(false);
-  const [withSound, setWithSound] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    if (!playing) return;
     const video = videoRef.current;
-    if (!video) return;
-    video.muted = !withSound;
-    if (withSound) {
-      video.controls = true;
-      void video.play().catch(() => undefined);
-    } else {
-      video.controls = false;
-      void video.play().catch(() => undefined);
-    }
-  }, [withSound]);
+    if (video) void video.play().catch(() => undefined);
 
-  useEffect(() => {
-    if (!withSound) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setWithSound(false);
+      if (event.key === "Escape") setPlaying(false);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [withSound]);
+  }, [playing]);
 
   return (
     <section className="about" id="about">
@@ -101,50 +35,46 @@ export default function About() {
           businesses, and established organisations can count on.
         </p>
 
-        <button
-          className="about-more-btn"
-          type="button"
-          aria-expanded={expanded}
-          onClick={() => setExpanded((value) => !value)}
-        >
-          {expanded ? "Show less" : "Learn more"}
-        </button>
-
-        {expanded ? (
-          <div className="about-more">
-            {moreBlocks.map((block) => (
-              <article key={block.title} className="about-block">
-                <h3>{block.title}</h3>
-                <p className="about-block-line">{block.line}</p>
-                <ul>
-                  {block.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        ) : null}
-
+        <div className="about-home-actions">
+          <a className="about-more-btn" href="/about">
+            About Us
+          </a>
+          <a className="about-more-btn about-more-btn-ghost" href="/services">
+            Services
+          </a>
+        </div>
       </div>
 
-      <div className={`about-media${withSound ? " is-playing" : ""}`}>
-        <video
-          ref={videoRef}
-          className="about-video"
-          src={ABOUT_VIDEO}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
+      <div className={`about-media${playing ? " is-playing" : ""}`}>
+        {!playing ? (
+          <Image
+            className="about-media-img"
+            src="/home-about.jpg"
+            alt="Modern RoyalTech Innovation workspace"
+            fill
+            sizes="(max-width: 900px) 100vw, 50vw"
+            priority={false}
+          />
+        ) : null}
 
-        {!withSound ? (
+        {playing ? (
+          <video
+            ref={videoRef}
+            className="about-video"
+            src={ABOUT_VIDEO}
+            autoPlay
+            controls
+            loop
+            playsInline
+            preload="auto"
+          />
+        ) : null}
+
+        {!playing ? (
           <button
             className="about-watch-btn"
             type="button"
-            onClick={() => setWithSound(true)}
+            onClick={() => setPlaying(true)}
           >
             Watch
           </button>
@@ -152,7 +82,7 @@ export default function About() {
           <button
             className="about-player-close"
             type="button"
-            onClick={() => setWithSound(false)}
+            onClick={() => setPlaying(false)}
           >
             Close
           </button>

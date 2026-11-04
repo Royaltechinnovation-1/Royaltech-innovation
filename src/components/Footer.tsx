@@ -3,21 +3,21 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 const quickLinks = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#process", label: "Process" },
-  { href: "#why-us", label: "Why Us" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/#process", label: "Process" },
+  { href: "/#why-us", label: "Why Us" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const serviceLinks = [
-  { href: "#services", label: "Web Development" },
-  { href: "#services", label: "Software Development" },
-  { href: "#services", label: "Mobile Apps" },
-  { href: "#services", label: "Marketing" },
-  { href: "#services", label: "IT Consulting" },
-  { href: "#services", label: "Design Solutions" },
+  { href: "/services", label: "Web Development" },
+  { href: "/services", label: "Software Development" },
+  { href: "/services", label: "Mobile Apps" },
+  { href: "/services", label: "Marketing" },
+  { href: "/services", label: "IT Consulting" },
+  { href: "/services", label: "Design Solutions" },
 ];
 
 function Icon({
@@ -99,7 +99,7 @@ export default function Footer() {
         <div className="footer-grid footer-grid-simple">
           <div className="footer-about">
             <Link
-              href="#home"
+              href="/"
               className="footer-brand-link"
               aria-label="RoyalTech Innovation home"
             >
@@ -159,15 +159,15 @@ export default function Footer() {
                 CP67 Mall, Sector 67, Mohali
               </li>
               <li>
-                <a className="footer-pill" href="mailto:hello@royaltechinnovation.com">
+                <a className="footer-pill" href="mailto:sales@royaltechinnovation.co.in">
                   {icons.mail}
-                  hello@royaltechinnovation.com
+                  sales@royaltechinnovation.co.in
                 </a>
               </li>
               <li>
-                <a className="footer-pill" href="tel:+919876543210">
+                <a className="footer-pill" href="tel:+918570871522">
                   {icons.phone}
-                  +91 98765 43210
+                  +91 85708 71522
                 </a>
               </li>
             </ul>

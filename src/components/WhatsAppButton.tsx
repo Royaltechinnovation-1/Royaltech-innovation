@@ -2,7 +2,7 @@ export default function WhatsAppButton() {
   return (
     <a
       className="whatsapp-float"
-      href="https://wa.me/919876543210?text=Hello%20RoyalTech%20Innovation"
+      href="https://wa.me/918570871522?text=Hello%20RoyalTech%20Innovation"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with RoyalTech Innovation on WhatsApp"
