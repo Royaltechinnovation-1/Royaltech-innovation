@@ -303,8 +303,8 @@ img {
   opacity: 0;
   visibility: hidden;
   transition:
-    opacity 0.8s ease,
-    visibility 0.8s ease;
+    opacity 0.9s var(--ease-out),
+    visibility 0.9s var(--ease-out);
 }
 
 .hero-slide.is-active {
@@ -318,8 +318,26 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 30%;
   display: block;
+  transform: scale(1.06);
+  transition: transform 6.5s ease-out;
+}
+
+.hero-slide.is-active .hero-bg {
+  transform: scale(1);
+  animation: hero-slide-in 1s var(--ease-out) both;
+}
+
+@keyframes hero-slide-in {
+  from {
+    opacity: 0.65;
+    transform: scale(1.08) translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .hero-shade {

@@ -5,19 +5,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const slides = [
   {
-    type: "image" as const,
-    src: "/hero-office.jpg",
-    alt: "RoyalTech Innovation modern office",
+    src: "/hero-slide-1.jpg",
+    alt: "RoyalTech Innovation team of three collaborating",
   },
   {
-    type: "image" as const,
     src: "/hero-slide-2.jpg",
-    alt: "RoyalTech Innovation workplace",
+    alt: "RoyalTech Innovation team of three in a meeting",
   },
   {
-    type: "video" as const,
-    src: "/kling_20261103_VIDEO_founder_wo_4110_0.mp4",
-    alt: "RoyalTech Innovation cinematic brand video",
+    src: "/hero-slide-3.jpg",
+    alt: "RoyalTech Innovation specialist",
   },
 ];
 
@@ -25,7 +22,6 @@ const SLIDE_MS = 4500;
 
 export default function Hero() {
   const [active, setActive] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const timerRef = useRef<number | null>(null);
 
   const clearTimer = () => {
@@ -52,19 +48,6 @@ export default function Hero() {
     return clearTimer;
   }, [startTimer]);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (slides[active].type === "video") {
-      video.currentTime = 0;
-      void video.play().catch(() => undefined);
-      return;
-    }
-
-    video.pause();
-  }, [active]);
-
   return (
     <section className="hero" id="home" aria-label="Hero">
       <div className="hero-slides" aria-hidden="true">
@@ -72,24 +55,12 @@ export default function Hero() {
           const isActive = active === index;
           return (
             <div
-              key={`${slide.type}-${slide.src}`}
+              key={slide.src}
               className={`hero-slide${isActive ? " is-active" : ""}`}
               style={{ zIndex: isActive ? 2 : 1 }}
             >
-              {slide.type === "image" ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img className="hero-bg" src={slide.src} alt="" />
-              ) : (
-                <video
-                  ref={videoRef}
-                  className="hero-bg"
-                  src={slide.src}
-                  muted
-                  playsInline
-                  loop
-                  preload="auto"
-                />
-              )}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="hero-bg" src={slide.src} alt="" />
             </div>
           );
         })}
