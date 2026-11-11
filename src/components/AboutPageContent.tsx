@@ -1,6 +1,7 @@
 import AboutConsult from "@/components/AboutConsult";
 import { OpenFormButton } from "@/components/FormModal";
 import Image from "next/image";
+import CardSlider from './CardSlider'
 
 function GoalIcon({ name }: { name: string }) {
   switch (name) {
@@ -158,7 +159,23 @@ const team = [
       "With a problem-solving mindset and a commitment to engineering excellence, she aims to build dependable technology that supports business growth, operational efficiency, and digital innovation.",
     ],
   },
+  {
+    name: "Pankaj",
+    role: "Frontend Developer",
+    image: "https://res.cloudinary.com/ugqc5gb8/image/upload/v1794400474/Create_professional_corporate_he__c4f6cc1f.jpg",
+    linkedin: "https://www.linkedin.com/in/pankaj1915",
+    portraitClass: "ae-portrait-pankaj",
+    reverse: true,
+    paragraphs: [
+      "Pankaj is a Frontend Developer at RoyalTech Innovation, specialising in React.js development, modern user interfaces, responsive web design, and interactive application experiences. He has a strong technical focus on building visually appealing, high-performance frontend solutions and creating seamless digital experiences.",
+      "His technical expertise includes React.js, JavaScript, HTML5, CSS3, Tailwind CSS, responsive web development, component-based architecture, UI implementation, API integration, and frontend optimisation. He focuses on developing reusable components, improving application performance, and ensuring seamless interaction between frontend interfaces and backend services.",
+      "At RoyalTech Innovation, Pankaj contributes to the development of modern web applications, business platforms, and innovative digital solutions. He is passionate about creating intuitive user experiences, implementing creative designs, and transforming business requirements into functional and engaging web interfaces.",
+      "With a creative mindset and a commitment to quality development, he aims to build scalable, user-friendly, and performance-driven frontend solutions that support business growth and digital innovation.",
+    ],
+  },
 ];
+
+
 
 export default function AboutPageContent() {
   return (
@@ -414,6 +431,9 @@ export default function AboutPageContent() {
           </div>
         </div>
       </section>
+
+            <CardSlider/>
+
 
       <AboutConsult />
     </div>
