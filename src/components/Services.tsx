@@ -1,33 +1,36 @@
+"use client";
+
+import { OpenFormButton } from "@/components/FormModal";
 import Image from "next/image";
 
 const services = [
   {
     title: "UI/UX Design",
-    image: "/service-uiux.jpg",
+    image: "/UI_UX Design.png",
     tone: "pink",
     text: "Interfaces and brand visuals designed around how your users think—clear flows, polished screens, and a look that feels like your business.",
   },
   {
     title: "Web Development",
-    image: "/service-web.jpg",
+    image: "/Web Devlopment.png",
     tone: "mint",
     text: "Business sites, e-commerce, and custom web builds that load fast, work on every device, and support the goals behind your brand.",
   },
   {
     title: "App Development",
-    image: "/service-app.jpg",
+    image: "/App Devlopment.png",
     tone: "cyan",
     text: "Android, iOS, and cross-platform apps built for performance and ease of use, from first concept through launch and ongoing updates.",
   },
   {
     title: "Software Development",
-    image: "/service-software.jpg",
+    image: "/Software Devlopment.png",
     tone: "lilac",
     text: "Custom software shaped around your workflows—management tools, automation, and systems that help teams work with less friction.",
   },
   {
     title: "Digital Marketing",
-    image: "/service-marketing.jpg",
+    image: "/Digital Marketing.png",
     tone: "peach",
     text: "SEO, social, and paid campaigns that bring the right audience in—clear messaging, steady leads, and results you can measure.",
   },
@@ -57,18 +60,24 @@ export default function Services() {
               <div className="offer-media">
                 <Image
                   src={service.image}
-                  alt=""
+                  alt={`${service.title} services by RoyalTech Innovation`}
                   width={720}
                   height={480}
                   className="offer-image"
+                  sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 33vw"
                 />
               </div>
               <div className="offer-body">
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <a className="offer-link" href="/services">
+                <OpenFormButton
+                  className="offer-link"
+                  title={`Learn more · ${service.title}`}
+                  source="home-services-learn-more"
+                  service={service.title}
+                >
                   Learn more <span aria-hidden="true">→</span>
-                </a>
+                </OpenFormButton>
               </div>
             </article>
           ))}

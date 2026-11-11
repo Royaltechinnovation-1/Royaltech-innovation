@@ -1,0 +1,335 @@
+.db-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background:
+    radial-gradient(circle at top left, rgba(183, 200, 121, 0.18), transparent 40%),
+    linear-gradient(180deg, #f4f3ea 0%, #e8efe9 100%);
+  color: var(--ink);
+}
+
+.db-side {
+  background: linear-gradient(180deg, #0f3d2e 0%, #0a2820 100%);
+  color: #f4f7f5;
+  padding: 1.5rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.db-brand {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.4rem 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.db-brand strong {
+  font-family: var(--font-display), Sora, sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.db-brand span {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.db-nav {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.db-nav a {
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.7rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 500;
+  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out);
+}
+
+.db-nav a:hover,
+.db-nav a.active {
+  background: rgba(183, 200, 121, 0.2);
+  color: #fff;
+}
+
+.db-side-foot {
+  margin-top: auto;
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.6rem;
+}
+
+.db-user-chip {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.db-logout {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.db-logout:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.db-main {
+  padding: 1.5rem 1.75rem 2.5rem;
+  min-width: 0;
+}
+
+.db-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.db-top h1 {
+  font-family: var(--font-display), Sora, sans-serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  color: var(--forest);
+}
+
+.db-top p {
+  color: var(--ink-body);
+  margin-top: 0.3rem;
+}
+
+.db-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.db-stat {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(22, 84, 63, 0.1);
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+}
+
+.db-stat span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-body);
+  margin-bottom: 0.45rem;
+}
+
+.db-stat strong {
+  font-size: 1.55rem;
+  color: var(--forest);
+}
+
+.db-panel {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(22, 84, 63, 0.1);
+  border-radius: 1.1rem;
+  padding: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.db-panel h2 {
+  font-size: 1.05rem;
+  color: var(--forest);
+  margin-bottom: 0.85rem;
+}
+
+.db-table-wrap {
+  overflow-x: auto;
+}
+
+.db-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.db-table th,
+.db-table td {
+  text-align: left;
+  padding: 0.7rem 0.55rem;
+  border-bottom: 1px solid rgba(22, 84, 63, 0.08);
+  vertical-align: top;
+}
+
+.db-table th {
+  color: var(--ink-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.db-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(183, 200, 121, 0.28);
+  color: var(--accent-text);
+}
+
+.db-badge.warn {
+  background: rgba(212, 181, 93, 0.28);
+  color: #7a5a12;
+}
+
+.db-badge.muted {
+  background: rgba(70, 82, 73, 0.12);
+  color: var(--ink-body);
+}
+
+.db-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.db-actions select,
+.db-actions input,
+.db-form input,
+.db-form select,
+.db-form textarea,
+.login-card input,
+.login-card select {
+  border: 1px solid rgba(22, 84, 63, 0.18);
+  background: #fff;
+  border-radius: 0.55rem;
+  padding: 0.45rem 0.55rem;
+  font: inherit;
+  color: var(--ink);
+}
+
+.db-btn {
+  border: 0;
+  border-radius: 0.55rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--forest);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.db-btn.secondary {
+  background: transparent;
+  color: var(--forest);
+  border: 1px solid rgba(22, 84, 63, 0.25);
+}
+
+.db-form {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.db-form .full {
+  grid-column: 1 / -1;
+}
+
+.db-empty {
+  padding: 1.2rem 0.4rem;
+  color: var(--ink-body);
+}
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(183, 200, 121, 0.25), transparent 35%),
+    linear-gradient(160deg, #0a2820 0%, #16543f 45%, #f1f0e6 45%, #f1f0e6 100%);
+}
+
+.login-card {
+  width: min(420px, 100%);
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 1.25rem;
+  padding: 1.6rem;
+  box-shadow: 0 20px 50px rgba(10, 40, 32, 0.18);
+  display: grid;
+  gap: 0.85rem;
+}
+
+.login-card h1 {
+  font-family: var(--font-display), Sora, sans-serif;
+  color: var(--forest);
+  font-size: 1.6rem;
+}
+
+.login-card p {
+  color: var(--ink-body);
+  margin-top: -0.35rem;
+}
+
+.login-card label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.login-card button {
+  margin-top: 0.3rem;
+}
+
+.login-error {
+  color: #8b1e1e;
+  background: #fdecec;
+  border-radius: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.88rem;
+}
+
+.login-hint {
+  font-size: 0.78rem;
+  color: var(--ink-body);
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+  .db-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .db-side {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .db-nav {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+  }
+
+  .db-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .db-main {
+    padding: 1rem;
+  }
+
+  .db-grid,
+  .db-form {
+    grid-template-columns: 1fr;
+  }
+}

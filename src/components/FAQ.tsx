@@ -1,5 +1,6 @@
 "use client";
 
+import { OpenFormButton } from "@/components/FormModal";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -79,16 +80,28 @@ export default function FAQ() {
             solution.
           </p>
           <div className="faq-links">
-            <a href="#contact">Request a Quote</a>
-            <a href="#contact">Contact Us</a>
+            <OpenFormButton
+              className="faq-btn"
+              title="Request a Quote"
+              source="home-faq-quote"
+            >
+              Request a Quote
+            </OpenFormButton>
+            <OpenFormButton
+              className="faq-btn faq-btn-ghost"
+              title="Contact Us"
+              source="home-faq-contact"
+            >
+              Contact Us
+            </OpenFormButton>
           </div>
         </div>
       </div>
 
       <div className="faq-media">
         <Image
-          src="/faq-desk-cinematic.jpg"
-          alt="Professional woman at a desk in a warm modern tech office"
+          src="/faq-side.png"
+          alt="RoyalTech Innovation laptop with brand logo and technology icons"
           fill
           sizes="(max-width: 980px) 100vw, 50vw"
           className="faq-image"

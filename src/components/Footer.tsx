@@ -1,23 +1,28 @@
+"use client";
+
+import { useFormModal } from "@/components/FormModal";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { FormEvent, ReactNode } from "react";
 
 const quickLinks = [
-  { href: "/about", label: "About" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
-  { href: "/#process", label: "Process" },
-  { href: "/#why-us", label: "Why Us" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/careers", label: "Careers" },
+  { href: "/process", label: "Our Process" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
 
 const serviceLinks = [
-  { href: "/services", label: "Web Development" },
+  { href: "/services", label: "Website Development" },
   { href: "/services", label: "Software Development" },
   { href: "/services", label: "Mobile Apps" },
-  { href: "/services", label: "Marketing" },
+  { href: "/services", label: "Digital Marketing & SEO" },
+  { href: "/services", label: "UI/UX & Design" },
   { href: "/services", label: "IT Consulting" },
-  { href: "/services", label: "Design Solutions" },
 ];
 
 function Icon({
@@ -65,7 +70,6 @@ const icons = {
       <path d="M4 13v3a2 2 0 0 0 2 2h1v-7H6a2 2 0 0 0-2 2Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
       <path d="M20 13v3a2 2 0 0 1-2 2h-1v-7h1a2 2 0 0 1 2 2Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
       <path d="M18 10a6 6 0 0 0-12 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M12 19v2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </Icon>
   ),
   pin: (
@@ -84,14 +88,22 @@ const icons = {
       <path d="m9 6 6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </Icon>
   ),
-  heart: (
-    <Icon size={14}>
-      <path d="M19.5 5.8a4.4 4.4 0 0 0-6.2 0L12 7.1l-1.3-1.3a4.4 4.4 0 0 0-6.2 6.2l1.3 1.3L12 20l6.2-6.7 1.3-1.3a4.4 4.4 0 0 0 0-6.2Z" fill="currentColor" />
-    </Icon>
-  ),
 };
 
 export default function Footer() {
+  const { showThanks } = useFormModal();
+
+  const onSubscribe = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    form.reset();
+    showThanks();
+  };
+
   return (
     <footer className="site-footer">
       <div className="footer-aurora" aria-hidden="true" />
@@ -104,7 +116,12 @@ export default function Footer() {
               aria-label="RoyalTech Innovation home"
             >
               <span className="footer-logo">
-                <Image src="/logo-mark.jpg" alt="" width={48} height={48} />
+                <Image
+                  src="/logo-mark.jpg"
+                  alt="RoyalTech Innovation logo"
+                  width={48}
+                  height={48}
+                />
               </span>
               <span className="footer-brand-text">
                 <strong>RoyalTech Innovation</strong>
@@ -114,9 +131,26 @@ export default function Footer() {
               </span>
             </Link>
             <p>
-              Technology partner for startups and growing organisations —
-              websites, software, apps, marketing, design, and IT consulting.
+              Trusted IT solutions company and digital transformation partner for
+              SEO-ready websites, software, apps, marketing, design, and IT
+              consulting.
             </p>
+            <form className="footer-newsletter" onSubmit={onSubscribe}>
+              <label htmlFor="footer-newsletter-email">
+                Subscribe to our Newsletter
+              </label>
+              <div className="footer-newsletter-row">
+                <input
+                  id="footer-newsletter-email"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                  autoComplete="email"
+                />
+                <button type="submit">Subscribe</button>
+              </div>
+            </form>
           </div>
 
           <div className="footer-col">
@@ -126,9 +160,9 @@ export default function Footer() {
             <ul>
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href}>
+                  <Link href={link.href}>
                     {icons.chevron} {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -141,9 +175,9 @@ export default function Footer() {
             <ul>
               {serviceLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href}>
+                  <Link href={link.href}>
                     {icons.chevron} {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -156,7 +190,7 @@ export default function Footer() {
             <ul>
               <li className="footer-pill">
                 {icons.pin}
-                CP67 Mall, Sector 67, Mohali
+                Gate No. 5, Imperial Tower, CP 67, Punjab 160062
               </li>
               <li>
                 <a className="footer-pill" href="mailto:sales@royaltechinnovation.co.in">
@@ -175,15 +209,13 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2026 RoyalTech Innovation. All rights reserved.</p>
-          <div className="footer-legal">
-            <a href="#contact">Privacy Policy</a>
-            <a href="#contact">Terms & Conditions</a>
-            <a href="#contact">Cookie Policy</a>
-          </div>
-          <p className="footer-note">
-            Designed with {icons.heart} for innovation
+          <p>
+            {"\u00A9"} 2026 RoyalTech Innovation. All rights reserved.
           </p>
+          <div className="footer-legal">
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms &amp; Conditions</Link>
+          </div>
         </div>
       </div>
     </footer>

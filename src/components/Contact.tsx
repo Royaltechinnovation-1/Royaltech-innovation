@@ -1,5 +1,6 @@
 "use client";
 
+import { useFormModal } from "@/components/FormModal";
 import { submitLead } from "@/lib/submitLead";
 import { FormEvent, useState } from "react";
 
@@ -17,7 +18,7 @@ const address = {
 };
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const { showThanks } = useFormModal();
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
 
@@ -32,7 +33,6 @@ export default function Contact() {
     const data = new FormData(form);
     setSending(true);
     setError("");
-    setSubmitted(false);
 
     try {
       await submitLead({
@@ -42,8 +42,8 @@ export default function Contact() {
         message: String(data.get("message") || ""),
         source: "home-contact",
       });
-      setSubmitted(true);
       form.reset();
+      showThanks();
     } catch (err) {
       setError(
         err instanceof Error
@@ -114,12 +114,6 @@ export default function Contact() {
           <button className="contact-submit" type="submit" disabled={sending}>
             {sending ? "Sending..." : "Send message"}
           </button>
-
-          {submitted ? (
-            <p className="contact-success" role="status">
-              Thanks — we received your message and will get back to you soon.
-            </p>
-          ) : null}
 
           {error ? (
             <p className="contact-success" role="alert" style={{ color: "#b42318" }}>

@@ -52,11 +52,13 @@ export default function WhyChooseUs() {
 
           <div className="why-center">
             <Image
-              src="/why-choose-building.png"
-              alt="Modern commercial building at dusk"
+              // src="https://res.cloudinary.com/dfzokfvbm/image/upload/v1794312267/remove_the_backgroud_b3e01168_o3m5bi.png"
+              src="/CP-67.png"
+              alt="RoyalTech Innovation Why Choose Us visual"
               width={840}
               height={840}
               className="why-image"
+              unoptimized
             />
           </div>
 

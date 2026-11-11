@@ -1,15 +1,21 @@
 import AboutPageContent from "@/components/AboutPageContent";
 import BackToTop from "@/components/BackToTop";
-import ConnectWithUs from "@/components/ConnectWithUs";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us | IT Company in Mohali",
   description:
-    "Learn about RoyalTech Innovation — an IT solutions company and digital transformation partner delivering practical technology for startups, SMEs, and enterprises.",
+    "Meet RoyalTech Innovation — an IT solutions company and digital transformation partner in Mohali delivering practical technology for startups, SMEs, and enterprises.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About RoyalTech Innovation",
+    description:
+      "Our mission, vision, and team behind practical technology for growing businesses.",
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {
@@ -18,7 +24,6 @@ export default function AboutPage() {
       <Header />
       <main>
         <AboutPageContent />
-        <ConnectWithUs />
       </main>
       <Footer />
       <BackToTop />

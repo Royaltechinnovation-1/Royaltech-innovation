@@ -1,55 +1,48 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const items = [
+const reviewImages = [
   {
-    quote:
-      "Excellent service from start to finish. The team understood our requirements clearly and delivered the project on time. Their communication was great throughout the process. Highly recommended!",
-    name: "Rajesh Kumar",
-    role: "Operations Manager",
-    company: "Potent",
-    initials: "RK",
+    src: "/reviews/google-ataur.png",
+    alt: "Google review from Ataur Rahman for RoyalTech Innovation",
   },
   {
-    quote:
-      "We approached them for our cloud migration and it was the best decision. The team was professional and handled everything smoothly. Zero downtime and great post-project support.",
-    name: "Priya Sharma",
-    role: "IT Head",
-    company: "Potent",
-    initials: "PS",
+    src: "/reviews/google-robina.png",
+    alt: "Google review from Robina Khatoon for RoyalTech Innovation",
   },
   {
-    quote:
-      "Very responsive and reliable IT partner. They fixed our system issues quickly and suggested improvements we hadn't thought of. Their support team is always available when needed.",
-    name: "Arun Patel",
-    role: "Business Owner",
-    company: "Potent",
-    initials: "AP",
+    src: "/reviews/google-rohit.png",
+    alt: "Google review from Rohit Verma for RoyalTech Innovation",
   },
   {
-    quote:
-      "RoyalTech turned a complex technology roadmap into a clear plan our whole team could follow. Every milestone was delivered with care and transparency.",
-    name: "Neha Verma",
-    role: "Product Director",
-    company: "Northstar Labs",
-    initials: "NV",
+    src: "/reviews/google-prabhakar.png",
+    alt: "Google review from Prabhakar kr for RoyalTech Innovation",
   },
   {
-    quote:
-      "The new digital experience is faster, easier to use, and much more effective for our customers. RoyalTech brought strong ideas and dependable execution.",
-    name: "Vikram Singh",
-    role: "Growth Lead",
-    company: "Aster Group",
-    initials: "VS",
+    src: "/reviews/google-sana.png",
+    alt: "Google review from Sana Iqbal for RoyalTech Innovation",
   },
   {
-    quote:
-      "From the first workshop to launch, the team stayed focused on the outcomes that mattered. We now have a stronger foundation for our next stage of growth.",
-    name: "Ananya Mehta",
-    role: "Founder",
-    company: "Brightpath",
-    initials: "AM",
+    src: "/reviews/google-vikram.png",
+    alt: "Google review from Vikram Singh for RoyalTech Innovation",
+  },
+  {
+    src: "/reviews/google-neha.png",
+    alt: "Google review from Neha Gupta for RoyalTech Innovation",
+  },
+  {
+    src: "/reviews/google-amit.png",
+    alt: "Google review from Amit Sharma for RoyalTech Innovation",
+  },
+  {
+    src: "/reviews/google-kavita.png",
+    alt: "Google review from Kavita Mehra for RoyalTech Innovation",
+  },
+  {
+    src: "/reviews/google-manish.png",
+    alt: "Google review from Manish Kapoor for RoyalTech Innovation",
   },
 ];
 
@@ -84,7 +77,7 @@ export default function Testimonials() {
   const scrollTestimonials = (direction: number) => {
     const element = testimonialsRef.current;
     element?.scrollBy({
-      left: direction * (element.clientWidth + 1),
+      left: direction * (element.clientWidth * 0.7),
       behavior: "smooth",
     });
   };
@@ -96,16 +89,16 @@ export default function Testimonials() {
           <p className="testimonials-label">Testimonials</p>
           <h2>Trusted by teams who expect clarity and delivery</h2>
           <p className="testimonials-intro">
-            Real feedback from partners who built with RoyalTech Innovation.
+            Real Google reviews from clients of RoyalTech Innovation, Mohali.
           </p>
         </div>
 
         <div className="testimonials-carousel">
-          <div className="testimonials-controls" aria-label="Testimonial navigation">
+          <div className="testimonials-controls" aria-label="Review navigation">
             <button
               type="button"
               className="testimonials-arrow"
-              aria-label="Previous testimonials"
+              aria-label="Previous reviews"
               onClick={() => scrollTestimonials(-1)}
               disabled={!canScrollLeft}
             >
@@ -114,41 +107,28 @@ export default function Testimonials() {
             <button
               type="button"
               className="testimonials-arrow"
-              aria-label="Next testimonials"
+              aria-label="Next reviews"
               onClick={() => scrollTestimonials(1)}
               disabled={!canScrollRight}
             >
               <span aria-hidden="true">→</span>
             </button>
           </div>
-          <div className="testimonials-grid" ref={testimonialsRef}>
-          {items.map((item) => (
-            <article key={item.name} className="testimonial">
-              <div className="testimonial-top">
-                <span className="testimonial-mark" aria-hidden="true">
-                  “
-                </span>
-                <div className="testimonial-stars" aria-label="5 out of 5 stars">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index}>★</span>
-                  ))}
-                </div>
-              </div>
-
-              <p className="testimonial-quote">{item.quote}</p>
-
-              <div className="testimonial-person">
-                <span className="testimonial-avatar" aria-hidden="true">
-                  {item.initials}
-                </span>
-                <div>
-                  <p className="testimonial-name">{item.name}</p>
-                  <p className="testimonial-role">{item.role}</p>
-                  <p className="testimonial-company">{item.company}</p>
-                </div>
-              </div>
-            </article>
-          ))}
+          <div
+            className="testimonials-grid testimonials-reviews"
+            ref={testimonialsRef}
+          >
+            {reviewImages.map((review) => (
+              <article key={review.src} className="testimonial testimonial-shot">
+                <Image
+                  src={review.src}
+                  alt={review.alt}
+                  width={720}
+                  height={520}
+                  className="testimonial-shot-img"
+                />
+              </article>
+            ))}
           </div>
         </div>
       </div>

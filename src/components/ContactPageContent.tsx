@@ -1,62 +1,51 @@
 "use client";
 
-import PageHero from "@/components/PageHero";
+import { OpenFormButton, useFormModal } from "@/components/FormModal";
 import { submitLead } from "@/lib/submitLead";
+import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
-const address = {
-  title: "CP67 Mall",
-  lines: [
-    "Site No. 252, International Airport Road",
-    "Sector 67, Sahibzada Ajit Singh Nagar",
-    "Mohali, Punjab 160062",
-  ],
-  mapSrc:
-    "https://maps.google.com/maps?q=CP67%20Mall%2C%20Site%20No.%20252%2C%20International%20Airport%20Road%2C%20Sector%2067%2C%20Mohali%2C%20Punjab%20160062&t=&z=16&ie=UTF8&iwloc=&output=embed",
-  mapsLink:
-    "https://www.google.com/maps/search/?api=1&query=CP67+Mall+Site+No.+252+International+Airport+Road+Sector+67+Mohali+Punjab+160062",
-};
-
-const channels = [
-  {
-    title: "Email",
-    text: "Share project details, documents, or questions anytime. We review enquiries carefully and respond with next steps.",
-    actionLabel: "sales@royaltechinnovation.co.in",
-    href: "mailto:sales@royaltechinnovation.co.in",
-  },
-  {
-    title: "Phone / WhatsApp",
-    text: "Prefer a quick conversation? Call or message us to discuss scope, timelines, and the best starting point for your project.",
-    actionLabel: "+91 85708 71522",
-    href: "tel:+918570871522",
-  },
-  {
-    title: "Visit the office",
-    text: "Meet us at CP67 Mall, Mohali. Bring your brief, goals, and questions—we can map a practical path together.",
-    actionLabel: "Get directions",
-    href: address.mapsLink,
-    external: true,
-  },
+const address = [
+  "Gate No. 5, CP 67, Imperial Tower",
+  "Chandigarh Int'l Airport Rd, behind CP67 Mall",
+  "Sahibzada Ajit Singh Nagar, Punjab 160062",
 ];
 
-const reasons = [
-  {
-    title: "Clear recommendations",
-    text: "We help you choose the right mix of design, development, marketing, or consulting—based on goals, not guesswork.",
-  },
-  {
-    title: "Transparent next steps",
-    text: "After your enquiry, you get a practical response: what we understood, what we recommend, and how engagement could work.",
-  },
-  {
-    title: "One accountable partner",
-    text: "From first conversation to delivery, you work with a team focused on outcomes your business can measure.",
-  },
-];
+const mapQuery =
+  "Gate No. 5, Imperial Tower, CP 67, Chandigarh International Airport Road, behind CP67 Mall, Sahibzada Ajit Singh Nagar, Punjab 160062";
+const mapSrc =
+  "https://maps.google.com/maps?q=30.678057,76.723018&z=17&output=embed";
+const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
+
+function MailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 21s6-5.6 6-10a6 6 0 1 0-12 0c0 4.4 6 10 6 10Z" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="11" r="2" fill="currentColor" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 3.5h3l1.2 3-2 1.2a12 12 0 0 0 5.1 5.1l1.2-2 3 1.2v3A2 2 0 0 1 17.5 17 14.5 14.5 0 0 1 7 6.5 2 2 0 0 1 8 3.5Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 export default function ContactPageContent() {
-  const [submitted, setSubmitted] = useState(false);
+  const { showThanks } = useFormModal();
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
 
@@ -69,21 +58,21 @@ export default function ContactPageContent() {
     }
 
     const data = new FormData(form);
+    const first = String(data.get("firstName") || "").trim();
+    const last = String(data.get("lastName") || "").trim();
     setSending(true);
     setError("");
-    setSubmitted(false);
 
     try {
       await submitLead({
-        name: String(data.get("name") || ""),
-        email: String(data.get("email") || ""),
-        phone: String(data.get("phone") || ""),
-        service: String(data.get("service") || ""),
-        message: String(data.get("message") || ""),
+        name: `${first} ${last}`.trim(),
+        email: String(data.get("workEmail") || ""),
+        phone: String(data.get("contactNumber") || ""),
+        message: String(data.get("aboutProject") || ""),
         source: "contact-page",
       });
-      setSubmitted(true);
       form.reset();
+      showThanks();
     } catch (err) {
       setError(
         err instanceof Error
@@ -96,223 +85,180 @@ export default function ContactPageContent() {
   };
 
   return (
-    <div className="ap">
-      <PageHero
-        kicker="Contact Us"
-        title="Let's talk about what you want to build"
-        lead="Whether you need a website, custom software, a mobile app, digital marketing, design support, or IT consulting—tell us your goals and we will help you find a clear, practical next step."
-        image="/hero-contact-v2.jpg"
-        imageAlt="Welcoming RoyalTech Innovation reception space"
-        primaryHref="mailto:sales@royaltechinnovation.co.in"
-        primaryLabel="Email sales"
-        secondaryHref="tel:+918570871522"
-        secondaryLabel="Call now"
-      />
-
-      <section className="ap-section">
-        <div className="ap-wrap">
-          <div className="ap-section-head">
-            <p className="ap-kicker">Ways to reach us</p>
-            <h2>Choose the channel that works best for you</h2>
-            <p className="ap-section-intro">
-              Send a detailed brief by email, speak with us directly, or visit
-              our Mohali office. We respond with clarity—what we heard, what we
-              recommend, and how we can help.
-            </p>
-          </div>
-          <div className="ap-goals">
-            {channels.map((channel, index) => (
-              <article key={channel.title} className="ap-goal">
-                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{channel.title}</h3>
-                <p>{channel.text}</p>
-                <a
-                  className="ap-service-link"
-                  href={channel.href}
-                  {...(channel.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  {channel.actionLabel} <span aria-hidden="true">→</span>
-                </a>
-              </article>
-            ))}
-          </div>
+    <div className="cu">
+      <section className="cu-hero" aria-label="Contact RoyalTech Innovation">
+        <div className="cu-hero-inner">
+          <p className="cu-badge">Contact Us</p>
+          <h1>Let&apos;s talk about what you want to build</h1>
+          <p>
+            Tell us your goals and we will help you find a clear, practical next step.
+          </p>
+          <OpenFormButton
+            className="cu-hero-btn"
+            title="Send a message"
+            source="contact-hero"
+          >
+            Send a message <span aria-hidden="true">→</span>
+          </OpenFormButton>
         </div>
       </section>
 
-      <section className="ap-section ap-section-alt">
-        <div className="ap-wrap ap-contact-grid">
-          <div className="ap-copy">
-            <p className="ap-kicker">Request a quote</p>
-            <h2>Tell us about your project</h2>
-            <p>
-              Share a few details—what you want to achieve, your timeline, and
-              any constraints. The more context you provide, the more useful our
-              first response will be.
-            </p>
-            <p>
-              Looking for UI/UX, web or app development, custom software,
-              marketing, or consulting? Mention that too. We will help you
-              define scope without overcomplicating the start.
-            </p>
-
-            <form className="ap-form" onSubmit={onSubmit} noValidate>
-              <label className="ap-field">
-                <span>Name *</span>
-                <input
-                  type="text"
-                  name="name"
-                  autoComplete="name"
-                  required
-                  placeholder="Your full name"
+      <section className="cu-wrap" id="contact" aria-label="Contact form">
+        <div className="cu-layout">
+          <aside className="cu-info">
+            <div>
+              <h2 className="cu-title">Our friendly team is here to help</h2>
+              <a className="cu-mail" href="mailto:sales@royaltechinnovation.co.in">
+                <MailIcon />
+                <span>sales@royaltechinnovation.co.in</span>
+              </a>
+              <div className="cu-brand">
+                <Image
+                  src="/royaltech-logo.png"
+                  alt="RoyalTech Innovation"
+                  width={180}
+                  height={56}
+                  className="cu-brand-logo"
                 />
-              </label>
-
-              <label className="ap-field">
-                <span>Email *</span>
-                <input
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  required
-                  placeholder="you@company.com"
-                />
-              </label>
-
-              <label className="ap-field">
-                <span>Phone number *</span>
-                <input
-                  type="tel"
-                  name="phone"
-                  autoComplete="tel"
-                  required
-                  pattern="[0-9+\-\s()]{7,20}"
-                  placeholder="+91 85708 71522"
-                />
-              </label>
-
-              <label className="ap-field">
-                <span>Service interest</span>
-                <select name="service" defaultValue="">
-                  <option value="" disabled>
-                    Select a service (optional)
-                  </option>
-                  <option>UI/UX Design</option>
-                  <option>Web Development</option>
-                  <option>App Development</option>
-                  <option>Software Development</option>
-                  <option>Digital Marketing</option>
-                  <option>IT Consulting</option>
-                  <option>Not sure yet</option>
-                </select>
-              </label>
-
-              <label className="ap-field">
-                <span>Message *</span>
-                <textarea
-                  name="message"
-                  required
-                  rows={6}
-                  placeholder="What are you looking to build? Goals, timeline, and any useful context..."
-                />
-              </label>
-
-              <button
-                className="btn btn-soft ap-form-submit"
-                type="submit"
-                disabled={sending}
-              >
-                {sending ? "Sending..." : "Send message"}
-              </button>
-
-              {submitted ? (
-                <p className="ap-form-success" role="status">
-                  Thanks—we received your message and will get back to you soon
-                  with clear next steps.
+              </div>
+            </div>
+            <div className="cu-blocks">
+              <div>
+                <h2>Come say hello to us at our HQs</h2>
+                <p className="cu-place">
+                  <strong>RoyalTech Innovation</strong>
+                  Gate No. 5, CP 67, Imperial Tower
+                  <br />
+                  Behind CP67 Mall, Chandigarh Int&apos;l Airport Rd
+                  <br />
+                  Sahibzada Ajit Singh Nagar, Punjab 160062
                 </p>
-              ) : null}
+                <div className="cu-row">
+                  <PinIcon />
+                  <span>
+                    Gate No. 5, Imperial Tower
+                    <br />
+                    Chandigarh Int&apos;l Airport Rd, behind CP67 Mall
+                    <br />
+                    Sahibzada Ajit Singh Nagar, Punjab 160062
+                  </span>
+                </div>
+              </div>
+              <div>
+                <h2>Call us any time from Mon - Fri</h2>
+                <div className="cu-row">
+                  <PhoneIcon />
+                  <div>
+                    <p>We are available Monday to Friday, 10:00 am to 6:30 pm. Call or WhatsApp and we will confirm a time before you travel.</p>
+                    <a href="tel:+918570871522">+91 85708 71522</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
 
-              {error ? (
-                <p className="ap-form-success" role="alert" style={{ color: "#b42318" }}>
-                  {error}
-                </p>
-              ) : null}
-            </form>
+          <form className="cu-form" onSubmit={onSubmit}>
+            <span className="cu-pill">Connect with us</span>
+            <h2>Got Ideas? We’ve Got The Skills. Let’s Team Up!</h2>
+            <p className="cu-lead">
+              Share a short brief — what you want to build, who it is for, and when you hope to start. We reply with a clear next step, usually within one working day.
+            </p>
+
+            <div className="cu-grid">
+              <label className="cu-box">
+                <span>First Name</span>
+                <input id="firstName" name="firstName" autoComplete="given-name" required />
+              </label>
+              <label className="cu-box">
+                <span>Last Name</span>
+                <input id="lastName" name="lastName" autoComplete="family-name" required />
+              </label>
+              <label className="cu-box">
+                <span>Work Email</span>
+                <input id="workEmail" name="workEmail" type="email" autoComplete="email" required />
+              </label>
+              <label className="cu-box">
+                <span>Contact Number</span>
+                <input id="contactNumber" name="contactNumber" type="tel" autoComplete="tel" required />
+              </label>
+              <label className="cu-box cu-wide">
+                <span>About Project</span>
+                <textarea id="aboutProject" name="aboutProject" rows={3} required />
+              </label>
+            </div>
+
+            <div className="cu-notes">
+              <label>
+                <input type="checkbox" name="smsConsent" />
+                <span>
+                  By checking this box, you agree to receive SMS notifications from RoyalTech Innovation. Reply “STOP” anytime to unsubscribe.
+                </span>
+              </label>
+              <label>
+                <input type="checkbox" name="termsAccepted" required />
+                <span>
+                  By clicking “Submit,” you confirm your agreement to RoyalTech
+                  Innovation’s{" "}
+                  <Link href="/terms">Terms of Use</Link> and{" "}
+                  <Link href="/privacy">Privacy Policy</Link>.
+                </span>
+              </label>
+              <p className="cu-privacy">
+                Your Privacy Matters – We value your trust and are committed to protecting your personal information. Your data, including phone numbers and SMS consent, will never be shared, sold, or traded with third parties. Rest assured, your information remains 100% secure with us.
+              </p>
+            </div>
+
+            {error ? (
+              <p className="cu-status is-error" role="alert">
+                {error}
+              </p>
+            ) : null}
+
+            <button type="submit" disabled={sending}>
+              {sending ? "Sending..." : "Book a free consultation"} <span aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <div className="cu-map">
+            <iframe
+              title="Imperial Tower, Gate No. 5, CP 67 map"
+              src={mapSrc}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           </div>
 
-          <aside className="ap-contact-side">
-            <div className="ap-contact-map-wrap">
-              <iframe
-                className="ap-contact-map"
-                title="CP67 Mall exact location map"
-                src={address.mapSrc}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            </div>
-            <div className="ap-panel ap-contact-card">
-              <p className="ap-panel-line">Visit us</p>
-              <h3>{address.title}</h3>
-              <p>
-                {address.lines[0]}
+          <aside className="cu-visit">
+            <p>Visit us</p>
+            <h2>Gate No. 5, Imperial Tower</h2>
+            <p className="cu-note">
+              The pin marks the CP67 complex on Chandigarh International Airport Road. Imperial Tower is the office building behind CP67 Mall. Enter at Gate No. 5 and come up to RoyalTech Innovation.
+            </p>
+            <div className="cu-row">
+              <PinIcon />
+              <span>
+                {address[0]}
                 <br />
-                {address.lines[1]}
+                {address[1]}
                 <br />
-                {address.lines[2]}
-              </p>
-              <a
-                className="ap-service-link"
-                href={address.mapsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open in Google Maps <span aria-hidden="true">→</span>
-              </a>
+                {address[2]}
+              </span>
             </div>
+            <a href={mapsLink} target="_blank" rel="noopener noreferrer">
+              Get directions
+            </a>
           </aside>
         </div>
       </section>
 
-      <section className="ap-section">
-        <div className="ap-wrap">
-          <div className="ap-section-head">
-            <p className="ap-kicker">What happens next</p>
-            <h2>A clear response—not a generic reply</h2>
-            <p className="ap-section-intro">
-              When you contact RoyalTech Innovation, we focus on understanding
-              your goal first, then recommending a practical path forward.
-            </p>
-          </div>
-          <div className="ap-goals">
-            {reasons.map((item, index) => (
-              <article key={item.title} className="ap-goal">
-                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="ap-cta">
-        <div className="ap-wrap ap-cta-inner">
-          <h2>Prefer to explore before you write?</h2>
-          <p>
-            Learn more about how we work, or review the services we deliver—
-            then come back with a clearer brief when you are ready.
-          </p>
-          <div className="ap-cta-actions">
-            <Link className="btn btn-soft" href="/services">
-              View services
-            </Link>
-            <Link className="ap-link-btn" href="/about">
-              About RoyalTech
-            </Link>
-          </div>
-        </div>
+      <section className="cu-book" id="booking" aria-label="Book a session">
+        <span>Let&apos;s Work Together</span>
+        <h2>Book a Session with Our Experts!</h2>
+        <p>
+          Have an idea, a website, or a problem you want to solve? Book a first conversation and we will walk through scope, timeline, and a practical way to start. There is no charge for that session.
+        </p>
+        <Link href="tel:+918570871522">Call now →</Link>
       </section>
     </div>
   );

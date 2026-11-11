@@ -5,31 +5,31 @@ const steps = [
     num: "01",
     title: "Discover",
     text: "We learn your goals, challenges, and what success looks like—so priorities are clear before any build begins.",
-    image: "/step-01-discover.jpg",
+    image: "/Logo.png",
   },
   {
     num: "02",
     title: "Plan & Design",
     text: "We map timelines, budget, architecture, and experience into a roadmap you can review and approve.",
-    image: "/step-02-plan.jpg",
+    image: "/Plan-Design.jpeg",
   },
   {
     num: "03",
     title: "Build",
     text: "We develop with modern tools and clean practices so websites, software, and apps fit how you work.",
-    image: "/step-03-build.jpg",
+    image: "/Build-website-development.jpeg",
   },
   {
     num: "04",
     title: "Testing",
     text: "We check quality, performance, and usability across devices—so issues are caught before go-live.",
-    image: "/service-software.jpg",
+    image: "/Testing.png",
   },
   {
     num: "05",
     title: "Launch",
     text: "We deploy carefully, train your team, and stay available after go-live as your needs grow.",
-    image: "/step-04-launch.jpg",
+    image: "/CRM.png",
   },
 ];
 

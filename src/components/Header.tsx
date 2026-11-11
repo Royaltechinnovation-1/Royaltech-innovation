@@ -1,5 +1,6 @@
 "use client";
 
+import { OpenFormButton } from "@/components/FormModal";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,10 +10,25 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/careers", label: "Careers" },
+  { href: "/process", label: "Our Process" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact" },
 ];
 
-const heroOverlayPaths = new Set(["/", "/about", "/services", "/contact"]);
+const heroOverlayPaths = new Set([
+  "/",
+  "/about",
+  "/services",
+  "/contact",
+  "/careers",
+  "/process",
+  "/portfolio",
+  "/gallery",
+  "/privacy",
+  "/terms",
+]);
 
 export default function Header() {
   const pathname = usePathname();
@@ -31,16 +47,34 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [overlaysHero]);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <>
-      <div className="nav-backdrop" hidden={!menuOpen} onClick={closeMenu} />
+      <div
+        className={`nav-backdrop${menuOpen ? " is-visible" : ""}`}
+        hidden={!menuOpen}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
       <header
-        className={`site-header${scrolled ? " is-scrolled" : ""}${menuOpen ? " is-open" : ""}`}
+        className={`site-header${scrolled || menuOpen ? " is-scrolled" : ""}${menuOpen ? " is-open" : ""}`}
         id="top"
       >
-        <div className="header-inner">
+        <div className={`header-shell${menuOpen ? " is-open" : ""}`}>
           <Link
             className="brand"
             href="/"
@@ -50,7 +84,7 @@ export default function Header() {
             <Image
               className="brand-mark"
               src="/logo-mark.jpg"
-              alt=""
+              alt="RoyalTech Innovation logo"
               width={58}
               height={58}
               priority
@@ -64,27 +98,36 @@ export default function Header() {
             <ul className="nav-list">
               {links.map((link) => (
                 <li key={`${link.href}-${link.label}`}>
-                  <Link className="nav-link" href={link.href} onClick={closeMenu}>
+                  <Link
+                    className={`nav-link${pathname === link.href ? " is-active" : ""}`}
+                    href={link.href}
+                    onClick={closeMenu}
+                  >
                     {link.label}
                   </Link>
                 </li>
               ))}
               <li className="nav-mobile-only">
-                <Link
+                <OpenFormButton
                   className="btn btn-soft btn-sm nav-quote"
-                  href="tel:+918570871522"
+                  title="Get a Quote"
+                  source="header-mobile"
                   onClick={closeMenu}
                 >
-                  Call Now
-                </Link>
+                  Get a Quote
+                </OpenFormButton>
               </li>
             </ul>
           </nav>
 
           <div className="header-actions">
-            <Link className="btn btn-soft btn-sm" href="tel:+918570871522">
-              Call Now
-            </Link>
+            <OpenFormButton
+              className="btn btn-soft btn-sm"
+              title="Get a Quote"
+              source="header"
+            >
+              Get a Quote
+            </OpenFormButton>
             <button
               className={`menu-btn${menuOpen ? " is-open" : ""}`}
               type="button"

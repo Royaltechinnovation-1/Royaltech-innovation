@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { OpenFormButton, useFormModal } from "@/components/FormModal";
+import { FormEvent } from "react";
 
 const socialLinks = [
   {
@@ -57,7 +58,7 @@ function LinkedInIcon() {
 }
 
 export default function ConnectWithUs() {
-  const [subscribed, setSubscribed] = useState(false);
+  const { showThanks } = useFormModal();
 
   const onSubscribe = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -66,8 +67,8 @@ export default function ConnectWithUs() {
       form.reportValidity();
       return;
     }
-    setSubscribed(true);
     form.reset();
+    showThanks();
   };
 
   return (
@@ -110,19 +111,18 @@ export default function ConnectWithUs() {
             →
           </button>
         </form>
-        {subscribed ? (
-          <p className="connect-note" role="status">
-            Thanks — you are on the list.
-          </p>
-        ) : null}
       </div>
 
-      <a className="connect-panel connect-quote" href="/contact">
+      <OpenFormButton
+        className="connect-panel connect-quote"
+        title="Request a Quote"
+        source="home-connect-quote"
+      >
         <p className="connect-kicker">Ready to build?</p>
         <h2>
           Request a Quote <span aria-hidden="true">→</span>
         </h2>
-      </a>
+      </OpenFormButton>
     </section>
   );
 }

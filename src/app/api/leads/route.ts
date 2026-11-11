@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createLead } from "@/lib/dashboard/store";
 
 type LeadPayload = {
   name?: string;
@@ -10,15 +11,6 @@ type LeadPayload = {
 };
 
 export async function POST(request: Request) {
-  const webhookUrl = process.env.LEADS_WEBHOOK_URL;
-
-  if (!webhookUrl) {
-    return NextResponse.json(
-      { ok: false, error: "Lead webhook is not configured." },
-      { status: 500 },
-    );
-  }
-
   let body: LeadPayload;
   try {
     body = (await request.json()) as LeadPayload;
@@ -43,33 +35,47 @@ export async function POST(request: Request) {
     );
   }
 
+  // Always store for Sales + Development dashboards.
+  let leadId: string | null = null;
   try {
-    const response = await fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        phone,
-        service,
-        message,
-        source,
-      }),
-      redirect: "follow",
+    const lead = await createLead({
+      name,
+      email,
+      phone,
+      service,
+      message,
+      source,
     });
-
-    if (!response.ok) {
-      return NextResponse.json(
-        { ok: false, error: "Could not save your message. Please try again." },
-        { status: 502 },
-      );
-    }
-
-    return NextResponse.json({ ok: true });
+    leadId = lead.id;
   } catch {
     return NextResponse.json(
-      { ok: false, error: "Could not reach the lead service. Please try again." },
-      { status: 502 },
+      { ok: false, error: "Could not save your message. Please try again." },
+      { status: 500 },
     );
   }
+
+  // Keep Google Sheets / Apps Script webhook as optional sync.
+  const webhookUrl = process.env.LEADS_WEBHOOK_URL;
+  if (webhookUrl) {
+    try {
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          service,
+          message,
+          source,
+          leadId,
+        }),
+        redirect: "follow",
+      });
+    } catch {
+      // Dashboard store already saved the lead.
+    }
+  }
+
+  return NextResponse.json({ ok: true, id: leadId });
 }

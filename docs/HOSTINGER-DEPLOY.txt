@@ -1,0 +1,45 @@
+RoyalTech Innovation — Hostinger Node.js deploy
+================================================
+
+This app needs Hostinger Node.js / Web Apps hosting (not PHP-only shared hosting).
+Contact form API + Next.js SSR require a Node runtime.
+
+------------------------------------------------
+A) Deploy from Git (recommended)
+------------------------------------------------
+1. Push this project to GitHub/GitLab.
+2. hPanel → Websites → Add Website → Node.js Apps → Import Git Repository.
+3. Select the repo. Confirm auto-detected settings:
+
+   Application type : next
+   Node.js version  : 20 (or newer LTS)
+   Build script     : build
+   Output directory : .next
+   Entry file       : (leave empty — ignored for Next.js)
+
+4. Add environment variable in Hostinger app settings:
+   LEADS_WEBHOOK_URL = <your Google Apps Script / webhook URL>
+
+5. Deploy. Point your domain to this Node app.
+
+------------------------------------------------
+B) Deploy from ZIP upload
+------------------------------------------------
+1. Upload royaltech-hostinger-deploy.zip from the parent Downloads folder
+   (rebuilt with tar — do NOT use PowerShell Compress-Archive; that causes
+   EACCES: permission denied on Hostinger Linux builds).
+2. Do not put .env.local in the zip. Set secrets only in hPanel env vars.
+3. Same build settings as above.
+4. Set LEADS_WEBHOOK_URL, then Deploy / Restart.
+
+------------------------------------------------
+C) After go-live checks
+------------------------------------------------
+- Open https://your-domain/
+- Open https://your-domain/google49cae0159d96d3c9.html  (Google Search Console file)
+- Open https://your-domain/sitemap.xml
+- Submit a test lead from the contact form
+- Confirm LEADS_WEBHOOK_URL is set (without it, form returns 500)
+
+Domain / SEO already use: https://royaltechinnovation.com
+(layout metadataBase, sitemap.ts, robots.ts)

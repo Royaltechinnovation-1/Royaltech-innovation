@@ -49,8 +49,8 @@ export default function About() {
         {!playing ? (
           <Image
             className="about-media-img"
-            src="/home-about.jpg"
-            alt="Modern RoyalTech Innovation workspace"
+            src="/about-office-entrance.jpg"
+            alt="RoyalTech Innovation office entrance"
             fill
             sizes="(max-width: 900px) 100vw, 50vw"
             priority={false}

@@ -1,38 +1,77 @@
-# royaltechmain-website
+# RoyalTech Innovation Website
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Next.js website + internal dashboard for RoyalTech Innovation.
 
-## Getting Started
-
-First, run the development server:
+## Quick start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Folder structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+royaltech/
+├── docs/                 Deploy notes + reference files
+├── assets/inbox/         Unused / raw media (not for production)
+├── public/               Live website images, videos, verify files
+│   ├── careers/          Careers job images + CTA bg
+│   ├── gallery/          Gallery photos
+│   ├── reviews/          Review avatars
+│   └── trust/            Trust logos
+├── src/
+│   ├── app/              Routes (pages + API)
+│   │   ├── about/        /about
+│   │   ├── careers/      /careers
+│   │   ├── contact/      /contact
+│   │   ├── services/     /services
+│   │   ├── process/      /process
+│   │   ├── portfolio/    /portfolio
+│   │   ├── gallery/      /gallery
+│   │   ├── privacy/      /privacy
+│   │   ├── terms/        /terms
+│   │   ├── login/        /login
+│   │   ├── dashboard/    Internal dashboards
+│   │   └── api/          API routes (leads, auth, dashboard)
+│   ├── components/       UI components
+│   │   └── dashboard/    Dashboard-only components
+│   ├── lib/              Helpers + dashboard store/auth
+│   │   └── dashboard/
+│   └── styles/           Page CSS (careers, services, etc.)
+├── package.json
+├── next.config.ts
+└── .env.example
+```
 
-## Learn More
+## Important paths
 
-To learn more about Next.js, take a look at the following resources:
+| What | Where |
+|------|--------|
+| Home page | `src/app/page.tsx` |
+| Shared layout / fonts | `src/app/layout.tsx` |
+| Global styles | `src/app/globals.css` |
+| Page styles | `src/styles/` |
+| Header / Footer | `src/components/Header.tsx`, `Footer.tsx` |
+| Contact / career leads API | `src/app/api/leads/route.ts` |
+| Google site verify file | `public/google49cae0159d96d3c9.html` |
+| Hostinger deploy notes | `docs/HOSTINGER-DEPLOY.txt` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Copy `.env.example` to `.env.local`:
 
-## Deploy on Vercel
+```
+LEADS_WEBHOOK_URL=
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy (Hostinger)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Zip source (exclude `node_modules`, `.next`, `.env.local`, `assets/inbox`)
+2. Upload to Hostinger Node.js app
+3. Build: `build` · Output: `.next` · Node 20+
+4. Set `LEADS_WEBHOOK_URL` in Hostinger env
+
+See `docs/HOSTINGER-DEPLOY.txt` for full steps.

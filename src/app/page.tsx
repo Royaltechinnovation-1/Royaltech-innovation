@@ -17,26 +17,93 @@ export const metadata: Metadata = {
   title:
     "RoyalTech Innovation | IT Solutions Company & Digital Transformation Partner",
   description:
-    "Build your digital future with RoyalTech Innovation — a trusted IT services company offering end-to-end digital solutions, software development, website development, and business technology solutions.",
+    "RoyalTech Innovation in Mohali helps startups and SMEs with website development, custom software, mobile apps, SEO, digital marketing, UI/UX design, and IT consulting.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title:
+      "RoyalTech Innovation | IT Solutions Company & Digital Transformation Partner",
+    description:
+      "End-to-end digital solutions, software development, and IT services for growing businesses across India, the UK, and the UAE.",
+    url: "/",
+    type: "website",
+  },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "RoyalTech Innovation",
-  url: "https://royaltechinnovation.com",
-  description:
-    "IT solutions company and digital transformation partner delivering software development, website development, mobile apps, ERP, and IT consulting services.",
-  areaServed: ["India", "United Kingdom", "United Arab Emirates"],
-  knowsAbout: [
-    "IT solutions",
-    "digital transformation",
-    "software development",
-    "website development",
-    "mobile app development",
-    "ERP software development",
-    "digital marketing services",
-    "IT consulting",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://royaltechinnovation.com/#organization",
+      name: "RoyalTech Innovation",
+      url: "https://royaltechinnovation.com",
+      logo: "https://royaltechinnovation.com/royaltech-logo.png",
+      image: "https://royaltechinnovation.com/royaltech-logo.png",
+      description:
+        "IT solutions company and digital transformation partner delivering software development, website development, mobile apps, ERP, and IT consulting services.",
+      email: "sales@royaltechinnovation.co.in",
+      telephone: "+91-85708-71522",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress:
+          "Gate No. 5, CP 67, Imperial Tower, Behind CP67 Mall, Chandigarh Int'l Airport Rd",
+        addressLocality: "Sahibzada Ajit Singh Nagar",
+        addressRegion: "Punjab",
+        postalCode: "160062",
+        addressCountry: "IN",
+      },
+      areaServed: ["India", "United Kingdom", "United Arab Emirates"],
+      sameAs: [
+        "https://www.facebook.com/profile.php?id=61596431871796",
+        "https://www.instagram.com/royaltechinnovat/",
+        "https://www.linkedin.com/company/143923623/",
+      ],
+      knowsAbout: [
+        "IT solutions",
+        "digital transformation",
+        "software development",
+        "website development",
+        "mobile app development",
+        "SEO",
+        "digital marketing services",
+        "IT consulting",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://royaltechinnovation.com/#website",
+      url: "https://royaltechinnovation.com",
+      name: "RoyalTech Innovation",
+      publisher: {
+        "@id": "https://royaltechinnovation.com/#organization",
+      },
+      inLanguage: "en",
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://royaltechinnovation.com/#localbusiness",
+      name: "RoyalTech Innovation",
+      image: "https://royaltechinnovation.com/royaltech-logo.png",
+      url: "https://royaltechinnovation.com",
+      telephone: "+91-85708-71522",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress:
+          "Gate No. 5, CP 67, Imperial Tower, Behind CP67 Mall, Chandigarh Int'l Airport Rd",
+        addressLocality: "Sahibzada Ajit Singh Nagar",
+        addressRegion: "Punjab",
+        postalCode: "160062",
+        addressCountry: "IN",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 30.678057,
+        longitude: 76.723018,
+      },
+      priceRange: "$$",
+    },
   ],
 };
 
