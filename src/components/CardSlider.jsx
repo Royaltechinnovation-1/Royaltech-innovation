@@ -1,6 +1,6 @@
 
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
@@ -46,6 +46,15 @@ const cardData = [
 ];
 
 const CardSlider = () => {
+     const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return null;
+    }
     return (
         <section className="card-slider-section">
             <div className="card-slider-container">
