@@ -192,15 +192,15 @@ export default function Testimonials() {
                     {review.reviewText}
                   </blockquote>
                   <div className="testimonial-bottom">
-                    {review.src ? (
-                      <Image
-                        src={review.src}
-                        alt={review.alt}
-                        width={48}
-                        height={48}
-                        className="testimonial-avatar"
-                      />
-                    ) : (
+                    {review.src && (
+                    //   <Image
+                    //     src={review.src}
+                    //     alt={review.alt}
+                    //     width={48}
+                    //     height={48}
+                    //     className="testimonial-avatar"
+                    //   />
+                    // ) : (
                       <div className="testimonial-avatar-fallback">
                         {review.name?.charAt(0).toUpperCase() || "?"}
                       </div>

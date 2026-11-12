@@ -860,8 +860,10 @@ figure {
 }
 
 .what-shell {
-  width: min(1520px, calc(100% - 2.5rem));
-  margin: 0 auto;
+    width: min(1520px, 100% - 2.5rem);
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 0px var(--page-pad);
 }
 
 .what-top {
@@ -996,6 +998,8 @@ figure {
 .offer-shell {
   width: min(1520px, calc(100% - 2.5rem));
   margin: 0 auto;
+  max-width: 1440px;
+  padding: 0px var(--page-pad);
 }
 
 .offer-head {
@@ -1136,6 +1140,8 @@ figure {
 .why-shell {
   width: min(1520px, calc(100% - 2.5rem));
   margin: 0 auto;
+  max-width: 1440px;
+  padding: 0px var(--page-pad);
 }
 
 .why-head {
@@ -1399,7 +1405,7 @@ figure {
   position: relative;
   min-height: 480px;
   overflow: hidden;
-  background: #f3f7f1;
+  background: #f1f0e6;
 }
 
 .faq-media::after {
@@ -1438,6 +1444,8 @@ figure {
   position: relative;
   width: min(1520px, calc(100% - 2.5rem));
   margin: 0 auto;
+  max-width: 1440px;
+  padding: 0px var(--page-pad);
 }
 
 .testimonials-head {
@@ -1560,9 +1568,21 @@ figure {
   gap: 5px;
   justify-content: left;
   align-items: center;
-  /* align-items: center;
-  gap: 12px; */
+  position:absolute;
+  bottom: 20px;
   margin-top: 20px;
+}
+.testimonial-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f5ed;
+  color: #16834a;
+  font-size: 20px;
+  font-weight: 600;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
 }
 
 .testimonials-reviews {
@@ -1594,6 +1614,7 @@ figure {
   background: #fff;
   box-shadow: 0 8px 28px rgba(20, 32, 27, 0.06);
   scroll-snap-align: start;
+  position: relative;
 }
 
 .testimonial-shot:hover {
@@ -8062,6 +8083,11 @@ button.ae-panel-btn {
   line-height: 1.7;
   color: #444;
   margin-bottom: 12px;
+   display: -webkit-box;
+  -webkit-line-clamp: 12;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .testimonial-name {
