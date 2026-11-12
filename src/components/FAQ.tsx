@@ -7,18 +7,22 @@ import { useState } from "react";
 const items = [
   {
     question: "What services does RoyalTech Innovation provide?",
-    answer:
-      "RoyalTech Innovation provides end-to-end IT solutions and digital transformation services to help businesses grow and succeed online. Our services include professional website development, custom software development, mobile app development, ERP and CRM solutions, UI/UX design, digital marketing, IT consulting, and business process automation. We build scalable, secure, and user-friendly digital solutions tailored to startups, small businesses, and enterprises across different industries. As a trusted technology partner, RoyalTech Innovation helps businesses improve efficiency, strengthen their online presence, and achieve long-term digital growth.",
+    
+answer:
+  "RoyalTech Innovation provides professional IT solutions and digital transformation services to help businesses grow and improve their online presence. Our services include custom website development, web application development, mobile app development, custom software development, ERP and CRM solutions, UI/UX design, digital marketing, IT consulting, and business process automation. We deliver secure, scalable, and user-friendly digital solutions tailored to startups, small businesses, and enterprises across different industries.",
+
   },
   {
     question: "Does RoyalTech Innovation develop custom websites?",
     answer:
-      "Yes, RoyalTech Innovation specializes in designing and developing custom websites tailored to your business goals and requirements. We provide professional, responsive, SEO-friendly, and user-focused website development services that help businesses establish a strong online presence. Our expert development approach includes custom website design, modern UI/UX, responsive web development, e-commerce websites, business websites, web applications, API integration, and performance optimization. We use modern technologies to build secure, scalable, and high-performing websites that deliver an excellent user experience across all devices. Whether you are a startup, small business, or established enterprise, RoyalTech Innovation helps transform your ideas into powerful digital solutions that drive business growth.",
+  "Yes, RoyalTech Innovation provides professional custom website development services tailored to your business goals and requirements. We create responsive, SEO-friendly, and user-friendly websites that help businesses establish a strong online presence. Our services include business website development, e-commerce website development, portfolio websites, web applications, custom UI/UX design, API integration, and website performance optimization. We focus on building secure, mobile-friendly, and scalable websites that deliver excellent user experiences and support business growth.",
+
   },
   {
     question: "Does RoyalTech Innovation provide mobile app development services?",
-    answer:
-      "Yes, RoyalTech Innovation is a professional mobile app development company offering custom Android and iOS app development solutions tailored to your business needs. We help startups, small businesses, and enterprises transform their ideas into innovative, feature-rich, secure, and scalable mobile applications. Our mobile application development services include custom app development, Android and iOS app development, cross-platform mobile app development, UI/UX design, API integration, database management, third-party integrations, and app performance optimization. Our experienced development team uses modern technologies and industry best practices to build high-performance mobile applications that deliver seamless user experiences across different devices. From initial planning and design to development, testing, and deployment, RoyalTech Innovation provides end-to-end mobile app development solutions that enhance customer engagement, streamline business operations, and support long-term business growth."
+    
+answer:
+  "Yes, RoyalTech Innovation offers custom mobile app development services for businesses looking to build reliable Android and iOS applications. We develop user-friendly mobile apps with modern UI/UX design, API integration, database management, third-party integrations, and performance optimization. Our development process includes planning, design, development, testing, and deployment. Whether you are a startup or an established enterprise, we create secure, scalable, and feature-rich mobile applications tailored to your business requirements.",
   }, 
   {
     question: "How much does custom website development cost?",
@@ -27,16 +31,16 @@ const items = [
 },
   {
     question: "How long does custom website development take?",
-    answer:
-   
-
-"The website development timeline depends on the project's complexity, design requirements, features, and overall functionality. At RoyalTech Innovation, we follow a structured website development process to deliver high-quality, responsive, secure, and SEO-friendly websites within an agreed timeline. A basic business website may take approximately 1–2 weeks, while a custom business website typically takes 3–6 weeks. Complex e-commerce websites, custom web applications, and enterprise-level solutions may require 6–12 weeks or more, depending on project specifications. Our website development process includes requirement analysis, planning, UI/UX design, frontend and backend development, database integration, testing, performance optimization, and final deployment. We maintain clear communication with clients throughout every development stage to ensure the final website meets their business goals and expectations. RoyalTech Innovation focuses on delivering scalable, user-friendly, and high-performance website development solutions that help businesses establish a strong digital presence and achieve long-term growth."
-  },
+    
+answer:
+  "The time required for website development depends on the project's complexity, design, features, and functionality. At RoyalTech Innovation, a basic business website may take approximately 1–2 weeks, while a custom business website may take 3–6 weeks. Complex e-commerce websites and custom web applications may require 6–12 weeks or more. Our website development process includes requirement analysis, planning, UI/UX design, frontend and backend development, testing, and deployment. We follow a structured development approach to deliver responsive, secure, and high-performing websites within the agreed project timeline.",
+ },
 
   {
     question:" Does RoyalTech Innovation provide website maintenance and technical support services?",
-    answer:
-"Yes, RoyalTech Innovation provides ongoing technical support and website maintenance services to help businesses keep their websites, web applications, and digital solutions running smoothly. We understand that maintaining a secure, updated, and high-performing website is essential for long-term business success. Our technical support services include website maintenance, bug fixing, security updates, performance optimization, troubleshooting, software updates, database management, backup assistance, and technical issue resolution. We also provide support for website functionality improvements, application updates, server-related issues, and ongoing system maintenance based on project requirements and support agreements. Our team focuses on minimizing downtime, improving website performance, strengthening security, and ensuring a seamless user experience across all devices. Whether you are a startup, small business, or established enterprise, RoyalTech Innovation offers reliable technical support and maintenance solutions to help your digital platforms remain efficient, secure, and scalable as your business grows."   
+    
+answer:
+  "Yes, RoyalTech Innovation provides ongoing website maintenance and technical support services to keep websites and web applications secure, updated, and running smoothly. Our services include bug fixing, security updates, website performance optimization, troubleshooting, database management, backups, software updates, and functionality improvements. We help businesses minimize downtime, maintain website security, and ensure a smooth user experience. Our website maintenance and technical support solutions can be customized according to your project requirements and ongoing business needs.",
 
   },
 ];
@@ -64,9 +68,12 @@ export default function FAQ() {
                 className={`faq-item${open ? " is-open" : ""}`}
               >
   
+
+
 <button
   className="faq-question"
   type="button"
+  id={`faq-question-${index}`}
   aria-expanded={open}
   aria-controls={`faq-answer-${index}`}
   onClick={() => setOpenIndex(open ? -1 : index)}
@@ -83,6 +90,8 @@ export default function FAQ() {
 <div
   id={`faq-answer-${index}`}
   className="faq-answer-wrap"
+  role="region"
+  aria-labelledby={`faq-question-${index}`}
   hidden={!open}
 >
   <p className="faq-answer">{item.answer}</p>

@@ -1412,6 +1412,16 @@ figure {
   opacity: 1;
   transform: none;
 }
+.faq-question-heading {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: left;
+}
+
+.faq-answer-wrap[hidden] {
+  display: none !important;
+}
 
 .testimonials {
   position: relative;
@@ -1723,6 +1733,27 @@ figure {
   line-height: 1.7;
 }
 
+.contact-business-info {
+  display: grid;
+  justify-items: start;
+  gap: 0.35rem;
+  margin: 1rem 0;
+  color: var(--ink-body);
+  font-size: 0.95rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.contact-business-info a {
+  color: var(--accent-text);
+  text-underline-offset: 0.18em;
+}
+
+.contact-business-info a:hover,
+.contact-business-info a:focus-visible {
+  color: var(--accent);
+}
+
 .contact-form {
   display: grid;
   gap: 0.85rem;
@@ -1811,6 +1842,13 @@ figure {
   line-height: 1.55;
 }
 
+.contact-error {
+  color: #b42318;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
 .contact-media {
   position: relative;
   min-height: 480px;
@@ -1845,6 +1883,7 @@ figure {
   box-shadow: 0 16px 36px rgba(31, 37, 43, 0.16);
   color: var(--ink-soft);
   backdrop-filter: blur(10px);
+  font-style: normal;
 }
 
 .contact-pin-mark {
@@ -7976,5 +8015,82 @@ button.ae-panel-btn {
   .nav-link {
     font-size: 0.98rem;
     padding: 0.8rem 0.1rem;
+  }
+}
+
+.testimonial-review-content {
+  padding: 16px;
+  text-align: left;
+  
+}
+
+.testimonial-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.testimonial-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.testimonials-reviews .testimonial-shot {
+  box-sizing: border-box;
+  height: 22rem;
+  min-height: 0;
+}
+
+.testimonials-reviews .testimonial-shot-img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  object-fit: contain;
+}
+
+.testimonial-text-card {
+  overflow: hidden;
+}
+
+.testimonial-text-card .testimonial-review-content {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 1rem;
+}
+
+.testimonial-review-details {
+  margin: 0;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.testimonial-review-rating {
+  margin: 0.4rem 0 0;
+  color: #e3a008;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.testimonial-text-card .testimonial-text {
+  margin: 0.75rem 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.testimonial-text-card .testimonial-name {
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .testimonials-reviews .testimonial-shot {
+    height: 28rem;
   }
 }
