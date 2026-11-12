@@ -36,7 +36,7 @@ const services = [
   },
   {
     title: "IT Consulting",
-    image: "/services-collab.jpg",
+    image: "https://res.cloudinary.com/ugqc5gb8/image/upload/v1794465990/IT_Consulting.jpg",
     tone: "sky",
     text: "Strategy, automation, and technical guidance that help you choose the right systems and keep them reliable as you grow.",
   },

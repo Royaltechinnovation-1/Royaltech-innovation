@@ -19,18 +19,22 @@
 }
 
 .opx-shell {
-  width: var(--opx-wide);
-  margin-inline: auto;
+    width: var(--opx-wide);
+    margin-inline: auto;
+    width: var(--cr-wide);
+    margin: 0 auto;
+    padding: 50px var(--page-pad) 30px;
+    max-width: 1400px;
 }
 
 .opx-badge {
   display: inline-flex;
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.85rem !important;
   padding: 0.5rem 0.9rem;
   border-radius: 999px;
   background: var(--opx-olive-badge);
-  color: #fff;
-  font-size: 0.78rem;
+  color: #fff !important;
+  font-size: 0.78rem !important;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -401,6 +405,7 @@
 .op-flow-shell {
   width: var(--opx-wide);
   margin-inline: auto;
+  max-width: 1400px;
 }
 
 .op-flow-head {
@@ -834,6 +839,7 @@
   .opx {
     --opx-wide: min(1120px, calc(100% - clamp(1.15rem, 4vw, 3rem)));
   }
+
 }
 
 @media (max-width: 900px) {
@@ -905,11 +911,17 @@
     order: 2 !important;
     grid-column: 2;
   }
+    .opx-ind-list{
+    grid-template-columns: repeat(3,1fr);
+  }
 }
 
 @media (max-width: 640px) {
   .opx {
     --opx-wide: min(100% - 1.5rem, 1120px);
+  }
+    .opx-ind-list{
+    grid-template-columns: 1fr;
   }
 
   .opx-hero {

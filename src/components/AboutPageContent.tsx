@@ -2,6 +2,7 @@ import AboutConsult from "@/components/AboutConsult";
 import { OpenFormButton } from "@/components/FormModal";
 import Image from "next/image";
 import CardSlider from './CardSlider'
+import TeamSection from './TeamSection'
 
 function GoalIcon({ name }: { name: string }) {
   switch (name) {
@@ -382,7 +383,8 @@ export default function AboutPageContent() {
               technology for businesses.
             </p>
           </div>
-          <div className="ae-team-list">
+          {/* ================Team Part============= */}
+          {/* <div className="ae-team-list">
             {team.map((member) => (
               <article
                 key={member.name}
@@ -428,11 +430,14 @@ export default function AboutPageContent() {
                 </div>
               </article>
             ))}
-          </div>
+          </div> */}
+          <TeamSection/>
         </div>
       </section>
 
-            <CardSlider/>
+      {/*============== Slider ============== */}
+
+            {/* <CardSlider/> */}
 
 
       <AboutConsult />

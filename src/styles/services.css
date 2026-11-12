@@ -22,8 +22,10 @@
 }
 
 .svc-shell {
-  width: var(--svc-wide);
+  /* width: var(--svc-wide); */
   margin-inline: auto;
+  max-width: 1400px;
+  padding: 0px var(--page-pad);
 }
 
 .svc-eyebrow {
@@ -146,7 +148,8 @@
 .svc-hero-inner {
   width: var(--svc-wide);
   margin: 0 auto;
-  padding: 8.5rem 0 6.5rem;
+  padding: 8.5rem var(--page-pad) 6.5rem;
+  max-width: 1400px;
 }
 
 .svc-hero h1 {
@@ -241,6 +244,7 @@
 .svc-offer-list {
   display: grid;
   gap: clamp(2.8rem, 7vw, 4.5rem);
+  padding: 0px var(--page-pad);
 }
 
 .svc-offer {
@@ -390,7 +394,9 @@
 
 /* Why choose */
 .svc-why {
-  padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+  /* padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+   */
+   padding: 5rem var(--page-pad);
   background: var(--svc-soft-warm);
   border-top: 1px solid rgba(143, 148, 88, 0.14);
 }
@@ -400,6 +406,7 @@
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
+  padding: 0px var(--page-pad);
 }
 
 .svc-why-copy h2 {
@@ -653,13 +660,14 @@
 
 .svc-cta-card {
   position: relative;
-  width: var(--svc-wide);
+  /* width: var(--svc-wide); */
   margin: 0 auto;
   overflow: hidden;
   border-radius: 1.5rem;
   min-height: clamp(18rem, 32vw, 24rem);
   color: #fff;
   box-shadow: 0 24px 50px rgba(15, 61, 46, 0.16);
+  max-width: 1400px;
 }
 
 .svc-cta-bg {
@@ -721,12 +729,18 @@
   .svc-page {
     --svc-wide: min(1120px, calc(100% - clamp(1.15rem, 4vw, 3rem)));
   }
+  .svc-why{
+    /* padding: 0px; */
+  }
 }
 
 @media (max-width: 900px) {
   .svc-offer {
     grid-template-columns: 1fr;
     gap: 1.4rem;
+  }
+  .svc-shell{
+    /* padding: 0px var(--page-pad); */
   }
 
   .svc-offer.is-flip .svc-offer-visual,

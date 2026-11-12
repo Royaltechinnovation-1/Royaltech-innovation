@@ -22,7 +22,7 @@ const reviewImages: Review[] = [
     reviewText:
       "I had Royal Tech Innovation, Mohali develop an ERP for my healthcare business, and honestly, they did a great job. They understood my business requirements very well and developed an excellent ERP accordingly. Their team's work, dedication, and support were very impressive. The overall experience was very good. Thank you so much, Royal Tech Innovation, Mohali, for your amazing work! Highly recommended. 🙌",
   },
-  
+
   {
     src: "/reviews/rohit-sir reviews.webp",
     alt: "Google review from Rohit Verma for RoyalTech Innovation",
@@ -138,13 +138,13 @@ export default function Testimonials() {
       <div className="testimonials-shell">
         <div className="testimonials-head">
           <p className="testimonials-label">Testimonials</p>
-         <h2>What Our Clients Say About RoyalTech Innovation</h2>
-         <p className="testimonials-intro">
-  Explore genuine client reviews and experiences with RoyalTech Innovation.
-  Discover how our website development, custom software development,
-  mobile app development, and digital solutions help businesses build
-  a stronger digital presence and achieve their goals.
-</p>
+          <h2>What Our Clients Say About RoyalTech Innovation</h2>
+          <p className="testimonials-intro">
+            Explore genuine client reviews and experiences with RoyalTech Innovation.
+            Discover how our website development, custom software development,
+            mobile app development, and digital solutions help businesses build
+            a stronger digital presence and achieve their goals.
+          </p>
         </div>
 
         <div className="testimonials-carousel">
@@ -177,23 +177,39 @@ export default function Testimonials() {
                 key={review.src}
                 className={`testimonial testimonial-shot${review.reviewText ? " testimonial-text-card" : ""}`}
               >
-                {review.reviewText ? (
-                  <div className="testimonial-review-content">
-                    <p className="testimonial-review-details">{review.details}</p>
-                    {review.rating && (
-                      <p
-                        className="testimonial-review-rating"
-                        aria-label={`${review.rating} out of 5 stars`}
-                      >
-                        {"★".repeat(review.rating)}
-                      </p>
-                    )}
-                    <blockquote className="testimonial-text">
-                      {review.reviewText}
-                    </blockquote>
+                {/* {review ? ( */}
+                <div className="testimonial-review-content">
+                  <p className="testimonial-review-details">{review.details}</p>
+                  {review.rating && (
+                    <p
+                      className="testimonial-review-rating"
+                      aria-label={`${review.rating} out of 5 stars`}
+                    >
+                      {"★".repeat(review.rating)}
+                    </p>
+                  )}
+                  <blockquote className="testimonial-text">
+                    {review.reviewText}
+                  </blockquote>
+                  <div className="testimonial-bottom">
+                    {review.src ? (
+                      <Image
+                        src={review.src}
+                        alt={review.alt}
+                        width={48}
+                        height={48}
+                        className="testimonial-avatar"
+                      />
+                    ) : (
+                      <div className="testimonial-avatar-fallback">
+                        {review.name?.charAt(0).toUpperCase() || "?"}
+                      </div>
+                    )
+                    }
                     <h3 className="testimonial-name">{review.name}</h3>
                   </div>
-                ) : (
+                </div>
+                {/* ) : (
                   <Image
                     src={review.src}
                     alt={review.alt}
@@ -202,7 +218,7 @@ export default function Testimonials() {
                     sizes="(max-width: 768px) 85vw, 360px"
                     className="testimonial-shot-img"
                   />
-                )}
+                )} */}
               </article>
             ))}
           </div>

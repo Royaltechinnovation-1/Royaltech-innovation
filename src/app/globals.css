@@ -119,7 +119,7 @@ figure {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1.35rem;
-  max-width: 1240px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0.95rem 1.15rem 0.95rem 0.95rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -422,7 +422,7 @@ figure {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--page-pad);
   animation: hero-rise 0.9s var(--ease-out) both;
@@ -583,7 +583,7 @@ figure {
   border: 1px solid #b7c879;
   border-radius: 12px;
   background: #b7c879;
-  color: #14201b;
+  color: #fff;
   font: inherit;
   font-size: 0.92rem;
   font-weight: 700;
@@ -1554,6 +1554,15 @@ figure {
 
 .testimonial:hover {
   transform: translateY(-4px);
+}
+.testimonial-bottom{
+  display: flex;
+  gap: 5px;
+  justify-content: left;
+  align-items: center;
+  /* align-items: center;
+  gap: 12px; */
+  margin-top: 20px;
 }
 
 .testimonials-reviews {
@@ -2712,7 +2721,7 @@ figure {
   }
 
   .what-steps {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     overflow-x: auto;
     gap: 0.85rem;
   }
@@ -2929,7 +2938,7 @@ figure {
   }
 
   .what-steps {
-    grid-template-columns: repeat(5, minmax(140px, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .offer-grid {
@@ -3955,10 +3964,15 @@ figure {
 }
 
 .ae-hero-inner {
-  position: relative;
-  z-index: 1;
-  width: min(42rem, calc(100% - clamp(1.25rem, 4vw, 5rem)));
-  margin-left: calc((100% - var(--ae-wide)) / 2);
+    z-index: 1;
+    /* width: min(42rem, 100% - clamp(1.25rem, 4vw, 5rem)); */
+    /* margin-left: calc((100% - var(--ae-wide)) / 2); */
+    position: relative;
+    max-width: 1400px;
+    margin: 0px auto;
+    width: 100%;
+    padding: 0 var(--page-pad);
+
 }
 
 .ae-hero h1 {
@@ -4138,7 +4152,9 @@ figure {
 }
 
 .ae-beliefs {
-  padding-top: 4.5rem;
+    padding-top: 4.5rem;
+    max-width: 1400px;
+    margin: 0px auto;
 }
 
 .ae-mission + .ae-beliefs {
@@ -4283,8 +4299,9 @@ figure {
 }
 
 .ae-team-wrap {
-  width: calc(100% - clamp(1.25rem, 4vw, 4rem));
+  /* width: calc(100% - clamp(1.25rem, 4vw, 4rem)); */
   margin: 0 auto;
+  max-width: 1400px;
 }
 
 .ae-team-band .ae-center h2 {
@@ -4388,6 +4405,7 @@ figure {
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
   gap: clamp(1.75rem, 4vw, 3.5rem);
   align-items: center;
+  max-width: 1400px;
 }
 
 .ae-goals-label {
@@ -4758,7 +4776,7 @@ figure {
   }
 
   .ae-hero-inner {
-    width: min(34rem, calc(100% - 1.5rem));
+    /* width: min(34rem, calc(100% - 1.5rem)); */
     margin-left: auto;
     margin-right: auto;
   }
@@ -4881,6 +4899,7 @@ figure {
 
   .ae-team.ae-team-band {
     width: 100%;
+      padding: 3.5rem 0 0px;
   }
 
   .ae-team-wrap {
@@ -4942,8 +4961,9 @@ figure {
 }
 
 .ax-inner {
-  width: min(1680px, calc(100% - clamp(1.25rem, 4vw, 5rem)));
+  /* width: min(1680px, calc(100% - clamp(1.25rem, 4vw, 5rem))); */
   margin: 0 auto;
+  max-width: 1400px;
 }
 
 .ax-heading {
@@ -5053,6 +5073,12 @@ figure {
   background: rgba(184, 198, 117, 0.08);
 }
 
+.ax-form input::placeholder,
+.ax-form textarea::placeholder {
+  color:#c2c7c3;
+  opacity: 0.5;
+  font-size: 14px;
+}
 .ax-form input,
 .ax-form textarea {
   width: 100%;
@@ -5232,7 +5258,7 @@ figure {
 }
 
 .ax-session-card {
-  width: min(72rem, 100%);
+  /* width: min(72rem, 100%); */
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.2fr 0.9fr;
@@ -5243,6 +5269,7 @@ figure {
   background: #fff;
   border: 1px solid #e5ece7;
   box-shadow: 0 12px 36px rgba(15, 61, 46, 0.06);
+  max-width: 1400px;
 }
 
 .ax-session-label {
@@ -5856,8 +5883,12 @@ figure {
 }
 
 .cu-hero-inner {
-  width: min(40rem, calc(100% - clamp(1.25rem, 5vw, 5rem)));
-  margin-left: max(1.25rem, calc((100% - 1120px) / 2));
+    /* width: min(40rem, 100% - clamp(1.25rem, 5vw, 5rem)); */
+    /* margin-left: max(1.25rem, 50% - 560px); */
+    width: 100%;
+    max-width: 1400px;
+    margin: 0px auto;
+    padding: 0px var(--page-pad);
 }
 
 .cu-badge {
@@ -5915,9 +5946,10 @@ figure {
 }
 
 .cu-wrap {
-  width: min(1240px, calc(100% - clamp(1rem, 4vw, 4rem)));
+  /* width: min(1240px, calc(100% - clamp(1rem, 4vw, 4rem))); */
+  max-width: 1400px;
   margin: 0 auto;
-  padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(1.25rem, 3vw, 2rem);
+  padding: 61px var(--page-pad);
 }
 
 .cu-layout {
@@ -6561,14 +6593,14 @@ figure {
 
   .cu-hero {
     min-height: 0;
-    padding: 7rem 0 2.5rem;
+    padding: 12rem 0 2.5rem;
     background:
       linear-gradient(180deg, rgba(8, 14, 18, 0.55) 0%, rgba(8, 14, 18, 0.78) 42%, rgba(8, 14, 18, 0.82) 100%),
       url("/contact-hero-bg.jpg") center 40% / cover no-repeat;
   }
 
   .cu-hero-inner {
-    width: min(40rem, calc(100% - 1.5rem));
+    /* width: min(40rem, calc(100% - 1.5rem)); */
     margin-left: auto;
     margin-right: auto;
   }
@@ -6601,12 +6633,13 @@ figure {
   .cu-visit a {
     width: 100%;
     justify-content: center;
+    max-width: max-content;
   }
 }
 
 @media (max-width: 640px) {
   .cu-hero {
-    padding: 6.2rem 0 2rem;
+    padding: 9.2rem 0 2rem;
   }
 
   .cu-hero-inner,
@@ -8041,7 +8074,7 @@ button.ae-panel-btn {
 
 .testimonials-reviews .testimonial-shot {
   box-sizing: border-box;
-  height: 22rem;
+  height: 26rem;
   min-height: 0;
 }
 
@@ -8085,9 +8118,9 @@ button.ae-panel-btn {
   line-height: 1.55;
 }
 
-.testimonial-text-card .testimonial-name {
+/* .testimonial-text-card .testimonial-name {
   margin-top: auto;
-}
+} */
 
 @media (max-width: 768px) {
   .testimonials-reviews .testimonial-shot {

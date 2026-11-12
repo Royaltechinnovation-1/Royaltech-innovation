@@ -14,8 +14,10 @@
 }
 
 .pfo-shell {
-  width: min(100% - (var(--pfo-pad) * 2), var(--pfo-max));
-  margin-inline: auto;
+    width: 100%;
+    margin: 0px auto;
+    max-width: 1400px;
+    padding: 0px var(--page-pad);
 }
 
 .pfo-eyebrow {
@@ -148,7 +150,9 @@
 }
 
 .pfo-stat span {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 0.15rem;
   color: var(--pfo-muted);
   font-size: 0.78rem;
@@ -444,6 +448,7 @@
 
   .pfo-hero {
     min-height: 0;
+    padding-top: 200px;
   }
 
   .pfo-hero-bg img {
@@ -460,10 +465,7 @@
       );
   }
 
-  .pfo-stats {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
+
 
   .pfo-card-media {
     min-height: 15rem;
@@ -471,9 +473,9 @@
 }
 
 @media (max-width: 640px) {
-  .pfo-hero {
+  /* .pfo-hero {
     padding-top: 6.2rem;
-  }
+  } */
 
   .pfo-book-actions {
     flex-direction: column;
@@ -488,6 +490,10 @@
   .pfo-card-icon {
     top: 1rem;
     right: 1rem;
+  }
+    .pfo-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 }
 
