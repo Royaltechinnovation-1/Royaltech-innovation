@@ -2,19 +2,20 @@
 
 import { useFormModal } from "@/components/FormModal";
 import { submitLead } from "@/lib/submitLead";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 
 const address = {
   title: "CP67 Mall",
   lines: [
-    "Site No. 252, International Airport Road",
-    "Sector 67, Sahibzada Ajit Singh Nagar",
-    "Mohali, Punjab 160062",
+    "Gate No. 5, Imperial Tower, Floor No. 10",
+    "International Airport Road",
+    "Sector 67, Sahibzada Ajit Singh Nagar, Mohali, Punjab 160062",
   ],
   mapSrc:
-    "https://maps.google.com/maps?q=CP67%20Mall%2C%20Site%20No.%20252%2C%20International%20Airport%20Road%2C%20Sector%2067%2C%20Mohali%2C%20Punjab%20160062&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    "https://maps.google.com/maps?q=Gate%20No.%205%2C%20Imperial%20Tower%2C%20Floor%20No.%2010%2C%20CP%2067%2C%20International%20Airport%20Road%2C%20Sector%2067%2C%20Mohali%2C%20Punjab%20160062&t=&z=16&ie=UTF8&iwloc=&output=embed",
   mapsLink:
-    "https://www.google.com/maps/search/?api=1&query=CP67+Mall+Site+No.+252+International+Airport+Road+Sector+67+Mohali+Punjab+160062",
+    "https://www.google.com/maps/search/?api=1&query=Gate+No.+5+Imperial+Tower+Floor+No.+10+CP+67+International+Airport+Road+Sector+67+Mohali+Punjab+160062",
 };
 
 export default function Contact() {
@@ -56,20 +57,31 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact" id="contact">
+    <section className="contact" id="contact" aria-labelledby="contact-heading">
       <div className="contact-copy">
         <p className="contact-label">Contact Us</p>
-        <h2>Request a Quote</h2>
+        <h2 id="contact-heading">
+          Contact RoyalTech Innovation – Let&apos;s Discuss Your Project
+        </h2>
         <p className="contact-intro">Tell us about your project.</p>
         <p className="contact-text">
           Share a few details and we will help you find the right solution for
           your business.
         </p>
 
+        <address className="contact-business-info">
+          <strong>RoyalTech Innovation</strong>
+          <a href="tel:+918570871522">+91 85708 71522</a>
+          <a href="mailto:sales@royaltechinnovation.co.in">
+            sales@royaltechinnovation.co.in
+          </a>
+        </address>
+
         <form className="contact-form" onSubmit={onSubmit} noValidate>
-          <label className="contact-field">
+          <label className="contact-field" htmlFor="contact-name">
             <span>Name *</span>
             <input
+              id="contact-name"
               type="text"
               name="name"
               autoComplete="name"
@@ -78,9 +90,10 @@ export default function Contact() {
             />
           </label>
 
-          <label className="contact-field">
+          <label className="contact-field" htmlFor="contact-email">
             <span>Email *</span>
             <input
+              id="contact-email"
               type="email"
               name="email"
               autoComplete="email"
@@ -89,9 +102,10 @@ export default function Contact() {
             />
           </label>
 
-          <label className="contact-field">
+          <label className="contact-field" htmlFor="contact-phone">
             <span>Phone number *</span>
             <input
+              id="contact-phone"
               type="tel"
               name="phone"
               autoComplete="tel"
@@ -101,9 +115,10 @@ export default function Contact() {
             />
           </label>
 
-          <label className="contact-field">
+          <label className="contact-field" htmlFor="contact-message">
             <span>Message *</span>
             <textarea
+              id="contact-message"
               name="message"
               required
               rows={5}
@@ -116,7 +131,7 @@ export default function Contact() {
           </button>
 
           {error ? (
-            <p className="contact-success" role="alert" style={{ color: "#b42318" }}>
+            <p className="contact-error" id="contact-error" role="alert">
               {error}
             </p>
           ) : null}
@@ -133,7 +148,7 @@ export default function Contact() {
           allowFullScreen
         />
 
-        <aside className="contact-pin">
+        <address className="contact-pin">
           <span className="contact-pin-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
               <path
@@ -162,7 +177,7 @@ export default function Contact() {
               Get directions
             </a>
           </div>
-        </aside>
+        </address>
       </div>
     </section>
   );
