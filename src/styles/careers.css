@@ -19,8 +19,10 @@
 }
 
 .cr-shell {
-  width: var(--cr-wide);
-  margin: 0 auto;
+    width: var(--cr-wide);
+    margin: 0 auto;
+    padding: 50px var(--page-pad) 30px;
+    max-width: 1400px;
 }
 
 .cr-badge,
@@ -135,9 +137,9 @@
   color: #fff;
 }
 
-.cr-hero-copy {
+/* .cr-hero-copy {
   max-width: 44rem;
-}
+} */
 
 .cr-hero-copy h1 {
   margin: 0 0 0.9rem;
@@ -153,7 +155,7 @@
   margin: 0 0 1.4rem;
   max-width: 34rem;
   color: rgba(255, 255, 255, 0.88);
-  font-size: clamp(0.98rem, 1.3vw, 1.12rem);
+  font-size:0.78rem;
   line-height: 1.7;
 }
 

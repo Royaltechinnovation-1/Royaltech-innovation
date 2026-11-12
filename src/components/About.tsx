@@ -70,7 +70,7 @@ export default function About() {
           />
         ) : null}
 
-        {!playing ? (
+        {/* {!playing ? (
           <button
             className="about-watch-btn"
             type="button"
@@ -86,7 +86,7 @@ export default function About() {
           >
             Close
           </button>
-        )}
+        )} */}
       </div>
     </section>
   );

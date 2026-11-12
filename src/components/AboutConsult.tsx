@@ -70,7 +70,7 @@ export default function AboutConsult() {
                       <circle cx="12" cy="8" r="3.1" />
                       <path d="M6.2 19.2c1.2-2.6 3.2-3.8 5.8-3.8s4.6 1.2 5.8 3.8" />
                     </svg>
-                    <input name="firstName" type="text" autoComplete="given-name" required />
+                    <input name="firstName" type="text" autoComplete="given-name" placeholder="e.g. John " required />
                   </span>
                 </label>
                 <label>
@@ -80,7 +80,7 @@ export default function AboutConsult() {
                       <circle cx="12" cy="8" r="3.1" />
                       <path d="M6.2 19.2c1.2-2.6 3.2-3.8 5.8-3.8s4.6 1.2 5.8 3.8" />
                     </svg>
-                    <input name="lastName" type="text" autoComplete="family-name" required />
+                    <input name="lastName" type="text" autoComplete="family-name" placeholder="e.g. Doe " required />
                   </span>
                 </label>
                 <label>
@@ -90,7 +90,7 @@ export default function AboutConsult() {
                       <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
                       <path d="m4 7 8 6 8-6" />
                     </svg>
-                    <input name="email" type="email" autoComplete="email" required />
+                    <input name="email" type="email" autoComplete="email" placeholder="e.g. john@gmail.com" required />
                   </span>
                 </label>
                 <label>
@@ -99,7 +99,7 @@ export default function AboutConsult() {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
                       <path d="M8.2 4.8h2.2l1.2 3-1.6 1a12 12 0 0 0 5.2 5.2l1-1.6 3 1.2v2.2c0 .8-.7 1.5-1.5 1.4A14.5 14.5 0 0 1 6.8 6.3c-.1-.8.6-1.5 1.4-1.5Z" />
                     </svg>
-                    <input name="phone" type="tel" autoComplete="tel" required />
+                    <input name="phone" type="tel" autoComplete="tel"  placeholder="e.g. 9876543210" required />
                   </span>
                 </label>
                 <label className="ax-wide">
@@ -109,7 +109,7 @@ export default function AboutConsult() {
                       <path d="M7 3.5h7.2L19 8.2V20.5H7V3.5Z" />
                       <path d="M14 3.8V8.4h4.4M9.2 12.2h6.2M9.2 16h4.4" />
                     </svg>
-                    <textarea name="project" rows={3} required />
+                    <textarea name="project" rows={3} placeholder="e.g. Write your message here..." required />
                   </span>
                 </label>
               </div>

@@ -129,7 +129,7 @@ export default function FAQ() {
 
       <div className="faq-media">
         <Image
-          src="/faq-side.png"
+          src="https://res.cloudinary.com/ugqc5gb8/image/upload/v1794486417/FAQ.png"
           alt="RoyalTech Innovation laptop with brand logo and technology icons"
           fill
           sizes="(max-width: 980px) 100vw, 50vw"
