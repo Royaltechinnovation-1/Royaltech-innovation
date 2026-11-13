@@ -61,7 +61,7 @@ export default function Contact() {
       <div className="contact-copy">
         <p className="contact-label">Contact Us</p>
         <h2 id="contact-heading">
-          Contact RoyalTech Innovation – Let&apos;s Discuss Your Project
+          Request a Quote
         </h2>
         <p className="contact-intro">Tell us about your project.</p>
         <p className="contact-text">

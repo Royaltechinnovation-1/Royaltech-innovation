@@ -4,10 +4,10 @@ const leftPoints = [
   {
     title: "Business-First Delivery",
     line: "Built around your goals",
-    text: "We start with what your business needs to achieve, then tailor technology that fits your workflows—not generic templates.",
+    text: "We start with what your business needs to achieve, then tailor technology that fits your workflows not generic templates.",
   },
   {
-    title: "Customised Solutions",
+    title: "Customized Solutions",
     line: "Tailored to your needs",
     text: "From websites and software to apps and automation, every solution is shaped around your priorities, budget, and growth plans.",
   },
@@ -20,9 +20,9 @@ const rightPoints = [
     text: "We communicate openly on scope, timelines, and progress so you always know where things stand and what comes next.",
   },
   {
-    title: "Long-Term Support",
+    title: "Long Term Support",
     line: "Reliable after launch",
-    text: "We stay with you beyond go-live—helping your systems stay dependable as your team, markets, and requirements grow.",
+    text: "We stay with you beyond go live helping your systems stay dependable as your team, markets, and requirements grow.",
   },
 ];
 

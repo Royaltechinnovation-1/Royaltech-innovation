@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     "RoyalTech Innovation | IT Solutions Company & Digital Transformation Partner",
   description:
     "RoyalTech Innovation in Mohali helps startups and SMEs with website development, custom software, mobile apps, SEO, digital marketing, UI/UX design, and IT consulting.",
+    // "RoyalTech Innovation delivers web development, mobile apps, custom software, UI/UX design and digital solutions to help businesses grow.",
   alternates: {
     canonical: "/",
   },

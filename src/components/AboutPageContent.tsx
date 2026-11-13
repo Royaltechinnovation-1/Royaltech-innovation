@@ -199,7 +199,7 @@ export default function AboutPageContent() {
           <h1>Technology that moves your business forward</h1>
           <p className="ae-hero-lead">
             Practical technology for startups, SMEs, and established
-            organisations—shaped around how your team works.
+            organisations shaped around how your team works.
           </p>
           <div className="ae-hero-actions">
             <OpenFormButton
