@@ -108,9 +108,9 @@ export default function ContactPageContent() {
           <aside className="cu-info">
             <div>
               <h2 className="cu-title">Our friendly team is here to help</h2>
-              <a className="cu-mail" href="mailto:sales@royaltechinnovation.co.in">
+              <a className="cu-mail" href="mailto:info@royaltechinnovation">
                 <MailIcon />
-                <span>sales@royaltechinnovation.co.in</span>
+                <span>info@royaltechinnovation</span>
               </a>
               <div className="cu-brand">
                 <Image
@@ -150,7 +150,7 @@ export default function ContactPageContent() {
                   <PhoneIcon />
                   <div>
                     <p>We are available Monday to Friday, 10:00 am to 6:30 pm. Call or WhatsApp and we will confirm a time before you travel.</p>
-                    <a href="tel:+918570871522">+91 85708 71522</a>
+                    <a href="tel:+918679016505">+91 86790 16505</a>
                   </div>
                 </div>
               </div>
@@ -258,7 +258,7 @@ export default function ContactPageContent() {
         <p>
           Have an idea, a website, or a problem you want to solve? Book a first conversation and we will walk through scope, timeline, and a practical way to start. There is no charge for that session.
         </p>
-        <Link href="tel:+918570871522">Call now →</Link>
+        <Link href="tel:+918679016505">Call now →</Link>
       </section>
     </div>
   );

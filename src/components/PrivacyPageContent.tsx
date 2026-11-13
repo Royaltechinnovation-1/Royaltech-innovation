@@ -5,7 +5,7 @@ const sections = [
     id: "overview",
     title: "Overview",
     paragraphs: [
-      "RoyalTech Innovation (“we”, “us”, “our”) provides IT services including website development, custom software, mobile applications, digital marketing, UI/UX design, and IT consulting. This Privacy Policy explains how we collect, use, store, share, and protect personal data when you use our website, contact forms, WhatsApp/SMS channels, or engage us for projects.",
+      "RoyalTech Innovation provides IT services including website development, custom software, mobile applications, digital marketing, UI/UX design, and IT consulting. This Privacy Policy explains how we collect, use, store, share, and protect personal data when you use our website, contact forms, WhatsApp/SMS channels, or engage us for projects.",
       "Our privacy practices are designed to align with internationally recognised information security and privacy management principles, including guidance from ISO/IEC 27001 (Information Security Management) and ISO/IEC 27701 (Privacy Information Management), and with applicable laws such as India’s Digital Personal Data Protection Act (DPDP) framework and related IT compliance expectations.",
     ],
     note: "This policy describes our operational approach. It does not claim formal certification unless separately stated in a contract or certificate.",
@@ -14,7 +14,7 @@ const sections = [
     id: "scope",
     title: "Scope & Roles",
     paragraphs: [
-      "This policy applies to personal data processed through royaltechinnovation.com and related service delivery channels for prospects, clients, vendors, job applicants, and website visitors.",
+      "This policy applies to personal data processed through royaltechinnovation.co.in and related service delivery channels for prospects, clients, vendors, job applicants, and website visitors.",
     ],
     bullets: [
       "Controller role: for website enquiries, marketing communications, and our own CRM records.",
@@ -34,6 +34,62 @@ const sections = [
       "Technical data: IP address, device/browser type, pages visited, approximate location, and cookies/analytics events.",
       "Communication records: emails, call notes, WhatsApp/SMS consent logs where required.",
       "Billing & contracts: invoices, payment references, and signed agreements.",
+    ],
+  },
+  {
+    id: "project-proposal-deliverables",
+    title: "Project Proposal and Deliverables",
+    paragraphs: [
+      "Before commencing a project, the Parties shall agree in writing on the applicable project details,including:"
+    ],
+    bullets: [
+      "Project description and objectives.",
+      "Scope of work, deliverables.",
+      "Project milestones and estimated timelines.",
+      "Total project cost, payment schedule.",
+      "Number of revisions ,where applicable.",
+      "Maintainance,support and warranty terms, where applicable.",
+      "Any specific technical requirements or exclusions.",
+    ],
+    
+
+  },
+  {
+    id: "project-fees-payment-terms",
+    title: "Project Fees and Payment Terms",
+    paragraphs: [
+      "The Client agrees to pay the fees specified in the approved quotation, proposal, or SOW.",
+      "Unless otherwise agreed in writing, the standard payment schedule shall be:",
+    ],
+    bullets: [
+      <>
+        <strong>Advance payment:</strong> 50% of the total project fee before
+        commencement.
+      </>,
+      <>
+        <strong>Milestone payment:</strong> 30% upon completion of the agreed
+        development milestone.
+      </>,
+      <>
+        <strong>Final payment:</strong> 20% before final delivery, production
+        deployment, or transfer of applicable deliverables.
+      </>,
+      "The Parties may agree to a different payment schedule in writing.",
+      "Work shall commence after receipt of the required advance payment and necessary project information.",
+      "Invoices shall be payable within [7/15/30] calendar days of the invoice date, unless another period is agreed in writing.",
+      "Applicable GST and other legally required taxes shall be charged in accordance with applicable law. The Client shall provide necessary billing details and tax documentation.",
+      "Third-party expenses, including hosting, domains, software licenses, paid plugins, cloud services, advertising budgets, SMS services, and other external charges, shall be payable by the Client unless expressly included in the approved quotation.",
+      "If payment is overdue, the Company may provide written notice and suspend work or services after a reasonable opportunity to cure the non-payment. Any resulting timeline adjustments shall be communicated to the Client. Any late-payment interest must be expressly agreed in writing and comply with applicable law.",
+    ],
+  },
+  {
+    id: "confidentiality-data-security",
+    title: "Confidentiality and Data Security",
+    bullets: [
+      " Each Party agrees to protect the other Party’s confidential information and use it only for purposes connected with the engagement.",
+      "Confidential information shall not be disclosed to unauthorized persons, except where disclosure is authorized by the disclosing Party or required by law.",
+      " Each Party shall take reasonable measures to protect credentials, business information, personal data, and other sensitive information handled in connection with the project.",
+      " Confidentiality obligations shall continue after termination of this Agreement for five (5) years, except that trade secrets and information subject to longer statutory protection shall remain protected for the applicable period.",
     ],
   },
   {
@@ -107,7 +163,7 @@ const sections = [
       "Subject to applicable law, you may request access, correction, deletion, restriction, or withdrawal of consent for personal data we hold as a controller.",
     ],
     bullets: [
-      "Email sales@royaltechinnovation.co.in with “Privacy Request” in the subject.",
+      "Email info@royaltechinnovation with “Privacy Request” in the subject.",
       "We may need to verify identity before fulfilling requests.",
       "Some records may be retained where law or legitimate business need requires it.",
     ],
@@ -119,6 +175,7 @@ const sections = [
       "Our services are directed to businesses and professionals. We do not knowingly collect personal data from children. If you believe a child has provided data, contact us for removal.",
     ],
   },
+  
   {
     id: "international",
     title: "Cross-Border Processing",
@@ -131,7 +188,14 @@ const sections = [
     title: "Changes & Contact",
     paragraphs: [
       "We may update this Privacy Policy to reflect process, technology, or legal changes. The “Last updated” date will change when we publish revisions.",
-      "RoyalTech Innovation, Gate No. 5, CP 67, Imperial Tower, Behind CP67 Mall, Chandigarh Int’l Airport Rd, Sahibzada Ajit Singh Nagar, Punjab 160062. Email: sales@royaltechinnovation.co.in | Phone: +91 85708 71522.",
+      <>
+        RoyalTech Innovation, Gate No. 5, CP 67, Imperial Tower, Behind CP67
+        Mall, Chandigarh Int’l Airport Rd, Sahibzada Ajit Singh Nagar, Punjab
+        160062. Email:{" "}
+        <a href="mailto:info@royaltechinnovation">info@royaltechinnovation</a>
+        {" | Phone: "}
+        <a href="tel:+918679016505">+91 86790 16505</a>.
+      </>,
     ],
   },
 ];
@@ -142,7 +206,7 @@ export default function PrivacyPageContent() {
       badge="Legal"
       title="Privacy Policy"
       intro="How RoyalTech Innovation collects, uses, and protects personal data across our IT services—aligned with ISO-informed security and privacy practices."
-      updated="7 November 2026"
+      updated="15 October 2024"
       standards={["ISO/IEC 27001 aligned", "ISO/IEC 27701 aligned", "IT sector"]}
       sideImage="/legal-privacy.jpg"
       sideTitle="Data protection in delivery"

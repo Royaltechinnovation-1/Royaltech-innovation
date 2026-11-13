@@ -122,7 +122,7 @@ const sections = [
     title: "Changes & Contact",
     paragraphs: [
       "We may update these Terms for legal or operational reasons. Continued use of the website after updates constitutes acceptance of the revised Terms for website use. Project contracts control over website Terms if there is a conflict.",
-      "RoyalTech Innovation — sales@royaltechinnovation.co.in | +91 85708 71522 | Gate No. 5, CP 67, Imperial Tower, Mohali / SAS Nagar, Punjab 160062.",
+      "RoyalTech Innovation — info@royaltechinnovation | +91 86790 16505 | Gate No. 5, CP 67, Imperial Tower, Mohali / SAS Nagar, Punjab 160062.",
     ],
   },
 ];

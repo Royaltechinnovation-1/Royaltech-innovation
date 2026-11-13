@@ -26,7 +26,7 @@ const services = [
     lead: "SEO-ready business websites that convert",
     description:
       "RoyalTech Innovation builds fast, secure, and search-optimised websites for startups, SMEs, and enterprises. From marketing sites and landing pages to e-commerce stores, every build is engineered for Core Web Vitals, mobile usability, and long-term SEO growth.",
-    image: "/Web Devlopment.png",
+    image: "/website-development.png",
     stack: "/svc-mock-projects.jpg",
     accent: "#9ec9c0",
     alt: "RoyalTech Innovation SEO-ready website development",
@@ -42,7 +42,7 @@ const services = [
     lead: "Custom software, ERP & CRM built around your operations",
     description:
       "We design and develop custom business software that replaces spreadsheets and disconnected tools. RoyalTech Innovation delivers ERP modules, CRM platforms, and workflow automation so your teams work faster with clearer data and scalable processes.",
-    image: "/Software Devlopment.png",
+    image: "/software-development.png",
     stack: "/svc-mock-lms.jpg",
     accent: "#b7cfc8",
     alt: "RoyalTech Innovation custom software ERP and CRM systems",
@@ -58,7 +58,7 @@ const services = [
     lead: "Android & iOS apps that customers love to use",
     description:
       "Launch customer-facing and internal mobile products with RoyalTech Innovation. We build Android and iOS apps with clean UX, secure APIs, and reliable performance—so your brand stays useful in your customers’ pockets every day.",
-    image: "/App Devlopment.png",
+    image: "/mobile-app-development.png",
     stack: "/svc-mock-web.jpg",
     accent: "#a8c4bb",
     alt: "RoyalTech Innovation Android and iOS mobile app development",
@@ -74,7 +74,7 @@ const services = [
     lead: "Organic ranking, paid reach, and measurable leads",
     description:
       "Grow qualified traffic and enquiries with RoyalTech Innovation’s SEO and digital marketing services. We connect technical SEO, content, social media, and paid ads so your brand ranks on Google, stays visible, and turns searches into customers.",
-    image: "/Digital Marketing.png",
+    image: "/digital-marketing-seo.png",
     stack: "/svc-mock-why.jpg",
     accent: "#c5d6b0",
     alt: "RoyalTech Innovation digital marketing and SEO services",
@@ -90,7 +90,7 @@ const services = [
     lead: "Product design and brand creatives that feel premium",
     description:
       "Our design team crafts interfaces and brand visuals that make products clearer and campaigns stronger. RoyalTech Innovation covers UI/UX for web and apps plus graphic design—logos, posters, and campaign creatives—aligned to your brand and conversion goals.",
-    image: "/UI_UX Design.png",
+    image: "/ui-ux-graphic-design.png",
     stack: "/svc-mock-marketing.jpg",
     accent: "#d9e4c8",
     alt: "RoyalTech Innovation UI UX and graphic design work",
@@ -192,7 +192,8 @@ export default function ServicesPageContent() {
         <div className="svc-hero-shade" aria-hidden="true" />
         <div className="svc-hero-inner">
           <h1>
-            Technology shaped around your <em>business</em>
+            IT Services and Digital Solutions by{" "}
+            <em>RoyalTech Innovation</em>
           </h1>
           <p className="svc-hero-lead">
             Powerful websites, intuitive apps, design, and marketing — built for
@@ -283,7 +284,7 @@ export default function ServicesPageContent() {
 
                 <div className="svc-offer-copy">
                   <p className="svc-offer-lead">{service.lead}</p>
-                  <h3 id={`svc-offer-${index}`}>{service.title}</h3>
+                  <h2 id={`svc-offer-${index}`}>{service.title}</h2>
                   <p>{service.description}</p>
                   <ul>
                     {service.points.map((point) => (
@@ -308,11 +309,12 @@ export default function ServicesPageContent() {
       <section className="svc-why" aria-labelledby="services-why-heading">
         <div className="svc-shell svc-why-grid">
           <div className="svc-why-copy">
-            <p className="svc-eyebrow">Why Choose Us</p>
-            <h2 id="services-why-heading">Your Success Is Our Priority</h2>
+            <p className="svc-eyebrow">Our Difference</p>
+            <h2 id="services-why-heading">Why Choose Us</h2>
             <p>
-              We combine strategy, design, and technology to deliver solutions
-              that create real business value—and stay useful as you grow.
+              <strong>Your success is our priority.</strong> We combine
+              strategy, design, and technology to deliver solutions that create
+              real business value—and stay useful as you grow.
             </p>
             <div className="svc-why-points">
               {whyPoints.map((point) => (
@@ -349,12 +351,11 @@ export default function ServicesPageContent() {
           <div className="svc-why-visual">
             <Image
               // src="https://res.cloudinary.com/dfzokfvbm/image/upload/v1794312267/remove_the_backgroud_b3e01168_o3m5bi.png"
-              src="CP-67.png"
+              src="/CP-67.png"
               alt="RoyalTech Innovation Why Choose Us visual"
               fill
               sizes="(max-width: 900px) 100vw, 45vw"
               priority={false}
-              unoptimized
             />
           </div>
         </div>
@@ -363,8 +364,10 @@ export default function ServicesPageContent() {
       <section className="svc-approach" aria-labelledby="services-approach-heading">
         <div className="svc-shell">
           <div className="svc-approach-head">
-            <p className="svc-eyebrow">Our Approach</p>
-            <h2 id="services-approach-heading">From Idea to Impact</h2>
+            <p className="svc-eyebrow">Our Process</p>
+            <h2 id="services-approach-heading">
+              Our Approach – From Idea to Impact
+            </h2>
             <p>
               A clear five-step process that takes your idea from discovery to
               launch with confidence.
@@ -376,7 +379,7 @@ export default function ServicesPageContent() {
                 <div className="svc-step-media">
                   <Image
                     src={step.image}
-                    alt=""
+                    alt={`${step.title} stage of RoyalTech Innovation's project delivery process`}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 20vw"
                   />
@@ -386,6 +389,11 @@ export default function ServicesPageContent() {
                 <p>{step.text}</p>
               </article>
             ))}
+          </div>
+          <div className="svc-approach-actions">
+            <Link className="svc-btn svc-btn-forest" href="/process">
+              View Our Process
+            </Link>
           </div>
         </div>
       </section>
@@ -417,6 +425,9 @@ export default function ServicesPageContent() {
               >
                 Get a Free Consultation
               </OpenFormButton>
+              <Link className="svc-btn svc-btn-ghost" href="/contact">
+                Contact Us
+              </Link>
               <Link className="svc-btn svc-btn-ghost" href="/portfolio">
                 View Our Portfolio
               </Link>

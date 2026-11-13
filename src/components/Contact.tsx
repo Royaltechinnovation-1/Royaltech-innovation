@@ -71,9 +71,9 @@ export default function Contact() {
 
         <address className="contact-business-info">
           <strong>RoyalTech Innovation</strong>
-          <a href="tel:+918570871522">+91 85708 71522</a>
-          <a href="mailto:sales@royaltechinnovation.co.in">
-            sales@royaltechinnovation.co.in
+          <a href="tel:+918679016505">+91 86790 16505</a>
+          <a href="mailto:info@royaltechinnovation">
+            info@royaltechinnovation
           </a>
         </address>
 
@@ -111,7 +111,7 @@ export default function Contact() {
               autoComplete="tel"
               required
               pattern="[0-9+\-\s()]{7,20}"
-              placeholder="+91 85708 71522"
+              placeholder="+91 86790 16505"
             />
           </label>
 

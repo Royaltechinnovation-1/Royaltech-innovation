@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import "@/styles/legal.css";
 
 type Section = {
   id: string;
   title: string;
-  paragraphs?: string[];
-  bullets?: string[];
+  paragraphs?: ReactNode[];
+  bullets?: ReactNode[];
   note?: string;
 };
 
@@ -41,10 +42,16 @@ export default function LegalDoc({
         </div>
         <div className="lg-shell lg-hero-copy">
           <p className="lg-badge">{badge}</p>
-          <h1>{title}</h1>
+          <h1>
+  {title === "Privacy Policy"
+    ? "Privacy Policy | RoyalTech Innovation"
+    : title}
+</h1>
           <p>{intro}</p>
           <div className="lg-meta">
-            <span>Last updated: {updated}</span>
+            <span>
+  Last updated: <time dateTime="2026-10-15">{updated}</time>
+</span>
             {standards.map((item) => (
               <span key={item}>{item}</span>
             ))}
@@ -60,8 +67,10 @@ export default function LegalDoc({
                 <Image
                   src={sideImage}
                   alt={sideTitle}
-                  fill
-                  sizes="(max-width: 900px) 50vw, 280px"
+                  width={600}
+                  height={400}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div>
@@ -88,13 +97,13 @@ export default function LegalDoc({
             {sections.map((section) => (
               <article key={section.id} id={section.id} className="lg-block">
                 <h2>{section.title}</h2>
-                {section.paragraphs?.map((text) => (
-                  <p key={text}>{text}</p>
+                {section.paragraphs?.map((text, index) => (
+                  <p key={index}>{text}</p>
                 ))}
                 {section.bullets ? (
                   <ul>
-                    {section.bullets.map((item) => (
-                      <li key={item}>{item}</li>
+                    {section.bullets.map((item, index) => (
+                      <li key={index}>{item}</li>
                     ))}
                   </ul>
                 ) : null}
