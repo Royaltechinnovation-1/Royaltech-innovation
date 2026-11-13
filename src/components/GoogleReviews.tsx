@@ -41,7 +41,7 @@ const reviews: Review[] = [
     name: "Rohit Verma",
     reviewsLabel: "1 review",
     rating: 5,
-    when: "1 review · 2 hours ago",
+    when: " 2 hours ago",
     isNew: true,
     initial: "R",
     color: "#6d4c41",
@@ -148,12 +148,12 @@ export default function GoogleReviews() {
                       style={{ background: review.color }}
                       aria-hidden="true"
                     >
-                      {review.initial}
+                      {review.name?.charAt(0).toUpperCase() || "?"}
                     </span>
                   )}
                   <div>
-                    <strong>{review.name}</strong>
-                    <span>{review.reviewsLabel}</span>
+                    <strong >{review.name}</strong>
+                    <span className="grev-avatar-reviews">{review.reviewsLabel}</span>
                   </div>
                 </div>
                 <span className="grev-menu" aria-hidden="true">
