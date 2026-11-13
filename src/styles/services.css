@@ -208,6 +208,10 @@
   background: rgba(183, 200, 121, 0.22);
   color: var(--svc-lime);
 }
+.svc-hero-feature svg {
+  width: 20px;
+  height: 20px;
+}
 
 .svc-hero-feature strong {
   display: block;
@@ -288,7 +292,7 @@
 }
 
 .svc-offer-stack-front {
-  inset: 12% 2% 0 4%;
+  inset: 0%;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -452,6 +456,10 @@
   place-items: center;
   background: rgba(176, 177, 108, 0.28);
   color: var(--svc-forest);
+}
+.svc-why-point svg {
+  width:20px;
+  height: 20px;
 }
 
 .svc-why-point strong {
@@ -794,12 +802,7 @@
 }
 
 @media (max-width: 640px) {
-  .svc-offer-lead {
-  margin-top: 28px;
-  }
-  .svc-offer-list{
-    gap: 8px;
-  }
+
   .svc-page {
     --svc-wide: min(100% - 1.5rem, 1120px);
   }

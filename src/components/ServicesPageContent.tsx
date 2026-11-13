@@ -320,7 +320,7 @@ export default function ServicesPageContent() {
               {whyPoints.map((point) => (
                 <article key={point.title} className="svc-why-point">
                   <span aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" >
                       <path
                         d={point.icon}
                         stroke="currentColor"
