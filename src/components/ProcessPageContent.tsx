@@ -515,7 +515,7 @@ export default function ProcessPageContent() {
             >
               Book a Consultant <span aria-hidden="true">→</span>
             </OpenFormButton>
-            <a className="opx-btn opx-btn-ghost-light" href="tel:+918570871522">
+            <a className="opx-btn opx-btn-ghost-light" href="tel:+918679016505">
               Call Now
             </a>
           </div>

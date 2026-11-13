@@ -6,31 +6,31 @@ import Image from "next/image";
 const services = [
   {
     title: "UI/UX Design",
-    image: "/UI_UX Design.png",
+    image: "/ui-ux-graphic-design.png",
     tone: "pink",
     text: "Interfaces and brand visuals designed around how your users think—clear flows, polished screens, and a look that feels like your business.",
   },
   {
     title: "Web Development",
-    image: "/Web Devlopment.png",
+    image: "/website-development.png",
     tone: "mint",
     text: "Business sites, e-commerce, and custom web builds that load fast, work on every device, and support the goals behind your brand.",
   },
   {
     title: "App Development",
-    image: "/App Devlopment.png",
+    image: "/mobile-app-development.png",
     tone: "cyan",
     text: "Android, iOS, and cross-platform apps built for performance and ease of use, from first concept through launch and ongoing updates.",
   },
   {
     title: "Software Development",
-    image: "/Software Devlopment.png",
+    image: "/software-development.png",
     tone: "lilac",
     text: "Custom software shaped around your workflows—management tools, automation, and systems that help teams work with less friction.",
   },
   {
     title: "Digital Marketing",
-    image: "/Digital Marketing.png",
+    image: "/digital-marketing-seo.png",
     tone: "peach",
     text: "SEO, social, and paid campaigns that bring the right audience in—clear messaging, steady leads, and results you can measure.",
   },

@@ -512,8 +512,8 @@ export default function CareersPageContent() {
                 </label>
                 <p className="cr-upload-note">
                   {cvName
-                    ? `Selected: ${cvName}. After submit, also email the file to sales@royaltechinnovation.co.in.`
-                    : "Supported files: pdf, doc, docx (max 5mb). Email the CV to sales@royaltechinnovation.co.in after applying."}
+                    ? `Selected: ${cvName}. After submit, also email the file to info@royaltechinnovation.`
+                    : "Supported files: pdf, doc, docx (max 5mb). Email the CV to info@royaltechinnovation after applying."}
                 </p>
               </div>
 

@@ -6,9 +6,32 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Data Protection & ISO-Aligned Practices",
+  title: { absolute: "Privacy Policy | RoyalTech Innovation" },
   description:
-    "Read RoyalTech Innovation’s Privacy Policy—how we collect, use, and protect personal data for IT services, aligned with ISO/IEC 27001 and 27701 principles.",
+    "Learn how RoyalTech Innovation collects, uses, and protects your personal data through its privacy practices.",
+  alternates: {
+    canonical: "https://royaltechinnovation.co.in/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | RoyalTech Innovation",
+    description:
+      "Learn how RoyalTech Innovation collects, uses, and protects your personal data through its privacy practices.",
+    url: "https://royaltechinnovation.co.in/privacy",
+    siteName: "RoyalTech Innovation",
+    type: "website",
+    images: [
+      {
+        url: "https://royaltechinnovation.co.in/og-privacy.jpg",
+        width: 1200,
+        height: 630,
+        alt: "RoyalTech Innovation Privacy Policy",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function PrivacyPage() {

@@ -137,7 +137,11 @@ export default function ServicesTrust() {
               type="button"
               className={index === active ? "is-on" : ""}
               aria-label={`Show ${review.name}`}
-              onClick={() => setActive(index)}
+              onClick={() => {
+  activeRef.current = index;
+  setActive(index);
+  setJump(reviews.map(() => false));
+}}
             />
           ))}
         </div>

@@ -217,7 +217,7 @@ export default function PortfolioPageContent() {
               >
                 Book a Consultant <span aria-hidden="true">→</span>
               </OpenFormButton>
-              <a className="pfo-call-btn pfo-call-btn-ghost" href="tel:+918570871522">
+              <a className="pfo-call-btn pfo-call-btn-ghost" href="tel:+918679016505">
                 Call Now <span aria-hidden="true">→</span>
               </a>
             </div>

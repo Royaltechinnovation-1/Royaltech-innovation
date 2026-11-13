@@ -43,8 +43,8 @@ const jsonLd = {
       image: "https://royaltechinnovation.com/royaltech-logo.png",
       description:
         "IT solutions company and digital transformation partner delivering software development, website development, mobile apps, ERP, and IT consulting services.",
-      email: "sales@royaltechinnovation.co.in",
-      telephone: "+91-85708-71522",
+      email: "info@royaltechinnovation.co.in",
+      telephone: "+91-86790-16505",
       address: {
         "@type": "PostalAddress",
         streetAddress:
@@ -87,7 +87,7 @@ const jsonLd = {
       name: "RoyalTech Innovation",
       image: "https://royaltechinnovation.com/royaltech-logo.png",
       url: "https://royaltechinnovation.com",
-      telephone: "+91-85708-71522",
+      telephone: "+91-86790-16505",
       address: {
         "@type": "PostalAddress",
         streetAddress:

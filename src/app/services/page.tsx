@@ -1,3 +1,4 @@
+
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -6,28 +7,41 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "IT Services | Website, Software, Mobile Apps, SEO & Consulting",
+  title: "IT Services & Software Solutions | RoyalTech Innovation",
+
   description:
-    "Explore RoyalTech Innovation services: SEO-ready website development, custom software & ERP/CRM, mobile app development, digital marketing & SEO, UI/UX & graphic design, and IT consulting for businesses in India, the UK, and the UAE.",
-  alternates: { canonical: "/services" },
+    "Explore RoyalTech Innovation's IT services, including website development, custom software, mobile apps, digital marketing, UI/UX design, and IT consulting.",
+
+  alternates: {
+    canonical: "https://royaltechinnovation.co.in/services",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
   keywords: [
+    "IT services",
     "RoyalTech Innovation services",
-    "website development company Mohali",
-    "software development company",
+    "website development services",
+    "custom software development",
     "mobile app development",
-    "SEO company",
     "digital marketing services",
+    "SEO services",
     "UI UX design services",
     "IT consulting services",
     "ERP CRM development",
-    "IT solutions company",
+    "software solutions",
   ],
+
   openGraph: {
-    title: "RoyalTech Innovation IT Services",
+    title: "IT Services & Software Solutions | RoyalTech Innovation",
     description:
-      "Website development, software, apps, SEO, design, and IT consulting.",
-    url: "/services",
+      "Explore website development, custom software, mobile app development, digital marketing, UI/UX design, and IT consulting services by RoyalTech Innovation.",
+    url: "https://royaltechinnovation.co.in/services",
+    siteName: "RoyalTech Innovation",
+    type: "website",
   },
 };
 

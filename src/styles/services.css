@@ -154,7 +154,7 @@
 
 .svc-hero h1 {
   margin: 0;
-  max-width: 14ch;
+  max-width: 24ch;
   font-family: var(--font-display), Outfit, sans-serif;
   font-size: clamp(2.3rem, 5.4vw, 3.8rem);
   font-weight: 750;
@@ -340,7 +340,7 @@
   text-transform: uppercase;
 }
 
-.svc-offer-copy h3 {
+.svc-offer-copy h2 {
   margin: 0;
   font-family: var(--font-display), Outfit, sans-serif;
   font-size: clamp(1.45rem, 2.6vw, 2.15rem);
@@ -515,6 +515,12 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
   position: relative;
+}
+
+.svc-approach-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.75rem;
 }
 
 .svc-steps::before {

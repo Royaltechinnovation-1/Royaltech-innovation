@@ -193,15 +193,15 @@ export default function Footer() {
                 Gate No. 5, Imperial Tower, CP 67, Punjab 160062
               </li>
               <li>
-                <a className="footer-pill" href="mailto:sales@royaltechinnovation.co.in">
+                <a className="footer-pill" href="mailto:info@royaltechinnovation">
                   {icons.mail}
-                  sales@royaltechinnovation.co.in
+                  info@royaltechinnovation
                 </a>
               </li>
               <li>
-                <a className="footer-pill" href="tel:+918570871522">
+                <a className="footer-pill" href="tel:+918679016505">
                   {icons.phone}
-                  +91 85708 71522
+                  +91 86790 16505
                 </a>
               </li>
             </ul>

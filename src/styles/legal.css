@@ -334,3 +334,21 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Smooth scrolling for Privacy Policy navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent section headings from hiding behind sticky header */
+.lg-block {
+  scroll-margin-top: 7rem;
+}
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
