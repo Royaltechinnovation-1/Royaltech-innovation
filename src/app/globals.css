@@ -591,6 +591,7 @@ figure {
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease, transform 0.25s var(--ease-out);
+  text-align: center;
 }
 
 .about-more-btn-ghost {
@@ -938,7 +939,7 @@ figure {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
   padding-top: 1.75rem;
-  border-top: 1px solid rgba(151, 160, 111, 0.12);
+  /* border-top: 1px solid rgba(151, 160, 111, 0.12); */
 }
 
 .what-step {
@@ -1158,6 +1159,12 @@ figure {
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.05;
+}
+.steps-heading{
+  /* font-size: clamp(1.5rem, 3.4vw, 2rem) !important; */
+  max-width: none !important;
+  /* text-align: center; */
+  margin-top: 12px !important;
 }
 
 .why-head p {
@@ -1413,10 +1420,14 @@ figure {
 }
 
 .faq-image {
-  object-fit: cover;
+  /* object-fit: cover;
   object-position: center center;
   opacity: 1;
-  transform: none;
+  transform: none; */
+      object-fit: contain;
+    object-position: 0% 15%;
+    opacity: 1;
+    transform: none;
 }
 .faq-question-heading {
   margin: 0;
@@ -2894,7 +2905,9 @@ figure {
   :root {
     --page-pad: 1.15rem;
   }
-
+  .connect-tips{
+    display: none;
+  }
   .brand-name {
     font-size: 0.92rem;
   }
@@ -2971,8 +2984,8 @@ figure {
   }
 
   .connect {
-    overflow-x: auto;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    overflow-x: hidden;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
   }
 
   .connect-no-social {
@@ -4452,7 +4465,6 @@ figure {
   margin: 0;
   max-width: 11ch;
   color: #fff;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2rem, 3.8vw, 3rem);
   font-weight: 700;
   line-height: 1.12;
@@ -5083,8 +5095,8 @@ figure {
 }
 
 .ax-field svg {
-  width: 1rem;
-  height: 1rem;
+  width: 1.15rem;
+  height: 1.15rem;
   flex: none;
   margin-top: 0.1rem;
 }
@@ -5268,8 +5280,8 @@ figure {
 }
 
 .ax-ico svg {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 .ax-session {
@@ -5306,7 +5318,6 @@ figure {
   margin: 0;
   max-width: 16ch;
   color: #163529;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2rem, 3.6vw, 2.75rem);
   font-weight: 700;
   line-height: 1.15;
@@ -5374,8 +5385,8 @@ figure {
 }
 
 .ax-session-icon svg {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.55rem;
+  height: 1.55rem;
 }
 
 .ax-session-benefits strong {

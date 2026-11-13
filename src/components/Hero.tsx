@@ -115,11 +115,9 @@ export default function Hero() {
       <div className="hero-inner">
         <div className="hero-copy">
           <p className="hero-brand">RoyalTech Innovation</p>
-          <h1>Build your digital future with a partner you can trust</h1>
+          <h1>Build Your Digital Future with Custom Software & IT Solutions </h1>
           <p className="hero-sub">
-            An IT solutions company and technology and digital transformation
-            partner delivering end-to-end digital solutions, software development,
-            and business technology solutions for startups, SMEs, and enterprises.
+            RoyalTech Innovation helps businesses grow through custom website development, mobile applications, software solutions, UI/UX design, digital marketing and IT consulting.
           </p>
           <div className="hero-actions">
             <Link className="btn btn-outline" href="#about">

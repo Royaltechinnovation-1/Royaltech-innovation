@@ -50,6 +50,7 @@ export default function About() {
           <Image
             className="about-media-img"
             src="/about-office-entrance.jpg"
+            // src="/home-services/entrance 4x HD.png"
             alt="RoyalTech Innovation office entrance"
             fill
             sizes="(max-width: 900px) 100vw, 50vw"

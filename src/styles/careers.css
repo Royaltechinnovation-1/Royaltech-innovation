@@ -461,6 +461,11 @@
   font-weight: 500;
 }
 
+.cr-field input::placeholder {
+  color: #c5cdc6;
+  font-size:14px;
+  opacity: 0.5;
+}
 .cr-field input {
   width: 100%;
   border: 0;
@@ -571,8 +576,9 @@
 .cr-session-card {
   position: relative;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   gap: 1.25rem;
   min-height: clamp(12rem, 22vw, 16rem);
@@ -612,9 +618,12 @@
 }
 
 .cr-session-eyebrow::before {
-  content: "/";
+  content: "";
   color: var(--cr-lime);
   font-weight: 800;
+  width: 30px;
+  height: 2px;
+  background-color:var(--cr-lime) ;
 }
 
 .cr-session-card h2 {
@@ -625,7 +634,7 @@
 }
 
 .cr-session-card p {
-  margin: 0;
+  margin: 0 0 15px;
   max-width: 34rem;
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.65;
@@ -634,6 +643,7 @@
 .cr-session-card .cr-btn {
   position: relative;
   z-index: 1;
+  width: max-content;
 }
 
 @media (max-width: 1100px) {

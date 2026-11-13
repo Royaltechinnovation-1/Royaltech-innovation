@@ -264,7 +264,8 @@
 
 .svc-offer-visual {
   position: relative;
-  min-height: clamp(15rem, 28vw, 22rem);
+  /* min-height: clamp(15rem, 28vw, 22rem); */
+  height: 100%;
   padding: 1.2rem 1.4rem 1.6rem 0.4rem;
 }
 
@@ -292,9 +293,10 @@
   flex-direction: column;
   background: #fff;
   border: 1px solid rgba(20, 38, 31, 0.08);
+  height: 100%;
 }
 
-.svc-offer-chrome {
+/* .svc-offer-chrome {
   display: flex;
   gap: 0.35rem;
   padding: 0.55rem 0.7rem;
@@ -319,7 +321,7 @@
 
 .svc-offer-chrome span:nth-child(3) {
   background: #9ccc65;
-}
+} */
 
 .svc-offer-shot {
   position: relative;
@@ -792,6 +794,12 @@
 }
 
 @media (max-width: 640px) {
+  .svc-offer-lead {
+  margin-top: 28px;
+  }
+  .svc-offer-list{
+    gap: 8px;
+  }
   .svc-page {
     --svc-wide: min(100% - 1.5rem, 1120px);
   }

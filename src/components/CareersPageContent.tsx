@@ -460,19 +460,19 @@ export default function CareersPageContent() {
               <div className="cr-fields">
                 <label className="cr-field">
                   <span>Full Name</span>
-                  <input name="firstName" type="text" autoComplete="given-name" required />
+                  <input name="firstName" type="text" autoComplete="given-name" placeholder="Enter your first name " required />
                 </label>
                 <label className="cr-field">
                   <span>Last Name</span>
-                  <input name="lastName" type="text" autoComplete="family-name" required />
+                  <input name="lastName" type="text" autoComplete="family-name" placeholder="Enter your last name "required />
                 </label>
                 <label className="cr-field">
                   <span>Email</span>
-                  <input name="email" type="email" autoComplete="email" required />
+                  <input name="email" type="email" autoComplete="email" placeholder="Enter your email " required />
                 </label>
                 <label className="cr-field">
                   <span>Phone</span>
-                  <input name="phone" type="tel" autoComplete="tel" required />
+                  <input name="phone" type="tel" autoComplete="tel" placeholder="Enter your mobile no "  required />
                 </label>
                 <label className="cr-field cr-field-wide">
                   <span>Portfolio / LinkedIn URL</span>

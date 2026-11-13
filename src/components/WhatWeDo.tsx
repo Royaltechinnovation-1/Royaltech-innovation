@@ -12,24 +12,29 @@ const steps = [
     title: "Plan & Design",
     text: "We map timelines, budget, architecture, and experience into a roadmap you can review and approve.",
     image: "https://res.cloudinary.com/ugqc5gb8/image/upload/v1794482338/WhatsApp_Image_2026-11-11_at_15.14.12.jpg",
+    // image: "/home-services/planing.svg",
   },
   {
     num: "03",
     title: "Build",
     text: "We develop with modern tools and clean practices so websites, software, and apps fit how you work.",
-    image: "/Build-website-development.jpeg",
+    // image: "/Build-website-development.jpeg",
+    image: "/home-services/Build.svg",
   },
   {
     num: "04",
     title: "Testing",
     text: "We check quality, performance, and usability across devices—so issues are caught before go-live.",
-    image: "/Testing.png",
+    // image: "/Testing.png",
+    image: "/Build-website-development.jpeg",
+    // image: "/home-services/testing.svg",
   },
   {
     num: "05",
     title: "Launch",
     text: "We deploy carefully, train your team, and stay available after go-live as your needs grow.",
     image: "/CRM.png",
+    // image: "/home-services/launch.svg",
   },
 ];
 
@@ -44,7 +49,7 @@ export default function WhatWeDo() {
             <p className="what-text">
               RoyalTech Innovation helps businesses transform, grow, and succeed
               with practical technology. We design, build, and support digital
-              solutions that fit how you work—and scale as you grow.
+              solutions that fit how you work and scale as you grow.
             </p>
             <p className="what-text">
               From websites and custom software to mobile apps, digital marketing,
@@ -53,8 +58,8 @@ export default function WhatWeDo() {
               team can rely on every day.
             </p>
             <p className="what-text">
-              Every engagement follows a simple path—discover, plan, build, test,
-              and launch—so startups, SMEs, and established organisations get
+              Every engagement follows a simple path discover, plan, build, test,
+              and launch so startups, SMEs, and established organisations get
               dependable delivery without unnecessary complexity.
             </p>
           </div>
@@ -70,14 +75,16 @@ export default function WhatWeDo() {
             />
           </figure>
         </div>
+        
 
+          <h2 className="steps-heading">Our Development Process</h2>
         <div className="what-steps">
           {steps.map((step) => (
             <article key={step.num} className="what-step">
               <div className="what-step-visual">
                 <Image
                   src={step.image}
-                  alt=""
+                  alt={step.title}
                   width={720}
                   height={480}
                   className="what-step-image"

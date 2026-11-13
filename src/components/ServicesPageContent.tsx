@@ -26,7 +26,7 @@ const services = [
     lead: "SEO-ready business websites that convert",
     description:
       "RoyalTech Innovation builds fast, secure, and search-optimised websites for startups, SMEs, and enterprises. From marketing sites and landing pages to e-commerce stores, every build is engineered for Core Web Vitals, mobile usability, and long-term SEO growth.",
-    image: "/website-development.png",
+    image: "/home-services/web development.png",
     stack: "/svc-mock-projects.jpg",
     accent: "#9ec9c0",
     alt: "RoyalTech Innovation SEO-ready website development",
@@ -42,7 +42,7 @@ const services = [
     lead: "Custom software, ERP & CRM built around your operations",
     description:
       "We design and develop custom business software that replaces spreadsheets and disconnected tools. RoyalTech Innovation delivers ERP modules, CRM platforms, and workflow automation so your teams work faster with clearer data and scalable processes.",
-    image: "/software-development.png",
+    image: "/home-services/Software Development.jpg",
     stack: "/svc-mock-lms.jpg",
     accent: "#b7cfc8",
     alt: "RoyalTech Innovation custom software ERP and CRM systems",
@@ -58,7 +58,7 @@ const services = [
     lead: "Android & iOS apps that customers love to use",
     description:
       "Launch customer-facing and internal mobile products with RoyalTech Innovation. We build Android and iOS apps with clean UX, secure APIs, and reliable performance—so your brand stays useful in your customers’ pockets every day.",
-    image: "/mobile-app-development.png",
+    image: "/home-services/App Development.jpg",
     stack: "/svc-mock-web.jpg",
     accent: "#a8c4bb",
     alt: "RoyalTech Innovation Android and iOS mobile app development",
@@ -90,7 +90,7 @@ const services = [
     lead: "Product design and brand creatives that feel premium",
     description:
       "Our design team crafts interfaces and brand visuals that make products clearer and campaigns stronger. RoyalTech Innovation covers UI/UX for web and apps plus graphic design—logos, posters, and campaign creatives—aligned to your brand and conversion goals.",
-    image: "/ui-ux-graphic-design.png",
+    image: "/home-services/UI UX Design.jpg",
     stack: "/svc-mock-marketing.jpg",
     accent: "#d9e4c8",
     alt: "RoyalTech Innovation UI UX and graphic design work",
@@ -106,7 +106,7 @@ const services = [
     lead: "Technology advisory for digital transformation",
     description:
       "Need a clear roadmap before you build? RoyalTech Innovation provides IT consulting and technology advisory for digital transformation—helping you choose the right stack, plan scalable architecture, and invest with confidence across India, the UK, and the UAE.",
-    image: "https://res.cloudinary.com/ugqc5gb8/image/upload/v1794465990/IT_Consulting.jpg",
+    image: "/home-services/IT Consulting 1.png",
     stack: "/svc-mock-crm.jpg",
     accent: "#e2ebc8",
     alt: "RoyalTech Innovation IT consulting and digital transformation",
@@ -266,11 +266,11 @@ export default function ServicesPageContent() {
                     />
                   </div> */}
                   <div className="svc-offer-stack svc-offer-stack-front">
-                    <div className="svc-offer-chrome" aria-hidden="true">
+                    {/* <div className="svc-offer-chrome" aria-hidden="true">
                       <span />
                       <span />
                       <span />
-                    </div>
+                    </div> */}
                     <div className="svc-offer-shot">
                       <Image
                         src={service.image}
