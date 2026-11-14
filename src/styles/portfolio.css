@@ -7,7 +7,7 @@
   --pfo-olive: #b7c879;
   --pfo-olive-text: #16543f;
   --pfo-ink: #14201b;
-  --pfo-muted: #5a6b63;
+  --pfo-muted: #212121;
   --pfo-soft: #f3f7f4;
   color: var(--pfo-ink);
   background: #fff;
@@ -69,21 +69,16 @@
 
 .pfo-hero-bg img {
   object-fit: cover;
-  object-position: center right;
+  object-position: 75%;
 }
 
 .pfo-hero-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(216, 235, 227, 0.55) 0%,
-      rgba(216, 235, 227, 0.28) 38%,
-      transparent 58%
-    );
-  pointer-events: none;
+    content: "";
+    pointer-events: none;
+    background: linear-gradient(
+55deg, #9ed9c1 0%, #c6e7d999 38%, #00000000 58%);
+    position: absolute;
+    inset: 0;
 }
 
 .pfo-hero-grid {
@@ -136,7 +131,7 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  background: rgba(45, 156, 108, 0.12);
+  background: #2d9c6c47;
   color: var(--pfo-lime);
 }
 
@@ -231,7 +226,7 @@
 }
 
 .pfo-card-media img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 

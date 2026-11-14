@@ -74,7 +74,8 @@ export default function PortfolioPageContent() {
       <section className="pfo-hero" aria-label="Our work">
         <div className="pfo-hero-bg" aria-hidden="true">
           <Image
-            src="/pfo-hero-bg.jpg"
+            // src="/pfo-hero-bg.jpg"
+            src="https://res.cloudinary.com/ugqc5gb8/image/upload/v1794645108/potfoliio_top_image.png"
             alt=""
             fill
             priority
@@ -195,7 +196,7 @@ export default function PortfolioPageContent() {
       <section className="pfo-book" aria-labelledby="pfo-book-heading">
         <div className="pfo-book-bg" aria-hidden="true">
           <Image
-            src="/pfo-book-bg.jpg"
+            src="https://res.cloudinary.com/ugqc5gb8/image/upload/v1794651259/1234.png"
             alt=""
             fill
             sizes="100vw"

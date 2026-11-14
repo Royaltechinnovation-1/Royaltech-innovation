@@ -289,8 +289,8 @@
 }
 
 .cr-card-meta svg {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 1.25rem;
+  height: 1.25rem;
   color: var(--cr-team);
 }
 
@@ -651,12 +651,13 @@
     --cr-wide: min(1120px, calc(100% - clamp(1.15rem, 4vw, 3rem)));
   }
 
-  .cr-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+
 }
 
 @media (max-width: 900px) {
+    .cr-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .cr-join-grid {
     grid-template-columns: 1fr;
   }

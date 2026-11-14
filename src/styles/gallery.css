@@ -11,6 +11,10 @@
   color: var(--gal-ink);
   background: var(--gal-soft);
 }
+.gallery-chevron{
+      width: 10px;
+    height: 10px;
+}
 
 .gal-shell {
   /* width: min(100% - (var(--gal-pad) * 2), var(--gal-max)); */
@@ -247,6 +251,10 @@
 /* Main */
 .gal-main {
   padding: clamp(1.6rem, 4vw, 2.4rem) 0 clamp(3.5rem, 8vw, 5rem);
+}
+.gallery-breadcrum{
+      display: flex;
+    align-items: center;
 }
 
 .gal-crumb {

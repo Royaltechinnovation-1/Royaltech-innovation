@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import "@/styles/careers.css";
+import { FaArrowRightLong, FaPlay } from "react-icons/fa6";
 
 type Role = {
   id: string;
@@ -113,7 +114,8 @@ const roles: Role[] = [
     experience: "1–4 Years",
     level: "Career starter",
     packageLabel: "Best in industry",
-    image: "/careers/job-uiux.jpg",
+    // image: "/careers/job-uiux.jpg",
+    image: "/careers/UI  UX.png",
     imageAlt: "UI/UX designer creating wireframes and interfaces",
     blurb: "Shape product journeys from wireframes to polished UI.",
     summary:
@@ -234,16 +236,18 @@ function CheckIcon() {
 
 function ArrowIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M5 12h12M13 6l6 6-6 6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    // <svg viewBox="0 0 24 24" aria-hidden="true">
+    //   <path
+    //     d="M5 12h12M13 6l6 6-6 6"
+    //     fill="none"
+    //     stroke="currentColor"
+    //     strokeWidth="1.8"
+    //     strokeLinecap="round"
+    //     strokeLinejoin="round"
+    //   />
+    // </svg>
+    <FaArrowRightLong />
+
   );
 }
 
@@ -339,11 +343,12 @@ export default function CareersPageContent() {
           </p>
           <div className="cr-hero-actions">
             <a className="cr-btn cr-btn-lime" href="#openings">
-              Open Positions <span aria-hidden="true">→</span>
+              Open Positions <span aria-hidden="true"><FaArrowRightLong /></span>
             </a>
             <a className="cr-btn cr-btn-ghost" href="#role-detail">
               <span className="cr-play" aria-hidden="true">
-                ▶
+                <FaPlay />
+
               </span>
               Watch Our Culture
             </a>
@@ -359,7 +364,7 @@ export default function CareersPageContent() {
               <h2>{roles.length} current job offers</h2>
             </div>
             <a className="cr-text-link" href="#role-detail">
-              View All Careers <span aria-hidden="true">→</span>
+              View All Careers <span aria-hidden="true"><FaArrowRightLong /></span>
             </a>
           </div>
 
@@ -428,7 +433,7 @@ export default function CareersPageContent() {
               <span>{active.packageLabel}</span>
             </div>
             <a className="cr-btn cr-btn-lime" href="#apply">
-              Apply Now <span aria-hidden="true">→</span>
+              Apply Now <span aria-hidden="true"><FaArrowRightLong /></span>
             </a>
           </div>
           <div className="cr-join-visual">
@@ -556,7 +561,7 @@ export default function CareersPageContent() {
             source="careers-chat"
             service="Careers"
           >
-            Book a Session <span aria-hidden="true">→</span>
+           <span>Book a Session</span>  <span aria-hidden="true"><FaArrowRightLong /></span>
           </OpenFormButton>
         </div>
       </section>
