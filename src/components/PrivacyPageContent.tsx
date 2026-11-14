@@ -206,8 +206,12 @@ export default function PrivacyPageContent() {
       badge="Legal"
       title="Privacy Policy"
       intro="How RoyalTech Innovation collects, uses, and protects personal data across our IT services—aligned with ISO-informed security and privacy practices."
-      updated="15 October 2024"
-      standards={["ISO/IEC 27001 aligned", "ISO/IEC 27701 aligned", "IT sector"]}
+      updated="15 October 2026"
+      standards={[
+  "ISO/IEC 27001 Informed",
+  "IT Services SOW",
+  "India Governing Law"
+]}
       sideImage="/legal-privacy.jpg"
       sideTitle="Data protection in delivery"
       sideText="Privacy-by-design for websites, apps, software, CRM, and digital marketing engagements."
