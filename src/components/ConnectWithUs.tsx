@@ -2,6 +2,7 @@
 
 import { OpenFormButton, useFormModal } from "@/components/FormModal";
 import { FormEvent } from "react";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const socialLinks = [
   {
@@ -108,7 +109,8 @@ export default function ConnectWithUs() {
             autoComplete="email"
           />
           <button type="submit" aria-label="Subscribe">
-            →
+            <FaArrowRightLong className="testimonial-icon"/>
+
           </button>
         </form>
       </div>

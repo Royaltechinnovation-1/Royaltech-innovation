@@ -11,8 +11,8 @@ const steps = [
     num: "02",
     title: "Plan & Design",
     text: "We map timelines, budget, architecture, and experience into a roadmap you can review and approve.",
-    image: "https://res.cloudinary.com/ugqc5gb8/image/upload/v1794482338/WhatsApp_Image_2026-11-11_at_15.14.12.jpg",
-    // image: "/home-services/planing.svg",
+    // image: "https://res.cloudinary.com/ugqc5gb8/image/upload/v1794482338/WhatsApp_Image_2026-11-11_at_15.14.12.jpg",
+    image: "/home-services/planing.svg",
   },
   {
     num: "03",

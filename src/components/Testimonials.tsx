@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import 'swiper/css/effect-cards';
-// import './styles.css';
-// import { EffectCards } from 'swiper/modules';
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCards } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/effect-cards";
+import "../styles/Swiper.css";
 
 type Review = {
   src: string;
@@ -151,7 +154,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="testimonials-carousel">
+        {/* <div className="testimonials-carousel">
           <div className="testimonials-controls" aria-label="Review navigation">
             <button
               type="button"
@@ -160,7 +163,7 @@ export default function Testimonials() {
               onClick={() => scrollTestimonials(-1)}
               disabled={!canScrollLeft}
             >
-              <span aria-hidden="true">←</span>
+              <span aria-hidden="true"><FaArrowLeftLong className="testimonial-icon" /></span>
             </button>
             <button
               type="button"
@@ -169,7 +172,7 @@ export default function Testimonials() {
               onClick={() => scrollTestimonials(1)}
               disabled={!canScrollRight}
             >
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true"><FaArrowRightLong className="testimonial-icon" /></span>
             </button>
           </div>
           <div
@@ -181,7 +184,6 @@ export default function Testimonials() {
                 key={review.src}
                 className={`testimonial testimonial-shot${review.reviewText ? " testimonial-text-card" : ""}`}
               >
-                {/* {review ? ( */}
                 <div className="testimonial-review-content">
                   <p className="testimonial-review-details">{review.details}</p>
                   {review.rating && (
@@ -197,14 +199,7 @@ export default function Testimonials() {
                   </blockquote>
                   <div className="testimonial-bottom">
                     {review.src && (
-                    //   <Image
-                    //     src={review.src}
-                    //     alt={review.alt}
-                    //     width={48}
-                    //     height={48}
-                    //     className="testimonial-avatar"
-                    //   />
-                    // ) : (
+                   
                       <div className="testimonial-avatar-fallback">
                         {review.name?.charAt(0).toUpperCase() || "?"}
                       </div>
@@ -213,36 +208,48 @@ export default function Testimonials() {
                     <h3 className="testimonial-name">{review.name}</h3>
                   </div>
                 </div>
-                {/* ) : (
-                  <Image
-                    src={review.src}
-                    alt={review.alt}
-                    width={720}
-                    height={520}
-                    sizes="(max-width: 768px) 85vw, 360px"
-                    className="testimonial-shot-img"
-                  />
-                )} */}
+                
               </article>
             ))}
           </div>
+        </div> */}
+
+        <div className="swiper-main">
+          <Swiper
+            effect="cards"
+            grabCursor={true}
+            modules={[EffectCards]}
+            className="mySwiper"
+          >
+            {reviewImages.map((review) => (
+              <SwiperSlide key={review.src}>
+                <div className="swiper-review-card">
+                  <span className="review-stars">
+                    {"★".repeat(review.rating || 5)}
+                  </span>
+
+                  <p className="review-details">
+                    {review.details}
+                  </p>
+
+                  <p className="review-description">
+                    {review.reviewText}
+                  </p>
+
+                  <div className="testimonial-bottom">
+                    <div className="testimonial-avatar-fallback">
+                      {review.name?.charAt(0).toUpperCase() || "?"}
+                    </div>
+                    <h3>{review.name}</h3>
+                  </div>
+
+
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-         {/* <Swiper
-        effect={'cards'}
-        grabCursor={true}
-        modules={[EffectCards]}
-        className="mySwiper"
-      >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper> */}
+
       </div>
     </section>
   );

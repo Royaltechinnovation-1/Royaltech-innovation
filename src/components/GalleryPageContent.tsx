@@ -5,33 +5,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "@/styles/gallery.css";
+import { GoHome } from "react-icons/go";
+import { FaChevronRight } from "react-icons/fa";
 
-const filters = ["All", "Team", "Events", "Office", "Projects", "Culture"] as const;
+const filters = ["All", "Team",    "Office", "Projects", "Culture"] as const;
 
 type Filter = (typeof filters)[number];
 
 const galleryItems: { src: string; alt: string; category: Exclude<Filter, "All"> }[] = [
-  { src: "/gallery/g-01.jpg", alt: "RoyalTech Innovation team celebration", category: "Events" },
-  { src: "/gallery/g-02.jpg", alt: "RoyalTech office entrance and branding", category: "Office" },
-  { src: "/gallery/g-27.jpg", alt: "Project delivery celebration", category: "Projects" },
+  { src: "/gallery/g-01.jpg", alt: "RoyalTech Innovation team celebration", category: "Team" },
+  { src: "/gallery/g-02.jpg", alt: "RoyalTech office entrance and branding", category: "Team" },
+  { src: "/gallery/g-27.jpg", alt: "Project delivery celebration", category: "Culture" },
   // { src: "/gallery/g-03.jpg", alt: "Open office workspace at RoyalTech", category: "Office" },
   // { src: "/gallery/g-04.jpg", alt: "RoyalTech Innovation wall branding", category: "Office" },
   // { src: "/gallery/g-05.jpg", alt: "Team collaborating on a laptop", category: "Team" },
-  { src: "/gallery/g-06.jpg", alt: "Culture wall and workplace inspiration", category: "Culture" },
-  { src: "/gallery/g-07.jpg", alt: "RoyalTech workstations and desks", category: "Office" },
+  { src: "/gallery/g-06.jpg", alt: "Culture wall and workplace inspiration", category: "Team" },
+  { src: "/gallery/g-07.jpg", alt: "RoyalTech workstations and desks", category: "Team" },
   // { src: "/gallery/g-08.jpg", alt: "RoyalTech branded desk details", category: "Culture" },
   // { src: "/gallery/g-09.jpg", alt: "Full team gathering at the office", category: "Team" },
   { src: "/gallery/g-10.jpg", alt: "Team discussion on office sofas", category: "Team" },
-  { src: "/gallery/g-11.jpg", alt: "Technology wall message at RoyalTech", category: "Culture" },
+  { src: "/gallery/g-11.jpg", alt: "Technology wall message at RoyalTech", category: "Team" },
   // { src: "/gallery/g-12.jpg", alt: "Team celebration with cake", category: "Events" },
   { src: "/gallery/g-13.jpg", alt: "RoyalTech Innovation project moment", category: "Projects" },
   // { src: "/gallery/g-14.jpg", alt: "Team collaboration in the studio", category: "Team" },
   // { src: "/gallery/g-15.jpg", alt: "Office culture and workspace vibes", category: "Culture" },
   // { src: "/gallery/g-16.jpg", alt: "Event day at RoyalTech Innovation", category: "Events" },
-  { src: "/gallery/g-17.jpg", alt: "Project review and delivery moment", category: "Projects" },
+  { src: "/gallery/g-17.jpg", alt: "Project review and delivery moment", category: "Culture" },
   // { src: "/gallery/g-18.jpg", alt: "Office interior and work area", category: "Office" },
   // { src: "/gallery/g-19.jpg", alt: "Team members at RoyalTech", category: "Team" },
-  { src: "/gallery/g-20.jpg", alt: "Celebration and company culture", category: "Culture" },
+  { src: "/gallery/g-20.jpg", alt: "Celebration and company culture", category: "Team" },
   // { src: "/gallery/g-21.jpg", alt: "RoyalTech Innovation event highlight", category: "Events" },
   // { src: "/gallery/g-22.jpg", alt: "Project workspace snapshot", category: "Projects" },
   // { src: "/gallery/g-23.jpg", alt: "Team working together", category: "Team" },
@@ -39,8 +41,9 @@ const galleryItems: { src: string; alt: string; category: Exclude<Filter, "All">
   // { src: "/gallery/g-25.jpg", alt: "Culture moment at RoyalTech", category: "Culture" },
   // { src: "/gallery/g-26.jpg", alt: "Event photo from RoyalTech", category: "Events" },
   { src: "/gallery/g-28.jpg", alt: "Team portrait at the office", category: "Team" },
-  { src: "/gallery/g-29.jpg", alt: "Office life at RoyalTech Innovation", category: "Office" },
-  { src: "/gallery/g-30.jpg", alt: "Culture and community at RoyalTech", category: "Culture" },
+  { src: "/gallery/g-29.jpg", alt: "Office life at RoyalTech Innovation", category: "Team" },
+  { src: "/gallery/g-30.jpg", alt: "Culture and community at RoyalTech", category: "Team" },
+  { src: "/hero-slide-1.jpg", alt: "office", category: "Office" },
 ];
 
 export default function GalleryPageContent() {
@@ -105,10 +108,10 @@ export default function GalleryPageContent() {
         <div className="gal-shell">
           <nav className="gal-crumb" aria-label="Breadcrumb">
             <Link href="/">
-              <span aria-hidden="true">⌂</span> Home
+              <span aria-hidden="true" className="gallery-breadcrum"><GoHome style={{marginRight:"5px",width:"16px",height:"16px"}}/> Home</span> 
             </Link>
-            <span aria-hidden="true">›</span>
-            <span>Gallery</span>
+            <span aria-hidden="true"><FaChevronRight className="gallery-chevron"/> Gallery</span>
+            {/* <span>Gallery</span> */}
           </nav>
 
           <h2 id="gal-heading" className="gal-visually-hidden">
