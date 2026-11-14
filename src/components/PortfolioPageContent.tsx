@@ -23,47 +23,47 @@ const stats = [
 
 const works = [
   {
-    title: "Web Development",
+    title: "Custom Web Development Showcase",
     text: "SEO-ready websites built with React, Next.js, Node.js, and PHP—fast, secure, and made to convert.",
     tags: ["React", "Next.js", "Node.js", "PHP"],
     image: "/pfo-web-dev.jpg",
-    alt: "RoyalTech Innovation web development project on laptop",
+    alt: "Custom web development project by RoyalTech Innovation",
     tone: "mint",
     icon: "M8 8 4.5 12 8 16M16 8l3.5 4L16 16",
-    href: "https://www.behance.net/gallery/258029873/Website-Design",
+    href: "https://www.behance.net/gallery/258029873/Web-Development",
     external: true,
   },
   {
-    title: "App Design",
+    title: "Mobile App UI/UX Design Case Studies",
     text: "iOS and Android UI/UX that feels simple, looks premium, and keeps users coming back.",
     tags: ["iOS", "Android", "UI/UX"],
     image: "/pfo-app-design.jpg",
-    alt: "RoyalTech Innovation mobile app design on smartphones",
+    alt: "Mobile app UI UX design portfolio by RoyalTech Innovation",
     tone: "cream",
     icon: "M8 3.5h8A1.5 1.5 0 0 1 17.5 5v14A1.5 1.5 0 0 1 16 20.5H8A1.5 1.5 0 0 1 6.5 19V5A1.5 1.5 0 0 1 8 3.5Zm4 14.2h.01",
     href: "/contact",
     external: false,
   },
   {
-    title: "Logo Design",
+    title:"Logo Design & Brand Identity Showcase",
     text: "Clear logos and brand identity systems that stay sharp on web, print, and social.",
     tags: ["Branding", "Vector", "Identity"],
     image: "/pfo-logo-design.jpg",
-    alt: "RoyalTech Innovation logo and brand identity business cards",
+    alt: "Logo design and brand identity project by RoyalTech Innovation",
     tone: "sky",
     icon: "M7 18c3-5 5-8 10-12M9.5 8.5c1.2-1.2 2.8-1.8 4.2-1.2 1.6.7 2.3 2.4 1.6 4-.8 1.8-3.2 3.6-5.3 4.7",
-    href: "https://www.behance.net/gallery/258031185/Logo-Design",
+    href: "https://www.behance.net/gallery/258031185/branding",
     external: true,
   },
   {
-    title: "CRM Development",
+    title: "Custom CRM & Software Development Portfolio",
     text: "Custom CRM systems for leads, pipelines, and customer data—built to fit how your sales team works.",
     tags: ["CRM", "Automation", "Dashboards"],
     image: "/svc-mock-crm.jpg",
-    alt: "RoyalTech Innovation custom CRM development dashboard",
+   alt: "Custom CRM software dashboard developed by RoyalTech Innovation",
     tone: "sage",
     icon: "M8 7h8v3H8V7Zm-2 5h12v7H6v-7Zm4 2.5h4",
-    href: "https://www.behance.net/gallery/258128517/CRM-Design-Deve",
+    href: "https://www.behance.net/gallery/258128517/CRM-Developement",
     external: true,
   },
 ];
@@ -89,8 +89,7 @@ export default function PortfolioPageContent() {
               <span className="pfo-accent">into Reality</span>
             </h1>
             <p className="pfo-hero-lead">
-              RoyalTech Innovation builds websites, apps, and brands that help
-              businesses grow online—fast, scalable, and SEO-ready.
+             Explore our portfolio of successful web development, mobile app, CRM, and branding projects. RoyalTech Innovation delivers scalable, high-performance IT solutions that drive digital growth.
             </p>
 
             <div className="pfo-stats" role="list">
@@ -122,11 +121,15 @@ export default function PortfolioPageContent() {
         <div className="pfo-shell">
           <div className="pfo-work-head">
             <p className="pfo-eyebrow">Our Services</p>
-            <h2 id="pfo-work-heading">What We Do Best</h2>
+           <h2 id="pfo-work-heading">
+  Featured Projects & Digital Solutions Showcase
+</h2>
             <p className="pfo-work-lead">
-              Website development, app design, branding, and CRM from RoyalTech
-              Innovation—built to rank, convert, and scale.
-            </p>
+  Explore RoyalTech Innovation&apos;s web development projects,
+  mobile app UI/UX designs, brand identity solutions, and
+  custom CRM software developed to help businesses innovate,
+  grow, and scale.
+</p>
           </div>
 
           <div className="pfo-work-list">
@@ -202,12 +205,15 @@ export default function PortfolioPageContent() {
           <div className="pfo-book-copy">
             <p className="pfo-eyebrow pfo-eyebrow-light">Let&apos;s Work Together</p>
             <h2 id="pfo-book-heading">
-              Book a Session with{" "}
-              <span className="pfo-accent">Our Experts!</span>
+              Ready to Build Your{" "}
+              <span className="pfo-accent">Next Project?</span>
+              {" "}Book a Free Tech Consultation
             </h2>
             <p>
-              Book a free consultation with RoyalTech Innovation. We&apos;ll map
-              scope, timeline, and the fastest path to launch.
+              Inspired by our portfolio? Book a free consultation with
+              RoyalTech Innovation to discuss your project requirements,
+              development strategy, estimated timeline, and the right
+              technology solutions for your business.
             </p>
             <div className="pfo-book-actions">
               <OpenFormButton

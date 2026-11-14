@@ -6,9 +6,9 @@ import "@/styles/process.css";
 const steps = [
   {
     number: "01",
-    title: "Discovery & Consultation",
+    title: "Discovery & Requirements Analysis",
     description:
-      "We start by understanding your goals, audience, and business needs. Through detailed discussions and research, we gather insights, analyze requirements, and define the right strategy for your project.",
+      "Our project discovery starts with business analysis to understand your goals and audience. Through focused discussions, we complete requirement gathering and define the right strategy for your project.",
     checks: ["Business Analysis", "Audience Research", "Requirement Gathering"],
     image: "/op-step-discover.jpg",
     alt: "RoyalTech Innovation discovery workshop and project consultation",
@@ -16,9 +16,9 @@ const steps = [
   },
   {
     number: "02",
-    title: "Planning & Design",
+    title: "Project Planning & UI/UX Design",
     description:
-      "We create a clear roadmap and craft intuitive designs that bring your ideas to life. Our team focuses on user experience, functionality, and brand consistency to ensure the best possible outcome.",
+      "Our agile planning creates a clear roadmap, while wireframing and UI/UX prototyping shape intuitive user experiences. We also guide technology selection to fit your goals and project requirements.",
     checks: [
       "Project Planning",
       "Wireframes & UI/UX Design",
@@ -30,9 +30,9 @@ const steps = [
   },
   {
     number: "03",
-    title: "Development & Testing",
+    title: "Full-Stack Development & Quality Assurance",
     description:
-      "We build your solution using modern technologies, following clean code practices and industry standards. Rigorous testing ensures a smooth, secure, and high-performing product.",
+      "Our team delivers frontend development and backend development through full-stack coding with modern technologies and clean code practices. QA testing helps ensure your product is smooth, secure, and high-performing.",
     checks: [
       "Frontend & Backend Development",
       "Quality Assurance & Testing",
@@ -44,9 +44,9 @@ const steps = [
   },
   {
     number: "04",
-    title: "Deployment & Support",
+    title: "	Software Deployment & Ongoing Support",
     description:
-      "We launch your product and provide ongoing support to keep it running smoothly. We also offer updates, maintenance, and improvements as your business grows.",
+      "We manage software deployment and product launch, then provide maintenance and technical support to keep your product running smoothly as your business grows.",
     checks: [
       "Live Deployment",
       "Training & Handover",
@@ -182,32 +182,32 @@ const industries = [
   {
     title: "Healthcare",
     image: "/op-ind-healthcare.jpg",
-    alt: "Healthcare software solutions",
+    alt: "Healthcare Software Solutions",
   },
   {
     title: "Finance",
     image: "/op-ind-finance.jpg",
-    alt: "Finance and banking software solutions",
+    alt: "FinTech Software Development",
   },
   {
     title: "E-Commerce",
     image: "/op-ind-ecommerce.jpg",
-    alt: "E-commerce digital solutions",
+    alt: "E-Commerce Development Solutions",
   },
   {
     title: "Education",
     image: "/op-ind-education.jpg",
-    alt: "Education technology solutions",
+    alt: "Education Management Software",
   },
   {
     title: "Manufacturing",
     image: "/op-ind-manufacturing.jpg",
-    alt: "Manufacturing software solutions",
+    alt: "Manufacturing Software Solutions",
   },
   {
     title: "Logistics",
     image: "/op-ind-logistics.jpg",
-    alt: "Logistics and supply chain solutions",
+    alt: "Logistics & Supply Chain Software",
   },
 ];
 
@@ -236,7 +236,7 @@ export default function ProcessPageContent() {
         <div className="opx-shell opx-hero-grid">
           <div className="opx-hero-copy">
             <p className="opx-badge">Digital Innovation &amp; Technology</p>
-            <h1>Tailored Digital Solutions for Your Business Needs</h1>
+            <h1>Our Software Development Process &amp; Methodology</h1>
             <p>
               Transform your ideas into powerful digital experiences. RoyalTech
               Innovation builds scalable, custom software that helps your
@@ -323,11 +323,15 @@ export default function ProcessPageContent() {
         <div className="op-flow-shell">
           <div className="op-flow-head">
             <p className="op-flow-badge">Process</p>
-            <h2 id="op-flow-heading">A Simple &amp; Effective Process</h2>
+            <h2 id="op-flow-heading">
+              Our 4-Step Custom Software Development Methodology
+            </h2>
             <p>
-              From first conversation to launch and support—RoyalTech Innovation
-              follows a clear path that keeps projects on track.
-            </p>
+  RoyalTech Innovation follows a structured agile software
+  development workflow, combining strategic planning,
+  UI/UX design, full-stack development, quality assurance,
+  and deployment to deliver reliable digital solutions.
+</p>
           </div>
 
           <div className="op-timeline">
@@ -391,10 +395,12 @@ export default function ProcessPageContent() {
           <div className="opx-section-head">
             <p className="opx-badge">Why Choose Us</p>
             <h2 id="opx-why-heading">Why Choose Custom Software?</h2>
-            <p>
-              Off-the-shelf tools ask your team to adapt. Custom software from
-              RoyalTech Innovation follows how you sell, serve, and grow.
-            </p>
+           <p>
+  Custom software development helps businesses streamline
+  operations, automate workflows, and build scalable digital
+  solutions tailored to their requirements. RoyalTech Innovation
+  develops flexible software that supports long-term business growth.
+</p>
           </div>
           <div className="opx-why-grid">
             {benefits.map((item, index) => (
@@ -412,7 +418,7 @@ export default function ProcessPageContent() {
         <div className="opx-shell">
           <div className="opx-section-head">
             <p className="opx-badge">Our Expertise</p>
-            <h2 id="opx-ind-heading">Custom software for every industry</h2>
+            <h2 id="opx-ind-heading">  Custom Software Development Solutions Across Industries</h2>
             <p>
               Tailored digital solutions for the unique needs of different
               industries.
@@ -430,7 +436,7 @@ export default function ProcessPageContent() {
                       height={56}
                     />
                   </span>
-                  <strong>{item.title}</strong>
+                  <h3>{item.title}</h3>
                   <span aria-hidden="true">→</span>
                 </Link>
               ))}

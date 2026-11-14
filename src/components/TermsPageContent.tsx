@@ -133,9 +133,9 @@ export default function TermsPageContent() {
       badge="Legal"
       title="Terms & Conditions"
       intro="Clear terms for using RoyalTech Innovation’s website and engaging our IT services—structured for professional delivery and ISO-informed security expectations."
-      updated="7 November 2026"
-      standards={["ISO/IEC 27001 informed", "IT services SOW", "India governing law"]}
-      sideImage="/legal-terms.jpg"
+      updated="15 October 2026"
+      standards={["ISO/IEC 27001 Informed", "IT Services SOW", "India Governing Law"]}
+      sideImage="/legal-terms.webp"
       sideTitle="Clear delivery terms"
       sideText="Scope, IP, confidentiality, and acceptance defined for websites, software, apps, and consulting."
       sections={sections}
