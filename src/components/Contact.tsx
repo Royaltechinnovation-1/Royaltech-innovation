@@ -13,7 +13,7 @@ const address = {
     "Sector 67, Sahibzada Ajit Singh Nagar, Mohali, Punjab 160062",
   ],
   mapSrc:
-    "https://maps.google.com/maps?q=Gate%20No.%205%2C%20Imperial%20Tower%2C%20Floor%20No.%2010%2C%20CP%2067%2C%20International%20Airport%20Road%2C%20Sector%2067%2C%20Mohali%2C%20Punjab%20160062&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d606.5963093878761!2d76.72210642857482!3d30.678262440861037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fe9a2b8d4bbd1%3A0xff2f727b28bc64a0!2sRoyal%20Tech%20Innovation!5e0!3m2!1sen!2sin!4v1794823199475!5m2!1sen!2sin",
   mapsLink:
     "https://www.google.com/maps/search/?api=1&query=Gate+No.+5+Imperial+Tower+Floor+No.+10+CP+67+International+Airport+Road+Sector+67+Mohali+Punjab+160062",
 };

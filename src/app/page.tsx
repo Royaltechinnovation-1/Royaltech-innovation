@@ -37,11 +37,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://royaltechinnovation.com/#organization",
+      "@id": "https://royaltechinnovation.co.in/#organization",
       name: "RoyalTech Innovation",
-      url: "https://royaltechinnovation.com",
-      logo: "https://royaltechinnovation.com/royaltech-logo.png",
-      image: "https://royaltechinnovation.com/royaltech-logo.png",
+      url: "https://royaltechinnovation.co.in",
+      logo: "https://royaltechinnovation.co.in/royaltech-logo.png",
+      image: "https://royaltechinnovation.co.in/royaltech-logo.png",
       description:
         "IT solutions company and digital transformation partner delivering software development, website development, mobile apps, ERP, and IT consulting services.",
       email: "info@royaltechinnovation.co.in",
@@ -58,7 +58,7 @@ const jsonLd = {
       areaServed: ["India", "United Kingdom", "United Arab Emirates"],
       sameAs: [
         "https://www.facebook.com/profile.php?id=61596431871796",
-        "https://www.instagram.com/royaltechinnovat/",
+        "https://www.instagram.com/royaltechinnovation/",
         "https://www.linkedin.com/company/143923623/",
       ],
       knowsAbout: [
@@ -74,20 +74,20 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://royaltechinnovation.com/#website",
-      url: "https://royaltechinnovation.com",
+      "@id": "https://royaltechinnovation.co.in/#website",
+      url: "https://royaltechinnovation.co.in",
       name: "RoyalTech Innovation",
       publisher: {
-        "@id": "https://royaltechinnovation.com/#organization",
+        "@id": "https://royaltechinnovation.co.in/#organization",
       },
       inLanguage: "en",
     },
     {
       "@type": "LocalBusiness",
-      "@id": "https://royaltechinnovation.com/#localbusiness",
+      "@id": "https://royaltechinnovation.co.in/#localbusiness",
       name: "RoyalTech Innovation",
-      image: "https://royaltechinnovation.com/royaltech-logo.png",
-      url: "https://royaltechinnovation.com",
+      image: "https://royaltechinnovation.co.in/royaltech-logo.png",
+      url: "https://royaltechinnovation.co.in",
       telephone: "+91-86790-16505",
       address: {
         "@type": "PostalAddress",

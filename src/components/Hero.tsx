@@ -1,6 +1,7 @@
 "use client";
 
 import { OpenFormButton } from "@/components/FormModal";
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -103,7 +104,7 @@ export default function Hero() {
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img className="hero-bg" src={slide.src} alt={slide.alt} />
+                <Image className="hero-bg" src={slide.src} alt={slide.alt} fill/>
               )}
             </div>
           );
