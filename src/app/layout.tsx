@@ -2,6 +2,7 @@ import { FormModalProvider } from "@/components/FormModal";
 import type { Metadata, Viewport } from "next";
 import { Outfit, Sora } from "next/font/google";
 import "./globals.css";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -24,7 +25,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://royaltechinnovation.com"),
+  metadataBase: new URL("https://www.royaltechinnovation.co.in"),
   title: {
     default:
       "RoyalTech Innovation | IT Solutions, Website Development & SEO Company",
@@ -101,6 +102,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} ${sora.variable}`}>
+        <ScrollToTop />
         <FormModalProvider>{children}</FormModalProvider>
       </body>
     </html>
