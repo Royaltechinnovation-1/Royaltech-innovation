@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useFormModal } from "@/components/FormModal";
@@ -20,36 +21,87 @@ const address = {
 
 export default function Contact() {
   const { showThanks } = useFormModal();
+
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const form = event.currentTarget;
-    if (!form.checkValidity()) {
-      form.reportValidity();
+
+    const data = new FormData(form);
+
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const message = String(data.get("message") || "").trim();
+
+    const errors: Record<string, string> = {};
+
+    // Name validation
+    if (!name) {
+      errors.name = "Please enter your name.";
+    } else if (name.length < 2) {
+      errors.name = "Name must contain at least 2 characters.";
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email) {
+      errors.email = "Please enter your email.";
+    } else if (!emailRegex.test(email)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    // Phone validation
+    const phoneRegex = /^[0-9+\-\s()]{7,20}$/;
+
+    if (!phone) {
+      errors.phone = "Please enter your phone number.";
+    } else if (
+      !phoneRegex.test(phone) ||
+      phone.replace(/\D/g, "").length < 7
+    ) {
+      errors.phone = "Please enter a valid phone number.";
+    }
+
+    // Message validation
+    if (!message) {
+      errors.message = "Please enter your message.";
+    } else if (message.length < 10) {
+      errors.message = "Message must contain at least 10 characters.";
+    }
+
+    setFieldErrors(errors);
+    setError("");
+
+    // Stop form submission if validation fails
+    if (Object.keys(errors).length > 0) {
       return;
     }
 
-    const data = new FormData(form);
     setSending(true);
-    setError("");
 
     try {
       await submitLead({
-        name: String(data.get("name") || ""),
-        email: String(data.get("email") || ""),
-        phone: String(data.get("phone") || ""),
-        message: String(data.get("message") || ""),
+        name,
+        email,
+        phone,
+        message,
         source: "home-contact",
       });
+
       form.reset();
+      setFieldErrors({});
       showThanks();
     } catch (err) {
       setError(
         err instanceof Error
           ? err.message
-          : "Something went wrong. Please try again.",
+          : "Something went wrong. Please try again."
       );
     } finally {
       setSending(false);
@@ -72,8 +124,8 @@ export default function Contact() {
         <address className="contact-business-info">
           <strong>RoyalTech Innovation</strong>
           <a href="tel:+918679016505">+91 86790 16505</a>
-          <a href="mailto:info@royaltechinnovation">
-            info@royaltechinnovation
+          <a href="mailto:info@royaltechinnovation.co.in">
+            info@royaltechinnovation.co.in
           </a>
         </address>
 
@@ -86,8 +138,15 @@ export default function Contact() {
               name="name"
               autoComplete="name"
               required
+              maxLength={80}
               placeholder="Your full name"
+              aria-invalid={!!fieldErrors.name}
             />
+            {fieldErrors.name && (
+              <small className="contact-error">
+                {fieldErrors.name}
+              </small>
+            )}
           </label>
 
           <label className="contact-field" htmlFor="contact-email">
@@ -98,8 +157,15 @@ export default function Contact() {
               name="email"
               autoComplete="email"
               required
+              maxLength={254}
               placeholder="you@company.com"
+              aria-invalid={!!fieldErrors.email}
             />
+            {fieldErrors.email && (
+              <small className="contact-error">
+                {fieldErrors.email}
+              </small>
+            )}
           </label>
 
           <label className="contact-field" htmlFor="contact-phone">
@@ -110,9 +176,16 @@ export default function Contact() {
               name="phone"
               autoComplete="tel"
               required
+              maxLength={20}
               pattern="[0-9+\-\s()]{7,20}"
               placeholder="+91 86790 16505"
+              aria-invalid={!!fieldErrors.phone}
             />
+            {fieldErrors.phone && (
+              <small className="contact-error">
+                {fieldErrors.phone}
+              </small>
+            )}
           </label>
 
           <label className="contact-field" htmlFor="contact-message">
@@ -122,19 +195,34 @@ export default function Contact() {
               name="message"
               required
               rows={5}
+              maxLength={2000}
               placeholder="What are you looking to build?"
+              aria-invalid={!!fieldErrors.message}
             />
+            {fieldErrors.message && (
+              <small className="contact-error">
+                {fieldErrors.message}
+              </small>
+            )}
           </label>
 
-          <button className="contact-submit" type="submit" disabled={sending}>
+          <button
+            className="contact-submit"
+            type="submit"
+            disabled={sending}
+          >
             {sending ? "Sending..." : "Send message"}
           </button>
 
-          {error ? (
-            <p className="contact-error" id="contact-error" role="alert">
+          {error && (
+            <p
+              className="contact-error"
+              id="contact-error"
+              role="alert"
+            >
               {error}
             </p>
-          ) : null}
+          )}
         </form>
       </div>
 
@@ -149,15 +237,29 @@ export default function Contact() {
         />
 
         <address className="contact-pin">
-          <span className="contact-pin-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+          <span
+            className="contact-pin-mark"
+            aria-hidden="true"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+            >
               <path
                 d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"
                 fill="currentColor"
               />
-              <circle cx="12" cy="10" r="2.5" fill="#fff" />
+              <circle
+                cx="12"
+                cy="10"
+                r="2.5"
+                fill="#fff"
+              />
             </svg>
           </span>
+
           <div className="contact-pin-body">
             <p className="contact-pin-kicker">Visit us</p>
             <h3>{address.title}</h3>

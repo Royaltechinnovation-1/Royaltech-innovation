@@ -106,7 +106,8 @@ const services = [
     lead: "Technology advisory for digital transformation",
     description:
       "Need a clear roadmap before you build? RoyalTech Innovation provides IT consulting and technology advisory for digital transformation—helping you choose the right stack, plan scalable architecture, and invest with confidence across India, the UK, and the UAE.",
-    image: "/home-services/IT Consulting 1.png",
+    // image: "/home-services/IT Consulting 1.png",
+    image: "/it consultant.jpeg",
     stack: "/svc-mock-crm.jpg",
     accent: "#e2ebc8",
     alt: "RoyalTech Innovation IT consulting and digital transformation",

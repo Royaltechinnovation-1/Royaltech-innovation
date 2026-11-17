@@ -76,6 +76,5 @@ export async function POST(request: Request) {
       // Dashboard store already saved the lead.
     }
   }
-
   return NextResponse.json({ ok: true, id: leadId });
 }
