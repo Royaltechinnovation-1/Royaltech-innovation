@@ -1802,6 +1802,20 @@ figure {
   color: var(--accent);
 }
 
+.contact-error {
+  display: block;
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.contact-field input[aria-invalid="true"],
+.contact-field textarea[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+
 .contact-form {
   display: grid;
   gap: 0.85rem;
@@ -4147,6 +4161,22 @@ figure {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  border: 0px;
+}
+.ax-form input:user-invalid,
+.ax-form textarea:user-invalid {
+  border-color: #dc2626;
+}
+
+.ax-form input:user-valid,
+.ax-form textarea:user-valid {
+  border-color: #16a34a;
+}
+
+.ax-form input:focus-visible,
+.ax-form textarea:focus-visible {
+  outline: 2px solid rgba(15, 61, 46, 0.25);
+  outline-offset: 2px;
 }
 
 .ae-consult {
@@ -6177,6 +6207,21 @@ figure {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
+}
+.ax-form input:user-invalid,
+.ax-form textarea:user-invalid {
+  border-color: #dc2626;
+}
+
+.ax-form input:user-valid,
+.ax-form textarea:user-valid {
+  border-color: #16a34a;
+}
+
+.ax-form input:focus-visible,
+.ax-form textarea:focus-visible {
+  outline: 2px solid rgba(15, 61, 46, 0.25);
+  outline-offset: 2px;
 }
 
 .cu-wide {

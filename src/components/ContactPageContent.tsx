@@ -15,7 +15,7 @@ const address = [
 const mapQuery =
   "Gate No. 5, Imperial Tower, CP 67, Chandigarh International Airport Road, behind CP67 Mall, Sahibzada Ajit Singh Nagar, Punjab 160062";
 const mapSrc =
-  "https://maps.google.com/maps?q=30.678057,76.723018&z=17&output=embed";
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d606.5963093878761!2d76.72210642857482!3d30.678262440861037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fe9a2b8d4bbd1%3A0xff2f727b28bc64a0!2sRoyal%20Tech%20Innovation!5e0!3m2!1sen!2sin!4v1794823199475!5m2!1sen!2sin";
 const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
 
 function MailIcon() {
@@ -51,7 +51,33 @@ export default function ContactPageContent() {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const form = event.currentTarget;
+    const firstNameInput = form.elements.namedItem("firstName") as HTMLInputElement;
+    const lastNameInput = form.elements.namedItem("lastName") as HTMLInputElement;
+    const emailInput = form.elements.namedItem("workEmail") as HTMLInputElement;
+    const phoneInput = form.elements.namedItem("contactNumber") as HTMLInputElement;
+    const projectInput = form.elements.namedItem("aboutProject") as HTMLTextAreaElement;
+
+    // Clear previous custom validation messages before checking again.
+    [firstNameInput, lastNameInput, emailInput, phoneInput, projectInput].forEach(
+      (input) => input.setCustomValidity("")
+    );
+
+    if (firstNameInput.value.trim().length < 2) {
+      firstNameInput.setCustomValidity("First name must contain at least 2 characters.");
+    } else if (lastNameInput.value.trim().length < 2) {
+      lastNameInput.setCustomValidity("Last name must contain at least 2 characters.");
+    } else if (!emailInput.value.trim()) {
+      emailInput.setCustomValidity("Please enter your work email.");
+    } else if (!emailInput.validity.valid) {
+      emailInput.setCustomValidity("Please enter a valid email address.");
+    } else if (!/^(?:\+91[\s-]?)?[6-9]\d{9}$/.test(phoneInput.value.trim())) {
+      phoneInput.setCustomValidity("Please enter a valid 10-digit mobile number.");
+    } else if (projectInput.value.trim().length < 10) {
+      projectInput.setCustomValidity("Please enter at least 10 characters about your project.");
+    }
+
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
@@ -60,15 +86,16 @@ export default function ContactPageContent() {
     const data = new FormData(form);
     const first = String(data.get("firstName") || "").trim();
     const last = String(data.get("lastName") || "").trim();
+
     setSending(true);
     setError("");
 
     try {
       await submitLead({
         name: `${first} ${last}`.trim(),
-        email: String(data.get("workEmail") || ""),
-        phone: String(data.get("contactNumber") || ""),
-        message: String(data.get("aboutProject") || ""),
+        email: String(data.get("workEmail") || "").trim(),
+        phone: String(data.get("contactNumber") || "").trim(),
+        message: String(data.get("aboutProject") || "").trim(),
         source: "contact-page",
       });
       form.reset();
@@ -77,7 +104,7 @@ export default function ContactPageContent() {
       setError(
         err instanceof Error
           ? err.message
-          : "Something went wrong. Please try again.",
+          : "Something went wrong. Please try again."
       );
     } finally {
       setSending(false);
@@ -149,7 +176,9 @@ export default function ContactPageContent() {
                 <div className="cu-row">
                   <PhoneIcon />
                   <div>
-                    <p>We are available Monday to Friday, 10:00 am to 6:30 pm. Call or WhatsApp and we will confirm a time before you travel.</p>
+                    <p>
+                      We are available Monday to Friday, 10:00 am to 6:30 pm. Call or WhatsApp and we will confirm a time before you travel.
+                    </p>
                     <a href="tel:+918679016505">+91 86790 16505</a>
                   </div>
                 </div>
@@ -157,9 +186,9 @@ export default function ContactPageContent() {
             </div>
           </aside>
 
-          <form className="cu-form" onSubmit={onSubmit}>
+          <form className="cu-form" onSubmit={onSubmit} noValidate>
             <span className="cu-pill">Connect with us</span>
-            <h2>Got Ideas? We’ve Got The Skills. Let’s Team Up!</h2>
+            <h2>Got Ideas? We've Got The Skills. Let's Team Up!</h2>
             <p className="cu-lead">
               Share a short brief — what you want to build, who it is for, and when you hope to start. We reply with a clear next step, usually within one working day.
             </p>
@@ -167,23 +196,61 @@ export default function ContactPageContent() {
             <div className="cu-grid">
               <label className="cu-box">
                 <span>First Name</span>
-                <input id="firstName" name="firstName" autoComplete="given-name" required />
+                <input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  autoComplete="given-name"
+                  minLength={2}
+                  maxLength={50}
+                  required
+                />
               </label>
               <label className="cu-box">
                 <span>Last Name</span>
-                <input id="lastName" name="lastName" autoComplete="family-name" required />
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  autoComplete="family-name"
+                  minLength={2}
+                  maxLength={50}
+                  required
+                />
               </label>
               <label className="cu-box">
                 <span>Work Email</span>
-                <input id="workEmail" name="workEmail" type="email" autoComplete="email" required />
+                <input
+                  id="workEmail"
+                  name="workEmail"
+                  type="email"
+                  autoComplete="email"
+                  maxLength={254}
+                  required
+                />
               </label>
               <label className="cu-box">
                 <span>Contact Number</span>
-                <input id="contactNumber" name="contactNumber" type="tel" autoComplete="tel" required />
+                <input
+                  id="contactNumber"
+                  name="contactNumber"
+                  type="tel"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  maxLength={14}
+                  required
+                />
               </label>
               <label className="cu-box cu-wide">
                 <span>About Project</span>
-                <textarea id="aboutProject" name="aboutProject" rows={3} required />
+                <textarea
+                  id="aboutProject"
+                  name="aboutProject"
+                  rows={3}
+                  minLength={10}
+                  maxLength={2000}
+                  required
+                />
               </label>
             </div>
 
@@ -215,7 +282,8 @@ export default function ContactPageContent() {
             ) : null}
 
             <button type="submit" disabled={sending}>
-              {sending ? "Sending..." : "Book a free consultation"} <span aria-hidden="true">→</span>
+              {sending ? "Sending..." : "Book a free consultation"}{" "}
+              <span aria-hidden="true">→</span>
             </button>
           </form>
 
