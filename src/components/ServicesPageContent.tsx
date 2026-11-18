@@ -183,10 +183,9 @@ export default function ServicesPageContent() {
         <div className="svc-hero-media" aria-hidden="true">
           <Image
             src="/svc-mock-hero.jpg"
-            alt=""
+            alt="services-hero"
             fill
             priority
-            quality={95}
             sizes="100vw"
           />
         </div>

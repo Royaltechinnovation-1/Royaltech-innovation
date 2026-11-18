@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 type Review = {
   name: string;
@@ -97,14 +97,46 @@ function Stars({ rating }: { rating: number }) {
 export default function GoogleReviews() {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
-  const scrollByCard = (direction: number) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>(".grev-card");
-    const gap = 16;
-    const width = card?.getBoundingClientRect().width ?? 320;
-    el.scrollBy({ left: direction * (width + gap), behavior: "smooth" });
-  };
+  const scrollByCard = useCallback((direction: number) => {
+  const el = scrollerRef.current;
+  if (!el) return;
+
+  const card = el.querySelector<HTMLElement>(".grev-card");
+  const gap = 16;
+  const width = card?.getBoundingClientRect().width ?? 320;
+
+  const maxScroll = el.scrollWidth - el.clientWidth;
+
+  // Next button: Last review ke baad first review
+  if (direction > 0 && el.scrollLeft >= maxScroll - 5) {
+    el.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+    return;
+  }
+
+  // Previous button: First review se last review
+  if (direction < 0 && el.scrollLeft <= 5) {
+    el.scrollTo({
+      left: maxScroll,
+      behavior: "smooth",
+    });
+    return;
+  }
+
+  el.scrollBy({
+    left: direction * (width + gap),
+    behavior: "smooth",
+  });
+}, []);
+useEffect(() => {
+  const interval = setInterval(() => {
+    scrollByCard(1);
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [scrollByCard]);
 
   return (
     <section className="grev" id="testimonials" aria-labelledby="grev-heading">
