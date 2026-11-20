@@ -32,7 +32,7 @@ export function DashboardShell({
   const links = LINKS[user.role];
 
   async function logout() {
-    await fetch("/api/auth/logout", { method: "POST" });
+    await fetch("/api/session/logout", { method: "POST" });
     router.replace("/login");
     router.refresh();
   }

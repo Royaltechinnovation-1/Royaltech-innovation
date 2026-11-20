@@ -15,7 +15,7 @@ export function LoginForm() {
     setError("");
     const form = new FormData(event.currentTarget);
 
-    const res = await fetch("/api/auth/login", {
+    const res = await fetch("/api/session/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
