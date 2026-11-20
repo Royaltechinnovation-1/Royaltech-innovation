@@ -93,22 +93,22 @@ const stats = [
 
 const slides = [
   {
-    src: "/crm/dashboards/crm-1.jpg",
+    src: "/crm-service/crm-1.jpg",
     alt: "RTE CRM dashboard with recent leads, sales funnel and active deals",
     badge: "Leads & Deals",
   },
   {
-    src: "/crm/dashboards/crm-2.jpg",
+    src: "/crm-service/crm-2.jpg",
     alt: "CRM analytics dashboard with learner growth and revenue charts",
     badge: "Growth Analytics",
   },
   {
-    src: "/crm/dashboards/crm-3.jpg",
+    src: "/crm-service/crm-3.jpg",
     alt: "RTE CRM overview with organizations, team members and platform trends",
     badge: "Team Overview",
   },
   {
-    src: "/crm/dashboards/crm-4.jpg",
+    src: "/crm-service/crm-4.jpg",
     alt: "CRM performance dashboard with tasks, quality score and rankings",
     badge: "Performance Hub",
   },

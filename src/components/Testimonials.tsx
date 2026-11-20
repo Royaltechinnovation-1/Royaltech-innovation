@@ -11,17 +11,59 @@ import "swiper/css/effect-cards";
 import "../styles/Swiper.css";
 
 type Review = {
-  src: string;
+  // src: string;
   alt: string;
   name?: string;
   reviewText?: string;
+  position?:string;
   details?: string;
   rating?: number;
 };
 
 const reviewImages: Review[] = [
+   {
+    // src: "/reviews/mohit-sir reviews.webp",
+    alt: "Google review from Mohit Sankhyan for RoyalTech Innovation",
+    position:"Founder, NextGen Enterprises · Australia",
+    name: "Michael Thompson",
+    details: "1 review · a week ago",
+    rating: 5,
+    reviewText:
+      "RoyalTech Innovation demonstrated outstanding technical expertise from planning to implementation. They understood our business vision and delivered a reliable digital solution. Their professionalism, attention to detail, and timely delivery exceeded our expectations.",
+  },
   {
-    src: "/reviews/mohit-sir reviews.webp",
+    // src: "/reviews/mohit-sir reviews.webp",
+    alt: "Google review from Mohit Sankhyan for RoyalTech Innovation",
+    position:"Operations Head, Global Business Group · UAE",
+    name: "Sophia Williams",
+    details: "1 review · new",
+    rating: 5,
+    reviewText:
+      "RoyalTech Innovation transformed the way we manage our business operations. Their team delivered excellent technical solutions with great communication and professionalism. We truly appreciate their dedication, quality of work, and commitment to delivering results.",
+  },
+ 
+  {
+    // src: "/reviews/mohit-sir reviews.webp",
+    alt: "Google review from Mohit Sankhyan for RoyalTech Innovation",
+    position:"Managing Director, TechVision Inc. · USA",
+    name: "Sarah Mitchell",
+    details: "2 review · a week ago",
+    rating: 5,
+    reviewText:
+      "Working with RoyalTech Innovation was a wonderful experience. Their software solution streamlined our workflow and significantly improved productivity. The team understood our requirements perfectly and provided outstanding support throughout the project.",
+  },
+  {
+    // src: "/reviews/mohit-sir reviews.webp",
+    alt: "Google review from Mohit Sankhyan for RoyalTech Innovation",
+    position:"CEO, Anderson Digital Solutions · Uk",
+    name: "James Anderson",
+    details: "1 review · a week ago",
+    rating: 5,
+    reviewText:
+      "Their CRM and ERP solutions helped us simplify complex business operations and improve efficiency. The team was highly professional, responsive, and supportive throughout the process. RoyalTech Innovation has become a trusted technology partner for our business.",
+  },
+  {
+    // src: "/reviews/mohit-sir reviews.webp",
     alt: "Google review from Mohit Sankhyan for RoyalTech Innovation",
     name: "Mohit Sankhyan",
     details: "1 review · a week ago",
@@ -31,7 +73,7 @@ const reviewImages: Review[] = [
   },
 
   {
-    src: "/reviews/rohit-sir reviews.webp",
+    // src: "/reviews/rohit-sir reviews.webp",
     alt: "Google review from Rohit Verma for RoyalTech Innovation",
     name: "Rohit Verma",
     details: "3 reviews · 2 hours ago",
@@ -40,7 +82,7 @@ const reviewImages: Review[] = [
       "Excellent experience with Royal Tech Innovation! The team is highly professional, supportive, and dedicated. They provide quality services with great attention to detail. Highly recommended for anyone looking for reliable and innovative solutions.",
   },
   {
-    src: "/reviews/vk-reviews.webp",
+    // src: "/reviews/vk-reviews.webp",
     alt: "Google review from vk for RoyalTech Innovation",
     name: "Vk",
     details: "1 review · 2 hours ago",
@@ -49,7 +91,7 @@ const reviewImages: Review[] = [
       "I had a great experience with Royaltech Innovation. Their team was professional, supportive, and helpful throughout the website development process. They understood my requirements and delivered a website that met my expectations. I really appreciate their work, communication, and dedication. Highly recommended for website development and IT services!",
   },
   {
-    src: "/reviews/ashma-reviews.webp",
+    // src: "/reviews/ashma-reviews.webp",
     alt: "Google review from Ashman Momi for RoyalTech Innovation",
     name: "Ashman Momi",
     details: "2 hours ago · New",
@@ -58,7 +100,7 @@ const reviewImages: Review[] = [
       "Really happy with my experience at Royal Tech Innovation. The staff is friendly, knowledgeable, and always ready to help. Their dedication and professionalism make them stand out.",
   },
   {
-    src: "/reviews/google-review vikram.webp",
+    // src: "/reviews/google-review vikram.webp",
     alt: "Google review from Vikram Singh for RoyalTech Innovation",
     name: "Vikram Singh",
     details: "2 hours ago · New",
@@ -67,7 +109,7 @@ const reviewImages: Review[] = [
       "I had a wonderful experience with Royal Tech Innovation for their digital marketing services. Their team is highly professional, creative, and knowledgeable about the latest digital marketing trends. They took the time to understand my business goals and provided valuable suggestions to improve online visibility, brand awareness, and audience engagement.",
   },
   {
-    src: "/reviews/google-review diya.webp",
+    // src: "/reviews/google-review diya.webp",
     alt: "Google review from Diya for RoyalTech Innovation",
     name: "Diya",
     details: "2 hours ago · New",
@@ -76,7 +118,7 @@ const reviewImages: Review[] = [
       "I had a great experience with Royaltech Innovation. Their IT consulting services were really helpful and professional. The team understood my requirements, provided useful guidance, and helped me with the right solutions. I appreciate their support, knowledge, and dedication. Highly recommended for IT consulting services!",
   },
   {
-    src: "/reviews/google-reviews adab.webp",
+    // src: "/reviews/google-reviews adab.webp",
     alt: "Google review from Adab Bawa for RoyalTech Innovation",
     name: "Adab Bawa",
     details: "1 review · 2 hours ago · New",
@@ -85,7 +127,7 @@ const reviewImages: Review[] = [
       "I had a great experience with Royal Tech Innovation for their web development services. The management is highly professional, supportive, and understanding. They have a clear vision, excellent coordination, and a very positive approach towards understanding client requirements.",
   },
   {
-    src: "/reviews/google-review dhamu.webp",
+    // src: "/reviews/google-review dhamu.webp",
     alt: "Google review from Dhamu for RoyalTech Innovation",
     name: "Dhamu",
     details: "2 hours ago · New",
@@ -94,7 +136,7 @@ const reviewImages: Review[] = [
       "I had an excellent experience with Royal Tech Innovation for their web development services. Their team is highly skilled, professional, and dedicated to delivering quality solutions. They demonstrated a clear understanding of my requirements and transformed ideas into a well-structured, modern, and user-friendly website.",
   },
   {
-    src: "/reviews/google-review abhi.webp",
+    // src: "/reviews/google-review abhi.webp",
     alt: "Google review from Abhi for RoyalTech Innovation",
     name: "Abhi",
     details: "2 hours ago · New",
@@ -221,8 +263,8 @@ export default function Testimonials() {
             modules={[EffectCards]}
             className="mySwiper"
           >
-            {reviewImages.map((review) => (
-              <SwiperSlide key={review.src}>
+            {reviewImages.map((review,idx) => (
+              <SwiperSlide key={idx}>
                 <div className="swiper-review-card">
                   <span className="review-stars">
                     {"★".repeat(review.rating || 5)}
@@ -240,7 +282,11 @@ export default function Testimonials() {
                     <div className="testimonial-avatar-fallback">
                       {review.name?.charAt(0).toUpperCase() || "?"}
                     </div>
+                    <div className="testimonial-client">
+
                     <h3>{review.name}</h3>
+                    <p>{review.position}</p>
+                    </div>
                   </div>
 
 
