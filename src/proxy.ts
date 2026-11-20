@@ -4,9 +4,15 @@ import { jwtVerify } from "jose";
 const SESSION_COOKIE = "rt_dashboard_session";
 
 function sessionSecret() {
-  const secret =
-    process.env.DASHBOARD_SESSION_SECRET ||
-    "royaltech-dashboard-dev-secret-change-me";
+  const secret = process.env.DASHBOARD_SESSION_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "DASHBOARD_SESSION_SECRET must be set in production (Hostinger env vars).",
+      );
+    }
+    return new TextEncoder().encode("royaltech-dashboard-dev-secret-change-me");
+  }
   return new TextEncoder().encode(secret);
 }
 
@@ -84,3 +90,4 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: ["/dashboard/:path*", "/login"],
 };
+
