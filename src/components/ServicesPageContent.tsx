@@ -36,6 +36,8 @@ const services = [
       "Responsive, accessible builds with speed optimisation",
       "CMS setup, forms, analytics, and ongoing website care",
     ],
+    link: "#",
+    ctaText: "Explore Website Development",
   },
   {
     title: "Software Development",
@@ -52,6 +54,8 @@ const services = [
       "Workflow automation, APIs, and third-party integrations",
       "Secure architecture, dashboards, and role-based access",
     ],
+    link: "#",
+    ctaText: "Explore Software Development",
   },
   {
     title: "Mobile App Development",
@@ -68,6 +72,8 @@ const services = [
       "Secure API integrations with web and backend systems",
       "App Store / Play Store readiness and post-launch updates",
     ],
+    link: "#",
+    ctaText: "Explore App Development",
   },
   {
     title: "Digital Marketing & SEO",
@@ -84,6 +90,8 @@ const services = [
       "Google Ads, Meta Ads, and PPC campaign management",
       "Social media, creatives, and lead-generation funnels",
     ],
+    link: "#",
+    ctaText: "Explore Digital Marketing",
   },
   {
     title: "UI/UX & Graphic Design",
@@ -100,6 +108,8 @@ const services = [
       "Brand identity, logos, and marketing creatives",
       "Posters, social creatives, and campaign visual assets",
     ],
+    link: "#",
+    ctaText: "Explore UI/UX Design",
   },
   {
     title: "IT Consulting",
@@ -117,6 +127,27 @@ const services = [
       "Scalable architecture and security planning",
       "Delivery planning, risk review, and growth priorities",
     ],
+    link: "#",
+    ctaText: "Explore IT Consulting",
+  },
+  {
+    title: "CRM Software",
+    lead: "SMART CUSTOMER RELATIONSHIP MANAGEMENT",
+    description:
+      "Looking to manage leads, customers, and sales more efficiently? RoyalTech Innovation provides custom CRM software development and customer relationship management solutions that help businesses streamline lead management, automate sales processes, track customer interactions, and build stronger customer relationships .",
+    // image: "/home-services/IT Consulting 1.png",
+    image: "/it consultant.jpeg",
+    stack: "/svc-mock-crm.jpg",
+    accent: "#e2ebc8",
+    alt: "RoyalTech Innovation IT consulting and digital transformation",
+    points: [
+      "Smart lead management and customer data centralization",
+      "Sales pipeline tracking and automated follow-ups",
+      "Customer interaction management and communication tracking",
+      "Real-time CRM analytics, reporting, and workflow automation",
+    ],
+    link: "/services/crm",
+    ctaText: "Explore CRM Software",
   },
 ];
 
@@ -291,14 +322,25 @@ export default function ServicesPageContent() {
                       <li key={point}>{point}</li>
                     ))}
                   </ul>
-                  <OpenFormButton
-                    className="svc-btn svc-btn-lime svc-offer-cta"
-                    title={`Talk to RoyalTech · ${service.title}`}
-                    source="services-card"
-                    service={service.title}
-                  >
-                    Talk to RoyalTech <span aria-hidden="true">→</span>
-                  </OpenFormButton>
+                  {service.link ? (
+                    <Link
+                      href={service.link}
+                      className="svc-btn svc-btn-lime svc-offer-cta"
+                    >
+                      {service.ctaText }
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  ) : (
+                    <OpenFormButton
+                      className="svc-btn svc-btn-lime svc-offer-cta"
+                      title={`Talk to RoyalTech · ${service.title}`}
+                      source="services-card"
+                      service={service.title}
+                    >
+                      {service.ctaText || "Talk to RoyalTech"}{" "}
+                      <span aria-hidden="true">→</span>
+                    </OpenFormButton>
+                  )}
                 </div>
               </article>
             ))}

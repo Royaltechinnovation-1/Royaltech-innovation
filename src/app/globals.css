@@ -1603,6 +1603,11 @@ figure {
   border-radius: 50%;
 }
 
+.testimonial-client p{
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 .testimonials-reviews {
   display: grid !important;
   grid-auto-flow: column;
