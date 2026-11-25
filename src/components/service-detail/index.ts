@@ -1,0 +1,11 @@
+export { default as ServiceHero } from "./ServiceHero";
+export { default as ServiceMarquee } from "./ServiceMarquee";
+export { default as ServiceOverview } from "./ServiceOverview";
+export { default as ServiceFeatures } from "./ServiceFeatures";
+export { default as ServiceTypes } from "./ServiceTypes";
+export { default as ServiceTechGrid } from "./ServiceTechGrid";
+export { default as ServiceProcess } from "./ServiceProcess";
+export { default as ServiceIndustries } from "./ServiceIndustries";
+export { default as ServiceFaq } from "./ServiceFaq";
+export { default as ServiceRelated } from "./ServiceRelated";
+export { default as ServiceCtaBand } from "./ServiceCtaBand";
