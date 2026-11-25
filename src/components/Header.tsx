@@ -52,7 +52,7 @@ const heroOverlayPaths = new Set([
 
 export default function Header() {
   const pathname = usePathname();
-  const overlaysHero = heroOverlayPaths.has(pathname);
+  const overlaysHero = heroOverlayPaths.has(pathname) || pathname.startsWith("/services/");
   const [scrolled, setScrolled] = useState(!overlaysHero);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState(false);
