@@ -1,21 +1,12 @@
+import './CrmHero.css'
 import Image from "next/image";
 import {
   ArrowUpRight,
   Play,
   Users,
   TrendingUp,
-  Check,
-  Bell,
-  Search,
   Zap,
-  Handshake,
-  LayoutDashboard,
-  Contact,
-  BriefcaseBusiness,
-  CalendarDays,
   ChartNoAxesCombined,
-  Settings,
-  CircleUserRound,
   UserPlus,
   GitBranch,
   Bot,
@@ -25,9 +16,9 @@ import {
 } from "lucide-react";
 import WhyChoose from "./WhyChoose";
 import PowerfulFeatures from "./PowerfulFeatures";
-import './CrmHero.css'
 
 import CrmFaq from "./CrmFaq";
+import { FaCheck, FaRegStar } from "react-icons/fa6";
 
 const aboutFocusCards = [
   {
@@ -101,7 +92,7 @@ export default function CrmHero() {
               <span className="button-icon">
                 <ArrowUpRight size={23} />
               </span>
-              Get a Free CRM Demo
+              Get a Free CRM Demo 
             </a>
 
             <a href="#crm-features" className="secondary-btn">
@@ -115,7 +106,8 @@ export default function CrmHero() {
 
         <div className="hero-visual">
           <Image
-            src="https://res.cloudinary.com/ugqc5gb8/image/upload/v1795170183/CRM_1.png"
+            // src="https://res.cloudinary.com/ugqc5gb8/image/upload/v1795416933/RoyalTech_Innovation_Sales_Dashboard.png"
+            src="https://res.cloudinary.com/ugqc5gb8/image/upload/v1795410911/RoyalTech_Innovation_Dashboard.png"
             alt="services-hero"
             fill
             priority
@@ -377,24 +369,24 @@ export default function CrmHero() {
 
             <div className="about-points">
               <div className="about-point">
-                <span>✓</span>
+                <span><FaCheck /></span>
                 Smart Lead &amp; Contact Management
               </div>
               <div className="about-point">
-                <span>✓</span>
+                <span><FaCheck /></span>
                 Automated Sales Workflows
               </div>
               <div className="about-point">
-                <span>✓</span>
+                <span><FaCheck /></span>
                 Real-Time Business Insights
               </div>
               <div className="about-point">
-                <span>✓</span>
+                <span><FaCheck /></span>
                 Centralized Customer Information
               </div>
             </div>
 
-            <a href="/contact" className="about-btn">
+            <a href="/contact" className="about-btn"> 
               Discover Our CRM Solutions
               <ArrowUpRight size={19} />
             </a>
@@ -452,7 +444,7 @@ export default function CrmHero() {
               </div>
 
               <div className="about-dashboard-footer">
-                <span className="footer-check">✓</span>
+                <span className="footer-check"><FaCheck /></span>
                 <div>
                   <b>Everything in one place</b>
                   <small>Manage your customer journey smarter</small>
@@ -469,7 +461,7 @@ export default function CrmHero() {
             </div>
 
             <div className="about-floating-bottom">
-              <span>✦</span>
+              <span><FaRegStar /></span>
               Smarter Customer Relationships
             </div>
           </div>

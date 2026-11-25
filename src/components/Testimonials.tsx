@@ -68,6 +68,7 @@ const reviewImages: Review[] = [
     name: "Mohit Sankhyan",
     details: "1 review · a week ago",
     rating: 5,
+     position:"Founder, Healthcare Solutions.",
     reviewText:
       "I had Royal Tech Innovation, Mohali develop an ERP for my healthcare business, and honestly, they did a great job. They understood my business requirements very well and developed an excellent ERP accordingly. Their team's work, dedication, and support were very impressive. The overall experience was very good. Thank you so much, Royal Tech Innovation, Mohali, for your amazing work! Highly recommended. 🙌",
   },
@@ -76,6 +77,7 @@ const reviewImages: Review[] = [
     // src: "/reviews/rohit-sir reviews.webp",
     alt: "Google review from Rohit Verma for RoyalTech Innovation",
     name: "Rohit Verma",
+     position:"Business Development Professional",
     details: "3 reviews · 2 hours ago",
     rating: 5,
     reviewText:
@@ -85,6 +87,7 @@ const reviewImages: Review[] = [
     // src: "/reviews/vk-reviews.webp",
     alt: "Google review from vk for RoyalTech Innovation",
     name: "Vk",
+    position:"Marketing Consultant",
     details: "1 review · 2 hours ago",
     rating: 5,
     reviewText:
@@ -94,6 +97,7 @@ const reviewImages: Review[] = [
     // src: "/reviews/ashma-reviews.webp",
     alt: "Google review from Ashman Momi for RoyalTech Innovation",
     name: "Ashman Momi",
+    position:"Business Consultant",
     details: "2 hours ago · New",
     rating: 5,
     reviewText:
@@ -103,6 +107,7 @@ const reviewImages: Review[] = [
     // src: "/reviews/google-review vikram.webp",
     alt: "Google review from Vikram Singh for RoyalTech Innovation",
     name: "Vikram Singh",
+    position:"Business Professional",
     details: "2 hours ago · New",
     rating: 5,
     reviewText:
@@ -113,6 +118,7 @@ const reviewImages: Review[] = [
     alt: "Google review from Diya for RoyalTech Innovation",
     name: "Diya",
     details: "2 hours ago · New",
+    position:"Founder, Growth Marketing",
     rating: 5,
     reviewText:
       "I had a great experience with Royaltech Innovation. Their IT consulting services were really helpful and professional. The team understood my requirements, provided useful guidance, and helped me with the right solutions. I appreciate their support, knowledge, and dedication. Highly recommended for IT consulting services!",
@@ -122,6 +128,7 @@ const reviewImages: Review[] = [
     alt: "Google review from Adab Bawa for RoyalTech Innovation",
     name: "Adab Bawa",
     details: "1 review · 2 hours ago · New",
+    position:"Operations Manager",
     rating: 5,
     reviewText:
       "I had a great experience with Royal Tech Innovation for their web development services. The management is highly professional, supportive, and understanding. They have a clear vision, excellent coordination, and a very positive approach towards understanding client requirements.",
@@ -130,6 +137,7 @@ const reviewImages: Review[] = [
     // src: "/reviews/google-review dhamu.webp",
     alt: "Google review from Dhamu for RoyalTech Innovation",
     name: "Dhamu",
+    position:"Technology Consultant",
     details: "2 hours ago · New",
     rating: 5,
     reviewText:
@@ -140,6 +148,7 @@ const reviewImages: Review[] = [
     alt: "Google review from Abhi for RoyalTech Innovation",
     name: "Abhi",
     details: "2 hours ago · New",
+    position:"Founder, Digital Ventures",
     rating: 5,
     reviewText:
       "I had a great experience with Royal Tech Innovation for IT consultancy services. Their team demonstrated strong technical knowledge, professionalism, and a clear understanding of business requirements. They provided valuable guidance, practical recommendations, and effective technology solutions. Communication was smooth, and the overall experience was excellent.",
@@ -195,66 +204,6 @@ export default function Testimonials() {
             a stronger digital presence and achieve their goals.
           </p>
         </div>
-
-        {/* <div className="testimonials-carousel">
-          <div className="testimonials-controls" aria-label="Review navigation">
-            <button
-              type="button"
-              className="testimonials-arrow"
-              aria-label="Previous reviews"
-              onClick={() => scrollTestimonials(-1)}
-              disabled={!canScrollLeft}
-            >
-              <span aria-hidden="true"><FaArrowLeftLong className="testimonial-icon" /></span>
-            </button>
-            <button
-              type="button"
-              className="testimonials-arrow"
-              aria-label="Next reviews"
-              onClick={() => scrollTestimonials(1)}
-              disabled={!canScrollRight}
-            >
-              <span aria-hidden="true"><FaArrowRightLong className="testimonial-icon" /></span>
-            </button>
-          </div>
-          <div
-            className="testimonials-grid testimonials-reviews"
-            ref={testimonialsRef}
-          >
-            {reviewImages.map((review) => (
-              <article
-                key={review.src}
-                className={`testimonial testimonial-shot${review.reviewText ? " testimonial-text-card" : ""}`}
-              >
-                <div className="testimonial-review-content">
-                  <p className="testimonial-review-details">{review.details}</p>
-                  {review.rating && (
-                    <p
-                      className="testimonial-review-rating"
-                      aria-label={`${review.rating} out of 5 stars`}
-                    >
-                      {"★".repeat(review.rating)}
-                    </p>
-                  )}
-                  <blockquote className="testimonial-text">
-                    {review.reviewText}
-                  </blockquote>
-                  <div className="testimonial-bottom">
-                    {review.src && (
-                   
-                      <div className="testimonial-avatar-fallback">
-                        {review.name?.charAt(0).toUpperCase() || "?"}
-                      </div>
-                    )
-                    }
-                    <h3 className="testimonial-name">{review.name}</h3>
-                  </div>
-                </div>
-                
-              </article>
-            ))}
-          </div>
-        </div> */}
 
         <div className="swiper-main">
           <Swiper
