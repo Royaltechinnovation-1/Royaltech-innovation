@@ -335,6 +335,7 @@
 
 .svc-offer-shot img {
   object-fit: cover;
+  object-position: top;
 }
 
 .svc-offer-lead {
@@ -745,9 +746,7 @@
   .svc-page {
     --svc-wide: min(1120px, calc(100% - clamp(1.15rem, 4vw, 3rem)));
   }
-  .svc-why{
-    /* padding: 0px; */
-  }
+
 }
 
 @media (max-width: 900px) {
@@ -755,9 +754,7 @@
     grid-template-columns: 1fr;
     gap: 1.4rem;
   }
-  .svc-shell{
-    /* padding: 0px var(--page-pad); */
-  }
+
 
   .svc-offer.is-flip .svc-offer-visual,
   .svc-offer.is-flip .svc-offer-copy {

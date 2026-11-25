@@ -25,26 +25,6 @@ import {
 import { useEffect, useState } from "react";
 import "./powerful-features.css";
 
-function useSplashSpread() {
-  const [spread, setSpread] = useState({ x: 78, y: 12, rot: 3.5, scale: 0.07 });
-
-  useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth;
-      if (w < 480) setSpread({ x: 28, y: 8, rot: 2, scale: 0.05 });
-      else if (w < 720) setSpread({ x: 42, y: 10, rot: 2.5, scale: 0.06 });
-      else if (w < 980) setSpread({ x: 56, y: 11, rot: 3, scale: 0.065 });
-      else if (w < 1200) setSpread({ x: 66, y: 12, rot: 3.2, scale: 0.07 });
-      else setSpread({ x: 78, y: 12, rot: 3.5, scale: 0.07 });
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  return spread;
-}
-
 const features = [
   {
     title: "Contact Management",
@@ -115,8 +95,33 @@ const slides = [
 ];
 
 export default function PowerfulFeatures() {
-  const [active, setActive] = useState(1);
-  const spread = useSplashSpread();
+  const [active, setActive] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % slides.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [active, isPaused]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (diff > 45) {
+      setActive((prev) => (prev + 1) % slides.length);
+    } else if (diff < -45) {
+      setActive((prev) => (prev - 1 + slides.length) % slides.length);
+    }
+    setTouchStart(null);
+  };
 
   return (
     <section className="pf-section" id="powerful-features" aria-labelledby="pf-title">
@@ -170,42 +175,55 @@ export default function PowerfulFeatures() {
           </ul>
 
           <div className="pf-splash-wrap">
-            <div className="pf-splash" aria-label="CRM dashboard splash cards">
-              {slides.map((slide, index) => {
-                const offset = index - active;
-                const depth = Math.abs(offset);
-                return (
-                  <button
+            <div
+              className="pf-carousel-viewport"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              aria-label="CRM dashboard views carousel"
+            >
+              <div
+                className="pf-carousel-track"
+                style={{ transform: `translateX(-${active * 100}%)` }}
+              >
+                {slides.map((slide, index) => (
+                  <div
                     key={slide.src}
-                    type="button"
-                    className={`pf-splash-card${active === index ? " is-active" : ""}`}
-                    style={{
-                      transform: `translateX(${offset * spread.x}px) translateY(${depth * spread.y}px) rotate(${offset * spread.rot}deg) scale(${1 - depth * spread.scale})`,
-                      zIndex: 10 - depth + (active === index ? 10 : 0),
-                      opacity: 1 - depth * 0.1,
-                    }}
-                    aria-label={`Show ${slide.alt}`}
-                    aria-pressed={active === index}
-                    onClick={() => setActive(index)}
+                    className={`pf-carousel-slide${active === index ? " is-active" : ""}`}
+                    aria-hidden={active !== index}
                   >
                     <span className="pf-splash-badge">{slide.badge}</span>
                     <Image
                       src={slide.src}
                       alt={slide.alt}
-                      width={1100}
-                      height={1300}
+                      width={1024}
+                      height={1024}
                       className="pf-splash-image"
-                      sizes="(max-width: 480px) 78vw, (max-width: 900px) 70vw, 520px"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 760px"
                       priority={index === 0}
                     />
-                  </button>
-                );
-              })}
+                  </div>
+                ))}
+              </div>
             </div>
+
+            <div className="pf-carousel-dots" role="tablist" aria-label="Dashboard views">
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.src}
+                  type="button"
+                  className={`pf-carousel-dot${active === index ? " is-active" : ""}`}
+                  aria-label={`Slide ${index + 1}: ${slide.badge}`}
+                  aria-pressed={active === index}
+                  onClick={() => setActive(index)}
+                />
+              ))}
+            </div>
+
             <p className="pf-splash-note">
               <Sparkles size={15} aria-hidden="true" />
-              Click any card to explore live CRM views — leads, analytics, teams
-              and performance.
+              Live CRM dashboard views — leads, analytics, teams and performance.
             </p>
           </div>
         </div>

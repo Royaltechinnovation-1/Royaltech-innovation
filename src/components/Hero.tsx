@@ -70,7 +70,7 @@ export default function Hero() {
       if (!video) return;
       if (active === index) {
         video.currentTime = 0;
-        void video.play().catch(() => {});
+        void video.play().catch(() => { });
       } else {
         video.pause();
       }
@@ -104,7 +104,7 @@ export default function Hero() {
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
-                <Image className="hero-bg" src={slide.src} alt={slide.alt} fill/>
+                <Image className="hero-bg" src={slide.src} alt={slide.alt} fill />
               )}
             </div>
           );
@@ -121,7 +121,7 @@ export default function Hero() {
             RoyalTech Innovation helps businesses grow through custom website development, mobile applications, software solutions, UI/UX design, digital marketing and IT consulting.
           </p>
           <div className="hero-actions">
-            <Link className="btn btn-outline" href="#about">
+            <Link className="btn btn-outline" href="/services">
               Explore
             </Link>
             <OpenFormButton

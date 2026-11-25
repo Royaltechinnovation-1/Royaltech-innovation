@@ -99,7 +99,7 @@ export default function WhyChoose() {
           </span>
 
           <h2 id="why-crm-title">
-            More Than Just CRM Software,
+            More Than CRM Software,
             <br />
             <span>A Partner in Business Growth</span>
           </h2>

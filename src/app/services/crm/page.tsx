@@ -1,4 +1,8 @@
 
+import "@/components/crm/CrmHero.css";
+import "@/components/crm/powerful-features.css";
+import "@/components/crm/WhyChoose.css";
+import "@/components/crm/crm-faq-section.css";
 import BackToTop from "@/components/BackToTop";
 // import CrmFaq from "@/components/crm/CrmFaq";
 import CrmHero from "@/components/crm/CrmHero";

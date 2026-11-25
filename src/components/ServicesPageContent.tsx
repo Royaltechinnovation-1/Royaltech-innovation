@@ -135,8 +135,8 @@ const services = [
     lead: "SMART CUSTOMER RELATIONSHIP MANAGEMENT",
     description:
       "Looking to manage leads, customers, and sales more efficiently? RoyalTech Innovation provides custom CRM software development and customer relationship management solutions that help businesses streamline lead management, automate sales processes, track customer interactions, and build stronger customer relationships .",
-    // image: "/home-services/IT Consulting 1.png",
-    image: "/it consultant.jpeg",
+    image: "https://res.cloudinary.com/ugqc5gb8/image/upload/v1795410911/RoyalTech_Innovation_Dashboard.png",
+    // image: "/it consultant.jpeg",
     stack: "/svc-mock-crm.jpg",
     accent: "#e2ebc8",
     alt: "RoyalTech Innovation IT consulting and digital transformation",
