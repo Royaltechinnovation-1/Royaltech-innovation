@@ -2,6 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
+/** Full-screen background video: 4K (3840×2160) H.264, made from the 1080p original. */
+const BG_VIDEO_URL = "/video/background-4k.mp4";
+
 /**
  * One fixed, full-viewport video that lives behind every section.
  * It is mounted once and never swapped — sections scroll over it.
@@ -42,7 +45,7 @@ export default function VideoBackground() {
         ref={ref}
         className="fixed inset-0 h-full w-full object-cover"
         style={{ position: "fixed", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-        src="/video/background.mp4"
+        src={BG_VIDEO_URL}
         poster="/video/poster.jpg"
         autoPlay
         muted
