@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import HeroMedia from "./HomeHeroMedia";
 import SmoothScroll from "./HomeSmoothScroll";
 import VisitForm from "./HomeVisitForm";
+import HomeReviewsSwiper from "./HomeReviewsSwiper";
 
 /* The home design was built with Inter; it is loaded here so it applies only inside `.rt-home`. */
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -668,7 +669,7 @@ export default function RoyalTechHome() {
         </section>
 
         {/* VISIT: enquiry form on the left, office map on the right */}
-        <section id="visit" className="section-y">
+        <section id="visit" className="pt-10 pb-4 sm:pt-14 sm:pb-6 md:pt-16 md:pb-8">
           <div className="page-wrap grid items-stretch gap-4 md:gap-6 lg:grid-cols-2">
             <div data-reveal>
               <VisitForm email={email} phone={phone} />
@@ -686,9 +687,9 @@ export default function RoyalTechHome() {
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="section-y md:flex md:min-h-[70vh] md:items-center">
+        <section id="contact" className="pt-4 pb-8 sm:pt-6 sm:pb-10 md:pt-6 md:pb-12">
           <div className="page-wrap">
-          <div data-reveal className="glass rounded-[1.4rem] p-6 text-center sm:rounded-[2rem] sm:p-10 md:p-14">
+          <div data-reveal className="glass rounded-[1.4rem] p-6 text-center sm:rounded-[2rem] sm:p-8 md:p-10">
             <p className="text-xs tracking-[0.3em] text-accent uppercase">Get in touch</p>
             <h2 className="mt-3 text-2xl font-semibold sm:mt-4 sm:text-3xl md:text-5xl">Let’s talk about your project</h2>
             <div className="mt-6 flex flex-wrap justify-center gap-3 sm:mt-10 sm:gap-4">

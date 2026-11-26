@@ -23,6 +23,11 @@ const profiles = [
     label: "Behance",
     brand: "behance",
   },
+  {
+    href: "https://www.linkedin.com/company/royaltech-innovation/",
+    label: "LinkedIn",
+    brand: "linkedin",
+  },
 ] as const;
 
 const facebookPath =
@@ -33,6 +38,9 @@ const instagramPath =
 
 const behancePath =
   "M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.98c.13 3.211 3.483 3.312 4.588 2.029h3.158zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zM6.466 14.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z";
+
+const linkedinPath =
+  "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM3.56 9h3.554v11.452H3.56V9zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z";
 
 export default function SocialLinks({ className }: { className: string }) {
   const gradientId = `ig-${useId().replace(/:/g, "")}`;
@@ -71,7 +79,16 @@ export default function SocialLinks({ className }: { className: string }) {
             </svg>
           ) : (
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-              <path fill="currentColor" d={item.brand === "facebook" ? facebookPath : behancePath} />
+              <path
+                fill={item.brand === "linkedin" ? "#0A66C2" : "currentColor"}
+                d={
+                  item.brand === "facebook"
+                    ? facebookPath
+                    : item.brand === "behance"
+                      ? behancePath
+                      : linkedinPath
+                }
+              />
             </svg>
           )}
         </a>

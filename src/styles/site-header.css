@@ -92,7 +92,7 @@
 }
 
 .sh-search-form:focus-within {
-  border-color: #d6b370;
+  border-color: #67e8f9;
 }
 
 .sh-search-form svg {
@@ -144,7 +144,7 @@
 .sh-search-results a:hover,
 .sh-search-results a:focus-visible {
   background: rgba(255, 255, 255, 0.1);
-  color: #d6b370;
+  color: #67e8f9;
 }
 
 .sh-search-empty {
@@ -162,7 +162,7 @@
 }
 
 .sh-top-link:hover {
-  color: #d6b370;
+  color: #67e8f9;
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -251,7 +251,7 @@
 
 .sh-link:hover,
 .sh-link.is-active {
-  color: #d6b370;
+  color: #67e8f9;
 }
 
 .sh-dd {
@@ -278,10 +278,10 @@
 
 .sh-mega {
   position: fixed;
-  top: 7.2rem;
+  top: 5.6rem;
   left: 50%;
   z-index: 45;
-  width: min(68rem, calc(100vw - 1.5rem));
+  width: min(72rem, calc(100vw - 1.5rem));
   padding-top: 0.45rem;
   opacity: 0;
   visibility: hidden;
@@ -293,6 +293,16 @@
     visibility 0.28s;
 }
 
+/* Hover bridge: keeps menu open when cursor moves from navbar down to mega panel */
+.sh-mega::before {
+  content: "";
+  position: absolute;
+  top: -1.2rem;
+  left: 0;
+  right: 0;
+  height: 1.2rem;
+}
+
 .sh-dd:hover .sh-mega,
 .sh-dd:focus-within .sh-mega {
   opacity: 1;
@@ -302,28 +312,28 @@
 }
 
 /* Items in each column drop in one after another when the menu opens. */
-.sh-dd:hover .sh-mega-col li,
-.sh-dd:focus-within .sh-mega-col li {
+.sh-dd:hover .sh-mega-col > ul > li,
+.sh-dd:focus-within .sh-mega-col > ul > li {
   animation: sh-mega-item 0.35s ease both;
 }
 
-.sh-dd:hover .sh-mega-col li:nth-child(2),
-.sh-dd:focus-within .sh-mega-col li:nth-child(2) {
+.sh-dd:hover .sh-mega-col > ul > li:nth-child(2),
+.sh-dd:focus-within .sh-mega-col > ul > li:nth-child(2) {
   animation-delay: 0.03s;
 }
 
-.sh-dd:hover .sh-mega-col li:nth-child(3),
-.sh-dd:focus-within .sh-mega-col li:nth-child(3) {
+.sh-dd:hover .sh-mega-col > ul > li:nth-child(3),
+.sh-dd:focus-within .sh-mega-col > ul > li:nth-child(3) {
   animation-delay: 0.06s;
 }
 
-.sh-dd:hover .sh-mega-col li:nth-child(4),
-.sh-dd:focus-within .sh-mega-col li:nth-child(4) {
+.sh-dd:hover .sh-mega-col > ul > li:nth-child(4),
+.sh-dd:focus-within .sh-mega-col > ul > li:nth-child(4) {
   animation-delay: 0.09s;
 }
 
-.sh-dd:hover .sh-mega-col li:nth-child(n + 5),
-.sh-dd:focus-within .sh-mega-col li:nth-child(n + 5) {
+.sh-dd:hover .sh-mega-col > ul > li:nth-child(n + 5),
+.sh-dd:focus-within .sh-mega-col > ul > li:nth-child(n + 5) {
   animation-delay: 0.12s;
 }
 
@@ -339,12 +349,16 @@
 }
 
 .sh-mega-panel {
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: visible;
+  border: 1px solid rgba(103, 232, 249, 0.18);
   border-radius: 1.35rem;
-  background: #16543f;
-  box-shadow: 0 28px 70px -28px rgba(3, 20, 14, 0.7);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(10, 18, 32, 0.98);
+  box-shadow: 0 28px 70px -28px rgba(0, 0, 0, 0.85);
   color: #fff;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 .sh-mega-grid {
@@ -355,13 +369,20 @@
 }
 
 .sh-mega-col {
+  position: relative;
   min-width: 0;
   padding: 0.35rem 0.7rem 0.5rem;
 }
 
+.sh-mega-col:hover,
+.sh-mega-col:focus-within {
+  z-index: 50;
+}
+
 .sh-mega-col.is-ai {
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .sh-mega-title {
@@ -369,7 +390,7 @@
   align-items: center;
   gap: 0.45rem;
   margin: 0 0 0.55rem;
-  color: #b7c879;
+  color: #67e8f9;
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -378,6 +399,7 @@
   width: 1.05rem;
   height: 1.05rem;
   flex-shrink: 0;
+  color: #67e8f9;
 }
 
 .sh-mega-col ul {
@@ -386,40 +408,130 @@
   list-style: none;
 }
 
+.sh-mega-item {
+  position: relative;
+}
+
+.sh-mega-item:hover,
+.sh-mega-item:focus-within {
+  z-index: 100;
+}
+
 .sh-mega-col a {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.42rem 0.35rem;
+  padding: 0.42rem 0.55rem;
   border-radius: 0.55rem;
   color: rgba(255, 255, 255, 0.88);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.3;
+  transition: background-color 0.18s ease, color 0.18s ease;
 }
 
 .sh-mega-col a::after {
   content: "";
   flex-shrink: 0;
-  width: 0.38rem;
-  height: 0.38rem;
-  margin: 0 0.3rem 0.2rem 0;
-  border-right: 1.5px solid rgba(255, 255, 255, 0.6);
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.6);
-  transform: rotate(45deg);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  width: 0.36rem;
+  height: 0.36rem;
+  margin: 0 0.2rem 0 0;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.45);
+  transform: rotate(-45deg);
+  transition: transform 0.22s ease, border-color 0.22s ease;
 }
 
-.sh-mega-col a:hover::after,
+.sh-mega-item:hover > a::after,
+.sh-mega-item:focus-within > a::after,
 .sh-mega-col a.is-active::after {
-  border-color: #b7c879;
-  transform: translateY(0.12rem) rotate(45deg);
+  border-color: #67e8f9;
+  transform: rotate(45deg);
 }
 
-.sh-mega-col a:hover,
+.sh-mega-item:hover > a,
+.sh-mega-item:focus-within > a,
 .sh-mega-col a.is-active {
-  background: rgba(255, 255, 255, 0.14);
-  color: #b7c879;
+  background: rgba(103, 232, 249, 0.12);
+  color: #67e8f9;
+}
+
+/* ---------- Inline Accordion Dropdowns Underneath Hovered Item ---------- */
+.sh-sub-accordion {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.18s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sh-sub-accordion-inner {
+  overflow: hidden;
+}
+
+.sh-mega-item:hover > .sh-sub-accordion,
+.sh-mega-item:focus-within > .sh-sub-accordion {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+
+.sh-sub-list {
+  margin: 0.2rem 0 0.45rem 0.75rem;
+  padding: 0 0 0 0.65rem;
+  list-style: none;
+  border-left: 1.5px solid rgba(103, 232, 249, 0.35);
+}
+
+.sh-sub-item {
+  margin: 0.12rem 0;
+  padding: 0;
+}
+
+.sh-sub-link {
+  display: flex !important;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.24rem 0.45rem !important;
+  border-radius: 0.45rem;
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-size: 0.8rem !important;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.sh-sub-link::after {
+  display: none !important;
+}
+
+.sh-sub-bullet {
+  display: inline-block;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: rgba(103, 232, 249, 0.6);
+  flex-shrink: 0;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sh-sub-text {
+  flex: 1;
+  white-space: normal;
+}
+
+.sh-sub-link:hover {
+  background: rgba(103, 232, 249, 0.14) !important;
+  color: #67e8f9 !important;
+}
+
+.sh-sub-link:hover .sh-sub-bullet {
+  background: #67e8f9;
+  transform: scale(1.35);
+  box-shadow: 0 0 6px rgba(103, 232, 249, 0.8);
 }
 
 .sh-mega-feature {
@@ -456,15 +568,15 @@
   gap: 0.4rem;
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  background: #b7c879;
-  color: #0f3d2e;
+  background: #67e8f9;
+  color: #0b1220;
   font-size: 0.82rem;
   font-weight: 700;
 }
 
 .sh-mega-cta:hover {
-  background: #c9d98f;
-  color: #0f3d2e;
+  background: #a5f3fc;
+  color: #0b1220;
 }
 
 .sh-mega-foot {
@@ -473,8 +585,10 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem 1.2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  background: #0f3d2e;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(2, 6, 23, 0.95);
+  border-bottom-left-radius: 1.35rem;
+  border-bottom-right-radius: 1.35rem;
 }
 
 .sh-mega-foot p {
@@ -489,11 +603,11 @@
 .sh-mega-foot p svg {
   width: 1rem;
   height: 1rem;
-  color: #b7c879;
+  color: #67e8f9;
 }
 
 .sh-mega-foot p a {
-  color: #b7c879;
+  color: #67e8f9;
   font-weight: 700;
 }
 
@@ -510,13 +624,13 @@
 }
 
 .sh-mega-consult:hover {
-  border-color: #b7c879;
-  color: #b7c879;
+  border-color: #67e8f9;
+  color: #67e8f9;
 }
 
 .sh-mobile-groups p {
   margin: 0.35rem 0 0;
-  color: #d6b370;
+  color: #67e8f9;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -551,8 +665,8 @@
 
 .sh-btn:hover {
   transform: translateY(-2px);
-  border-color: #d6b370;
-  background: rgba(214, 179, 112, 0.1);
+  border-color: #67e8f9;
+  background: rgba(103, 232, 249, 0.1);
 }
 
 .sh-cta {
@@ -641,7 +755,7 @@
   z-index: 40;
   overflow-y: auto;
   padding: 8.5rem 2rem 2.5rem;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(2, 6, 23, 0.95);
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
   opacity: 0;
@@ -685,7 +799,7 @@
 
 .sh-mobile-link:hover,
 .sh-mobile-link.is-active {
-  color: #d6b370;
+  color: #67e8f9;
 }
 
 .sh-mobile-sub {
@@ -705,7 +819,35 @@
 
 .sh-mobile-sub a:hover,
 .sh-mobile-sub a.is-active {
-  color: #d6b370;
+  color: #67e8f9;
+}
+
+.sh-mobile-item-link {
+  font-weight: 600;
+}
+
+.sh-mobile-nested {
+  margin: 0.2rem 0 0.6rem 0.4rem;
+  padding-left: 0.75rem;
+  border-left: 1.5px solid rgba(103, 232, 249, 0.35);
+  list-style: none;
+}
+
+.sh-mobile-nested li {
+  margin: 0.15rem 0;
+}
+
+.sh-mobile-nested a {
+  display: block;
+  padding: 0.2rem 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.35;
+}
+
+.sh-mobile-nested a:hover,
+.sh-mobile-nested a.is-active {
+  color: #67e8f9;
 }
 
 .sh-mobile-cta-wrap {
@@ -722,15 +864,17 @@
 
 .sh-btn-gold {
   border-color: transparent;
-  color: #1a1405;
-  background: linear-gradient(120deg, #f1deaf, #d6b370 55%, #b88e3c);
-  box-shadow: 0 10px 40px -10px rgba(214, 179, 112, 0.6);
+  color: #0b1220;
+  font-weight: 700;
+  background: linear-gradient(120deg, #a5f3fc, #67e8f9 55%, #22d3ee);
+  box-shadow: 0 10px 30px -8px rgba(103, 232, 249, 0.6);
 }
 
 .sh-btn-gold:hover {
   border-color: transparent;
-  background: linear-gradient(120deg, #f1deaf, #d6b370 55%, #b88e3c);
-  box-shadow: 0 14px 50px -8px rgba(214, 179, 112, 0.85);
+  background: linear-gradient(120deg, #cffafe, #67e8f9 55%, #38bdf8);
+  box-shadow: 0 14px 40px -6px rgba(103, 232, 249, 0.85);
+  color: #0b1220;
 }
 
 @media (prefers-reduced-motion: reduce) {

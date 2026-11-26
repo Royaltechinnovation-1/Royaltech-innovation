@@ -9,18 +9,18 @@ import "@/styles/home-theme.css";
 
 export const metadata: Metadata = {
   title:
-    "RoyalTech Innovation | IT Solutions Company & Digital Transformation Partner",
+    "RoyalTech Innovation | IT Solutions & Digital Services",
   description:
-    "RoyalTech Innovation in Mohali helps startups and SMEs with website development, custom software, mobile apps, SEO, digital marketing, UI/UX design, and IT consulting.",
+    "RoyalTech Innovation is an IT company in Mohali offering SaaS and custom software, website and mobile app development, SEO and digital marketing.",
     // "RoyalTech Innovation delivers web development, mobile apps, custom software, UI/UX design and digital solutions to help businesses grow.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title:
-      "RoyalTech Innovation | IT Solutions Company & Digital Transformation Partner",
+      "RoyalTech Innovation | IT Solutions & Digital Services",
     description:
-      "End-to-end digital solutions, software development, and IT services for growing businesses across India, the UK, and the UAE.",
+      "RoyalTech Innovation delivers website development, custom software, mobile apps, SEO and IT consulting services for growing businesses.",
     url: "/",
     type: "website",
   },
