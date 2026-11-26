@@ -4,6 +4,7 @@ import ScrollAnimations from "@/components/ScrollAnimations";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactModal from "@/components/ContactModal";
+import HeroShowcase from "@/components/HeroShowcase";
 import { Icon } from "@/components/Icons";
 import { SplitHeading } from "@/components/Split";
 import { site } from "@/lib/site";
@@ -71,26 +72,34 @@ export default function HomePage() {
             </div>
           }
         >
-          <div data-hero-content className="max-w-5xl">
-            <p data-reveal data-delay="0.2" className="eyebrow">
-              RoyalTech Innovation
-            </p>
-            <SplitHeading
-              as="h1"
-              text="Build Your *Digital Future* with Custom Software & IT Solutions"
-              className="mt-7 text-[clamp(2.4rem,6.6vw,6rem)] leading-[1.02]"
-            />
-            <p data-reveal data-delay="0.7" className="mt-8 max-w-2xl text-base leading-relaxed text-white/95 md:text-lg">
-              RoyalTech Innovation helps businesses grow through custom website development, mobile applications,
-              software solutions, UI/UX design, digital marketing and IT consulting.
-            </p>
-            <div data-reveal data-delay="0.9" className="mt-10 flex flex-wrap gap-4">
-              <a href={`${site.website}portfolio`} className="btn btn-gold">
-                View projects <Icon name="arrow" className="h-4 w-4" />
-              </a>
-              <a href="#contact" data-open-contact className="btn btn-ghost">
-                Contact
-              </a>
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+            {/* LEFT — clips & photos (below the text on small screens) */}
+            <div className="order-2 lg:order-1">
+              <HeroShowcase />
+            </div>
+
+            {/* RIGHT — hero copy */}
+            <div data-hero-content className="order-1 lg:order-2">
+              <p data-reveal data-delay="0.2" className="eyebrow">
+                RoyalTech Innovation
+              </p>
+              <SplitHeading
+                as="h1"
+                text="Build Your *Digital Future* with Custom Software & IT Solutions"
+                className="mt-7 text-[clamp(2.2rem,4.4vw,4.2rem)] leading-[1.04]"
+              />
+              <p data-reveal data-delay="0.7" className="mt-7 max-w-xl text-base leading-relaxed text-white/95 md:text-lg">
+                RoyalTech Innovation helps businesses grow through custom website development, mobile applications,
+                software solutions, UI/UX design, digital marketing and IT consulting.
+              </p>
+              <div data-reveal data-delay="0.9" className="mt-9 flex flex-wrap gap-4">
+                <a href={`${site.website}portfolio`} className="btn btn-gold">
+                  View projects <Icon name="arrow" className="h-4 w-4" />
+                </a>
+                <a href="#contact" data-open-contact className="btn btn-ghost">
+                  Contact
+                </a>
+              </div>
             </div>
           </div>
         </Section>
