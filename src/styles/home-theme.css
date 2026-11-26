@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Home-page theme for the site header and footer.
+
+   The home page uses a navy ink background with cyan (#67e8f9) accents and
+   glass panels. The header and footer keep their own markup, but on the home
+   page they are wrapped in `.home-theme`, so every rule here applies only there.
+   Other pages keep the pine-green and lime styling.
+   ========================================================================== */
+
+/* ---------- Footer: the footer reads these variables ---------- */
+.home-theme {
+  --accent: #67e8f9;
+  --accent-deep: #22d3ee;
+  --gold: #67e8f9;
+  --coral: #67e8f9;
+}
+
+/* ---------- Header: top bar, search, nav ---------- */
+.home-theme .sh-top {
+  background: rgba(2, 6, 23, 0.92);
+  border-bottom-color: rgba(103, 232, 249, 0.14);
+}
+
+.home-theme .sh-search-form:focus-within {
+  border-color: rgba(103, 232, 249, 0.6);
+}
+
+.home-theme .sh-search-results a:focus-visible,
+.home-theme .sh-top-link:hover {
+  color: #67e8f9;
+}
+
+.home-theme .sh-link.is-active,
+.home-theme .sh-link:hover {
+  color: #67e8f9;
+}
+
+.home-theme .sh-btn:hover {
+  border-color: #67e8f9;
+}
+
+.home-theme .sh-btn-gold,
+.home-theme .sh-btn-gold:hover {
+  background: #67e8f9;
+  color: #0b1220;
+  box-shadow: 0 10px 30px -8px rgba(103, 232, 249, 0.7);
+}
+
+/* ---------- Header: Services mega menu ---------- */
+.home-theme .sh-mega-panel {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(10, 18, 32, 0.97);
+  border-color: rgba(103, 232, 249, 0.18);
+}
+
+.home-theme .sh-mega-title,
+.home-theme .sh-mega-col a.is-active,
+.home-theme .sh-mega-consult:hover {
+  color: #67e8f9;
+}
+
+.home-theme .sh-mega-col a.is-active::after {
+  border-color: #67e8f9;
+}
+
+.home-theme .sh-mega-consult:hover {
+  border-color: #67e8f9;
+}
+
+.home-theme .sh-mega-cta,
+.home-theme .sh-mega-cta:hover {
+  background: #67e8f9;
+  color: #0b1220;
+}
+
+.home-theme .sh-mega-foot {
+  background: rgba(2, 6, 23, 0.9);
+}
+
+.home-theme .sh-mega-foot p svg,
+.home-theme .sh-mega-foot p a {
+  color: #67e8f9;
+}
+
+/* ---------- Header: mobile menu ---------- */
+.home-theme .sh-mobile-groups p,
+.home-theme .sh-mobile-link.is-active,
+.home-theme .sh-mobile-sub a.is-active {
+  color: #67e8f9;
+}
+
+/* ---------- Footer ---------- */
+.home-theme .site-footer {
+  background: #020617;
+  border-top-color: rgba(103, 232, 249, 0.2);
+}
+
+.home-theme .footer-aurora {
+  background:
+    radial-gradient(ellipse at 8% 20%, rgba(103, 232, 249, 0.14), transparent 42%),
+    radial-gradient(ellipse at 92% 85%, rgba(56, 189, 248, 0.12), transparent 40%),
+    radial-gradient(ellipse at 70% 10%, rgba(14, 116, 144, 0.18), transparent 35%);
+}
+
+.home-theme .footer-logo {
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.3), 0 8px 24px rgba(103, 232, 249, 0.15);
+}
+
+.home-theme .footer-news {
+  border-color: rgba(103, 232, 249, 0.25);
+}
+
+.home-theme .footer-news > button {
+  background: linear-gradient(145deg, #67e8f9, #22d3ee);
+  color: #0b1220;
+  box-shadow: 0 8px 18px rgba(103, 232, 249, 0.35);
+}
+
+.home-theme .footer-newsletter button {
+  background: #67e8f9;
+  color: #0b1220;
+}
+
+.home-theme .footer-newsletter-ok {
+  color: #67e8f9;
+}
+
+.home-theme .footer-pill {
+  border-color: rgba(103, 232, 249, 0.25);
+}
+
+.home-theme .footer-pill:focus-visible {
+  border-color: rgba(103, 232, 249, 0.5);
+}
+
+.home-theme .footer-connect {
+  border-color: rgba(103, 232, 249, 0.25);
+  background: linear-gradient(160deg, rgba(103, 232, 249, 0.12), rgba(2, 6, 23, 0.5));
+  box-shadow: 0 0 28px rgba(103, 232, 249, 0.1);
+}

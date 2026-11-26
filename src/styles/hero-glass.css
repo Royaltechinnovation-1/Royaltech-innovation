@@ -1,0 +1,424 @@
+/* ==========================================================================
+   Home hero (glass panel + media slideshow). Plain CSS port of the
+   Tailwind design; every class is prefixed with `gh-` so it cannot clash
+   with the rest of the site.
+   ========================================================================== */
+
+:root {
+  --gh-accent: #67e8f9;
+  --gh-ink: #020617;
+}
+
+/* ---------- Section and shared page width ---------- */
+.gh-hero {
+  display: flex;
+  min-height: 100svh;
+  align-items: flex-end;
+  padding: 7.5rem 0 1rem;
+  box-sizing: border-box;
+  /* dark behind the fixed header so its light nav text stays readable */
+  background: var(--gh-ink);
+}
+
+.gh-wrap {
+  width: 100%;
+  max-width: 2200px;
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  box-sizing: border-box;
+}
+
+/* ---------- Glass panel ---------- */
+.gh-glass {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: calc(100svh - 8.5rem);
+  min-height: 440px;
+  border-radius: 1.4rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
+    rgba(10, 18, 32, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  box-shadow:
+    0 30px 80px -30px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  transition: border-color 0.5s ease;
+}
+
+.gh-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(103, 232, 249, 0.16),
+    transparent 60%
+  );
+}
+
+@media (hover: hover) {
+  .gh-glass:hover {
+    border-color: rgba(103, 232, 249, 0.4);
+  }
+  .gh-glass:hover::after {
+    opacity: 1;
+  }
+}
+
+.gh-media-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.gh-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(2, 6, 23, 0.9),
+    rgba(2, 6, 23, 0.55) 50%,
+    rgba(2, 6, 23, 0.15)
+  );
+}
+
+/* ---------- Copy ---------- */
+.gh-copy {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 36rem;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+.gh-brand {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gh-accent);
+}
+
+.gh-copy h1 {
+  margin: 0.75rem 0 0;
+  font-size: 1.65rem;
+  line-height: 1.12;
+  font-weight: 600;
+  color: #fff;
+}
+
+.gh-copy h1 .gh-accent-text {
+  color: var(--gh-accent);
+}
+
+.gh-sub {
+  margin: 1rem 0 0;
+  max-width: 36rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.gh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+/* ---------- Pills (buttons) ---------- */
+.gh-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s ease,
+    background 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.gh-pill:hover {
+  transform: translateY(-2px);
+}
+
+.gh-pill-accent {
+  color: #0b1220;
+  background: var(--gh-accent);
+  border: 1px solid transparent;
+  box-shadow: 0 10px 40px -8px rgba(103, 232, 249, 0.7);
+}
+
+.gh-pill-accent:hover {
+  box-shadow: 0 14px 50px -6px rgba(103, 232, 249, 0.9);
+}
+
+.gh-pill-ghost {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.gh-pill-ghost:hover {
+  border-color: var(--gh-accent);
+}
+
+/* ---------- Media slideshow ---------- */
+.gh-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--gh-ink);
+  container-type: size;
+}
+
+.gh-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1200ms ease-out;
+}
+
+.gh-img.is-active {
+  opacity: 1;
+  animation: gh-kenburns 7.5s ease-out forwards;
+}
+
+/* Video box is sized exactly like `object-cover` (16:9, at least as big as the panel, centred) */
+.gh-video-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 16 / 9;
+  width: max(100cqw, 177.778cqh);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1200ms ease-out;
+}
+
+.gh-video-box.is-active {
+  opacity: 1;
+}
+
+.gh-video-box video {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Opaque plate so the clip's bottom-right watermark cannot show through the logo */
+.gh-logo-plate {
+  position: absolute;
+  top: 77%;
+  left: 86.5%;
+  width: 9%;
+  padding: 0.6%;
+  border-radius: 0.5vw;
+  background: #050b17;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.gh-logo-plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.gh-top-shade {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 7rem;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.gh-bar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+.gh-caption {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #fff;
+  animation: gh-caption-in 0.7s ease-out both;
+}
+
+.gh-caption-num {
+  margin-right: 0.5rem;
+  color: var(--gh-accent);
+}
+
+.gh-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gh-tab {
+  display: flex;
+  align-items: center;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.gh-tab-bar {
+  display: block;
+  width: 1.25rem;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  transition: all 0.5s ease;
+}
+
+.gh-tab:hover .gh-tab-bar {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.gh-tab-bar.is-active {
+  width: 2.25rem;
+  background: var(--gh-accent);
+}
+
+@keyframes gh-kenburns {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.12); }
+}
+
+@keyframes gh-caption-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-img.is-active,
+  .gh-caption {
+    animation: none;
+  }
+}
+
+/* ---------- Breakpoints (match Tailwind sm/md/xl/2xl) ---------- */
+@media (min-width: 640px) {
+  .gh-wrap {
+    padding-inline: 1rem;
+  }
+  .gh-hero {
+    align-items: center;
+    padding: 8rem 0 2rem;
+  }
+  .gh-glass {
+    align-items: center;
+    height: calc(100svh - 10rem);
+    min-height: 520px;
+    border-radius: 2rem;
+  }
+  .gh-copy {
+    padding: 2.5rem;
+  }
+  .gh-brand {
+    font-size: 0.875rem;
+    letter-spacing: 0.3em;
+  }
+  .gh-copy h1 {
+    margin-top: 1.5rem;
+    font-size: 1.875rem;
+  }
+  .gh-sub {
+    margin-top: 2rem;
+    font-size: 1.125rem;
+  }
+  .gh-actions {
+    margin-top: 2.5rem;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .gh-wrap {
+    padding-inline: 1.5rem;
+  }
+  .gh-glass {
+    border-radius: 2.5rem;
+  }
+  .gh-copy {
+    padding: 3.5rem;
+  }
+  .gh-copy h1 {
+    font-size: 2.25rem;
+  }
+  .gh-sub {
+    font-size: 1.25rem;
+  }
+  .gh-bar {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .gh-wrap {
+    padding-inline: 2.5rem;
+  }
+  .gh-copy {
+    max-width: 48rem;
+  }
+  .gh-copy h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .gh-copy h1 {
+    font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .gh-wrap {
+    padding-inline: 3.5rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .gh-pill {
+    gap: 0.4rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+}

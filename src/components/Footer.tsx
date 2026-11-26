@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormModal } from "@/components/FormModal";
+import SocialLinks from "@/components/SocialLinks";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, ReactNode } from "react";
@@ -135,6 +136,7 @@ export default function Footer() {
               SEO-ready websites, software, apps, marketing, design, and IT
               consulting.
             </p>
+            <SocialLinks className="footer-social" />
             <form className="footer-newsletter" onSubmit={onSubscribe}>
               <label htmlFor="footer-newsletter-email">
                 Subscribe to our Newsletter

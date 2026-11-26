@@ -1,17 +1,11 @@
-import About from "@/components/About";
 import BackToTop from "@/components/BackToTop";
-import ConnectWithUs from "@/components/ConnectWithUs";
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Testimonials from "@/components/Testimonials";
-import WhatWeDo from "@/components/WhatWeDo";
-import WhyChooseUs from "@/components/WhyChooseUs";
+import RoyalTechHome from "@/components/royaltech-home/RoyalTechHome";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+/* Imported after Header and Footer so these home-only overrides load after their base styles. */
+import "@/styles/home-theme.css";
 
 export const metadata: Metadata = {
   title:
@@ -57,8 +51,10 @@ const jsonLd = {
       },
       areaServed: ["India", "United Kingdom", "United Arab Emirates"],
       sameAs: [
-        "https://www.facebook.com/profile.php?id=61596431871796",
-        "https://www.instagram.com/royaltechinnovation/",
+        "https://www.facebook.com/p/RoyalTech-Innovation-61596431871796/",
+        "https://www.instagram.com/royaltechinnovat/",
+        "https://www.youtube.com/channel/UCD7X5YC7rSwiNjRv-02OJyg",
+        "https://www.behance.net/royaltechinnovation",
         "https://www.linkedin.com/company/143923623/",
       ],
       knowsAbout: [
@@ -115,19 +111,13 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <WhatWeDo />
-        <Services />
-        <WhyChooseUs />
-        <FAQ />
-        <Testimonials />
-        <Contact />
-        <ConnectWithUs />
-      </main>
-      <Footer />
+      <div className="home-theme">
+        <Header />
+      </div>
+      <RoyalTechHome />
+      <div className="home-theme">
+        <Footer />
+      </div>
       <BackToTop />
       <WhatsAppButton />
     </>

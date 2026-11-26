@@ -1,7 +1,6 @@
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import PortfolioPageContent from "@/components/PortfolioPageContent";
+import PortfolioLanding from "@/components/portfolio-landing/PortfolioLanding";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
 
@@ -68,9 +67,8 @@ export default function PortfolioPage() {
           __html: JSON.stringify(portfolioSchema).replace(/</g, "\\u003c"),
         }}
       />
-      <Header />
       <main>
-        <PortfolioPageContent />
+        <PortfolioLanding />
       </main>
       <Footer />
       <BackToTop />
