@@ -1,0 +1,185 @@
+/*
+ * Homepage styles only.
+ * Tailwind is imported with a `tw:` prefix (classes read like `tw:flex`) and without
+ * its base reset, so these utilities cannot restyle the rest of the site.
+ * Nothing here is layered, so the rules apply on top of the site's plain CSS.
+ */
+@import "tailwindcss/theme.css" prefix(tw);
+@import "tailwindcss/utilities.css" prefix(tw);
+
+@theme {
+  --color-accent: #67e8f9;
+  --color-ink: #020617;
+}
+
+/* Lenis smooth-scroll hooks */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Scroll-reveal starting state (restored by <noscript>) */
+[data-reveal],
+[data-stagger] > * {
+  opacity: 0;
+}
+
+/* Frosted glass panel with a cursor-follow spotlight */
+.glass {
+  position: relative;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
+    rgba(10, 18, 32, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  box-shadow:
+    0 30px 80px -30px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  transition: border-color 0.5s ease;
+}
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(103, 232, 249, 0.16),
+    transparent 60%
+  );
+}
+@media (hover: hover) {
+  .glass:hover {
+    border-color: rgba(103, 232, 249, 0.4);
+  }
+  .glass:hover::after {
+    opacity: 1;
+  }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.6rem;
+  border: 0;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+.pill:hover {
+  transform: translateY(-2px);
+}
+.pill-accent {
+  color: #0b1220;
+  background: #67e8f9;
+  box-shadow: 0 10px 40px -8px rgba(103, 232, 249, 0.7);
+}
+.pill-accent:hover {
+  box-shadow: 0 14px 50px -6px rgba(103, 232, 249, 0.9);
+}
+.pill-ghost {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+}
+.pill-ghost:hover {
+  border-color: #67e8f9;
+}
+
+/* Shared page width: nearly full on large screens, tight gutters on phones */
+.page-wrap {
+  width: 100%;
+  max-width: 2200px;
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+}
+.section-y {
+  padding-block: 2.75rem;
+}
+@media (min-width: 640px) {
+  .page-wrap {
+    padding-inline: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .page-wrap {
+    padding-inline: 1.5rem;
+  }
+  .section-y {
+    padding-block: 6rem;
+  }
+}
+@media (min-width: 1280px) {
+  .page-wrap {
+    padding-inline: 2.5rem;
+  }
+}
+@media (min-width: 1920px) {
+  .page-wrap {
+    padding-inline: 3.5rem;
+  }
+}
+@media (max-width: 639px) {
+  .pill {
+    gap: 0.4rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Hero media card: slow zoom on photos, caption fade-in */
+@keyframes hero-kenburns {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.12); }
+}
+@keyframes hero-caption-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-kenburns {
+  animation: hero-kenburns 7.5s ease-out forwards;
+}
+.hero-caption {
+  animation: hero-caption-in 0.7s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns,
+  .hero-caption {
+    animation: none;
+  }
+}
+
+/* Reviews strip: the track holds two copies of the cards and slides right, then loops */
+@keyframes reviews-move-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.reviews-track {
+  animation: reviews-move-right 70s linear infinite;
+}
+.reviews-strip:hover .reviews-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reviews-track {
+    animation: none;
+  }
+}
