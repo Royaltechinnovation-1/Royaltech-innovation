@@ -1,4 +1,5 @@
 import AboutConsult from "@/components/AboutConsult";
+import AboutHeroVideoButton from "@/components/AboutHeroVideoButton";
 import { OpenFormButton } from "@/components/FormModal";
 import Image from "next/image";
 import CardSlider from './CardSlider'
@@ -195,20 +196,27 @@ export default function AboutPageContent() {
         </div>
         <div className="ae-hero-shade" aria-hidden="true" />
         <div className="ae-hero-inner">
-          <p className="ae-badge">About Us</p>
-          <h1>Technology that moves your business forward</h1>
+          <p className="ae-badge ae-hero-badge">
+            <span className="ae-hero-badge-dot" aria-hidden="true" />
+            About Us
+          </p>
+          <h1>
+            Technology that moves{" "}
+            <span className="ae-hero-accent">your business forward</span>
+          </h1>
           <p className="ae-hero-lead">
             Practical technology for startups, SMEs, and established
             organisations shaped around how your team works.
           </p>
           <div className="ae-hero-actions">
             <OpenFormButton
-              className="ae-consult"
+              className="ae-consult ae-hero-cta"
               title="Talk to us"
               source="about-hero"
             >
               Talk to us <span aria-hidden="true">→</span>
             </OpenFormButton>
+            <AboutHeroVideoButton />
           </div>
         </div>
       </section>

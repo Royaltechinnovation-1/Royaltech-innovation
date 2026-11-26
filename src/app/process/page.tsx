@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import ProcessPageContent from "@/components/ProcessPageContent";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+import "@/styles/home-theme.css";
 
 export const metadata: Metadata = {
   title: "Our Development Process & Tech Methodology | RoyalTech Innovation",
@@ -36,11 +37,16 @@ export const metadata: Metadata = {
 export default function ProcessPage() {
   return (
     <>
-      <Header />
+      {/* Same home-theme wrapper as the home page, so the header and footer use the home colours. */}
+      <div className="home-theme">
+        <Header />
+      </div>
       <main>
         <ProcessPageContent />
       </main>
-      <Footer />
+      <div className="home-theme">
+        <Footer />
+      </div>
       <BackToTop />
       <WhatsAppButton />
     </>

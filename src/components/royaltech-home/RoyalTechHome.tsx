@@ -619,15 +619,15 @@ export default function RoyalTechHome() {
                 ))}
               </div>
 
-              {/* Picture sits on the right with no panel behind it. It fills the height of the question column. */}
-              <div data-reveal data-delay="0.15" className="relative min-h-[220px] overflow-hidden sm:min-h-[360px]">
+              {/* Picture sits on the right with no panel behind it. Shown at its full proportions, never cropped. */}
+              <div data-reveal data-delay="0.15" className="order-first flex items-center justify-center lg:order-last lg:-mt-24 lg:self-start">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://res.cloudinary.com/dwnnakrrh/image/upload/v1795681192/FAQ3_2_s4amwg.png"
                   alt="Frequently asked questions about RoyalTech Innovation"
                   loading="lazy"
                   draggable={false}
-                  className="absolute inset-0 h-full w-full scale-110 object-cover"
+                  className="block h-auto w-full max-w-full"
                 />
               </div>
             </div>

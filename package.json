@@ -11,7 +11,8 @@
     "start": "next start -H 0.0.0.0",
     "lint": "eslint",
     "build:portfolio-css": "node scripts/build-portfolio-landing-css.mjs",
-    "build:royaltech-home-css": "node scripts/build-royaltech-home-css.mjs"
+    "build:royaltech-home-css": "node scripts/build-royaltech-home-css.mjs",
+    "build:about-theme-css": "node scripts/build-about-theme-css.mjs"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

@@ -4,6 +4,7 @@ import GalleryPageContent from "@/components/GalleryPageContent";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+import "@/styles/home-theme.css";
 
 export const metadata: Metadata = {
   title: "Gallery | Team, Office & Culture Moments",
@@ -21,11 +22,16 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <>
-      <Header />
+      {/* Same home-theme wrapper as the home page, so the header and footer use the home colours. */}
+      <div className="home-theme">
+        <Header />
+      </div>
       <main>
         <GalleryPageContent />
       </main>
-      <Footer />
+      <div className="home-theme">
+        <Footer />
+      </div>
       <BackToTop />
       <WhatsAppButton />
     </>

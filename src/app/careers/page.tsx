@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+import "@/styles/home-theme.css";
 
 export const metadata: Metadata = {
   title: "Careers | Join RoyalTech Innovation in Mohali",
@@ -21,11 +22,16 @@ export const metadata: Metadata = {
 export default function CareersPage() {
   return (
     <>
-      <Header />
+      {/* Same home-theme wrapper as the home page, so the header and footer use the home colours. */}
+      <div className="home-theme">
+        <Header />
+      </div>
       <main>
         <CareersPageContent />
       </main>
-      <Footer />
+      <div className="home-theme">
+        <Footer />
+      </div>
       <BackToTop />
       <WhatsAppButton />
     </>

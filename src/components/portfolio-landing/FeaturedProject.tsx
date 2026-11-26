@@ -17,6 +17,11 @@ export type FeaturedProjectData = {
   aspect: string;
   /** Reverse the layout so the video sits on the right (for alternating rows) */
   reverse?: boolean;
+  /**
+   * "row": video and copy side by side (wide screens), used for full-width alternating rows.
+   * "card": video stacked above copy, used inside the responsive grid.
+   */
+  layout?: "row" | "card";
   /** Small pill above the title. Defaults to "Live demo". */
   badge?: string;
   /** Button label. Defaults to "Visit live project". */
@@ -37,10 +42,12 @@ export default function FeaturedProject({
   poster,
   aspect,
   reverse = false,
+  layout = "row",
   badge = "Live demo",
   ctaLabel = "Visit live project",
 }: FeaturedProjectData) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const isCard = layout === "card";
   const host = url ? new URL(url).host : "Dynamic UI/UX design";
 
   useEffect(() => {
@@ -65,11 +72,17 @@ export default function FeaturedProject({
       data-tour="true"
       data-tour-offset="-110"
       data-tour-dwell="3800"
-      className="glass group grid lg:grid-cols-12"
+      className={
+        isCard
+          ? "glass group flex h-full min-w-0 flex-col overflow-hidden"
+          : "glass group grid lg:grid-cols-12"
+      }
     >
       {/* Browser-framed demo */}
       <div
-        className={`relative z-10 p-4 [perspective:1400px] md:p-6 lg:col-span-7 ${reverse ? "lg:order-2" : ""}`}
+        className={`relative z-10 p-4 [perspective:1400px] md:p-6 ${
+          isCard ? "" : `lg:col-span-7 ${reverse ? "lg:order-2" : ""}`
+        }`}
       >
         <div
           data-tilt-in
@@ -117,7 +130,9 @@ export default function FeaturedProject({
 
       {/* Copy */}
       <div
-        className={`relative z-10 flex flex-col justify-center p-7 md:p-10 lg:col-span-5 ${reverse ? "lg:order-1" : ""}`}
+        className={`relative z-10 flex flex-col p-6 sm:p-7 md:p-10 ${
+          isCard ? "flex-1 md:p-8" : `justify-center lg:col-span-5 ${reverse ? "lg:order-1" : ""}`
+        }`}
       >
         <span className="inline-flex w-fit items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1.5 text-[0.62rem] tracking-[0.22em] text-gold-soft uppercase">
           <span className="relative flex h-2 w-2">
@@ -127,7 +142,13 @@ export default function FeaturedProject({
           {badge}
         </span>
         <p className="eyebrow mt-6">{eyebrow}</p>
-        <h3 className="display mt-5 text-3xl md:text-4xl">{title}</h3>
+        <h3
+          className={`display mt-5 break-words ${
+            isCard ? "text-2xl sm:text-3xl xl:text-4xl" : "text-3xl md:text-4xl"
+          }`}
+        >
+          {title}
+        </h3>
         <p className="mt-4 text-[0.97rem] leading-relaxed text-white/92">{description}</p>
 
         <ul data-feature-list className="mt-7 grid gap-3">
@@ -142,7 +163,7 @@ export default function FeaturedProject({
           ))}
         </ul>
 
-        <div className="mt-10 flex flex-col items-start gap-4">
+        <div className={`flex flex-col items-start gap-4 ${isCard ? "mt-auto pt-8" : "mt-10"}`}>
           <div className="flex flex-wrap gap-3">
             {url && (
               <a href={url} target="_blank" rel="noopener noreferrer" className="lp-btn lp-btn-gold">

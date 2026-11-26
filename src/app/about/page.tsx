@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+import "@/styles/home-theme.css";
+import "@/styles/about-theme.css";
+import "@/styles/about-hero.css";
 
 export const metadata: Metadata = {
   // title: "About Us | IT Company in Mohali",
@@ -23,11 +26,15 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Header />
-      <main>
+      <div className="home-theme">
+        <Header />
+      </div>
+      <main className="about-theme">
         <AboutPageContent />
       </main>
-      <Footer />
+      <div className="home-theme">
+        <Footer />
+      </div>
       <BackToTop />
       <WhatsAppButton />
     </>

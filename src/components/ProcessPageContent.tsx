@@ -211,14 +211,6 @@ const industries = [
   },
 ];
 
-const stats = [
-  { label: "Projects", value: "24", change: "+12%" },
-  { label: "Clients", value: "18", change: "+8%" },
-  { label: "Growth", value: "92%", change: "+20%" },
-];
-
-const bars = [35, 48, 40, 65, 55, 78, 92, 72, 100];
-const activity = ["Project completed", "New client added", "Report ready"];
 
 export default function ProcessPageContent() {
   return (
@@ -226,7 +218,7 @@ export default function ProcessPageContent() {
       <section className="opx-hero" aria-label="Digital solutions">
         <div className="opx-hero-bg" aria-hidden="true">
           <Image
-            src="/op-hero-bg.jpg"
+            src="/process/process-hero-new.jpg"
             alt=""
             fill
             priority
@@ -254,67 +246,6 @@ export default function ProcessPageContent() {
                 Explore Process
               </a>
             </div>
-          </div>
-
-          <div className="opx-dash-wrap">
-            <div className="opx-dash" aria-hidden="true">
-              <div className="opx-dash-top">
-                <div>
-                  <Image src="/logo-mark.jpg" alt="" width={36} height={36} />
-                  <span>
-                    <strong>RoyalTech</strong>
-                    <small>Business Dashboard</small>
-                  </span>
-                </div>
-                <em>Live</em>
-              </div>
-              <h2>Welcome back!</h2>
-              <p>Here&apos;s your business overview.</p>
-              <div className="opx-dash-stats">
-                {stats.map((item) => (
-                  <div key={item.label}>
-                    <small>{item.label}</small>
-                    <strong>{item.value}</strong>
-                    <span>↑ {item.change}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="opx-dash-split">
-                <div>
-                  <strong>Performance Overview</strong>
-                  <div className="opx-bars">
-                    {bars.map((height, index) => (
-                      <i key={index} style={{ height: `${height}%` }} />
-                    ))}
-                  </div>
-                  <div className="opx-months">
-                    <span>Jan</span>
-                    <span>Mar</span>
-                    <span>May</span>
-                    <span>Jul</span>
-                  </div>
-                </div>
-                <div>
-                  <strong>Recent Activity</strong>
-                  <ul>
-                    {activity.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="opx-dash-banner">
-                <div>
-                  <strong>Innovation meets technology</strong>
-                  <small>Smart solutions for growing businesses</small>
-                </div>
-                <span>Explore →</span>
-              </div>
-            </div>
-            <aside className="opx-float">
-              <small>Trusted by businesses</small>
-              <strong>Smart Digital Future</strong>
-            </aside>
           </div>
         </div>
       </section>

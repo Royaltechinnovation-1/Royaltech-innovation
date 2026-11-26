@@ -195,12 +195,15 @@ function Section({
   className = "",
   after,
   tour = true,
+  width = "default",
 }: {
   id: string;
   children: React.ReactNode;
   exit?: boolean;
   className?: string;
   after?: React.ReactNode;
+  /** "wide" lets the content use more of a large screen (for grids). */
+  width?: "default" | "wide";
   /** Include this section as a stop in the guided auto-scroll tour. */
   tour?: boolean;
 }) {
@@ -212,7 +215,12 @@ function Section({
       data-tour={tour ? "true" : undefined}
       className={`relative flex min-h-screen items-center py-28 md:py-36 ${className}`}
     >
-      <div data-inner className="mx-auto w-full max-w-7xl px-6 will-change-transform md:px-10">
+      <div
+        data-inner
+        className={`mx-auto w-full px-6 will-change-transform md:px-10 ${
+          width === "wide" ? "max-w-[1680px] 2xl:max-w-[1920px]" : "max-w-7xl"
+        }`}
+      >
         {children}
       </div>
       {after}
@@ -367,15 +375,16 @@ export default function PortfolioLanding() {
         </Section>
 
         {/* 6 — FEATURED PROJECTS */}
-        <Section id="projects" tour={false}>
+        <Section id="projects" tour={false} width="wide">
           <p data-reveal className="eyebrow">
             Featured Projects
           </p>
           <SplitHeading text="Selected *work*." className="mt-6 max-w-3xl text-[clamp(2.2rem,5vw,4.2rem)]" />
 
-          <div className="mt-16 flex flex-col gap-10">
+          {/* Single-column grid at every size: compact stacked cards on phones, wide side-by-side rows on large screens */}
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:gap-6 md:mt-16 lg:gap-10">
             {featuredProjects.map((f) => (
-              <FeaturedProject key={f.title} {...f} />
+              <FeaturedProject key={f.title} {...f} layout="row" />
             ))}
           </div>
         </Section>

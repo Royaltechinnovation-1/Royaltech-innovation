@@ -5,9 +5,6 @@
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
-      --tw-scale-x: 1;
-      --tw-scale-y: 1;
-      --tw-scale-z: 1;
       --tw-border-style: solid;
       --tw-gradient-position: initial;
       --tw-gradient-from: #0000;
@@ -359,6 +356,9 @@
   .rt-home .z-\[1\] {
     z-index: 1;
   }
+  .rt-home .order-first {
+    order: -9999;
+  }
   .rt-home .mt-1 {
     margin-top: var(--spacing);
   }
@@ -443,9 +443,6 @@
   .rt-home .min-h-\[100svh\] {
     min-height: 100svh;
   }
-  .rt-home .min-h-\[220px\] {
-    min-height: 220px;
-  }
   .rt-home .min-h-\[260px\] {
     min-height: 260px;
   }
@@ -482,6 +479,9 @@
   .rt-home .max-w-3xl {
     max-width: var(--container-3xl);
   }
+  .rt-home .max-w-full {
+    max-width: 100%;
+  }
   .rt-home .max-w-xl {
     max-width: var(--container-xl);
   }
@@ -501,12 +501,6 @@
   .rt-home .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
-  .rt-home .scale-110 {
-    --tw-scale-x: 110%;
-    --tw-scale-y: 110%;
-    --tw-scale-z: 110%;
-    scale: var(--tw-scale-x) var(--tw-scale-y);
   }
   .rt-home .cursor-pointer {
     cursor: pointer;
@@ -968,9 +962,6 @@
     .rt-home .sm\:max-h-none {
       max-height: none;
     }
-    .rt-home .sm\:min-h-\[360px\] {
-      min-height: 360px;
-    }
     .rt-home .sm\:min-h-\[420px\] {
       min-height: 420px;
     }
@@ -1113,11 +1104,20 @@
     .rt-home .lg\:order-2 {
       order: 2;
     }
+    .rt-home .lg\:order-last {
+      order: 9999;
+    }
+    .rt-home .lg\:-mt-24 {
+      margin-top: calc(var(--spacing) * -24);
+    }
     .rt-home .lg\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .rt-home .lg\:grid-cols-\[1fr_1\.25fr\] {
       grid-template-columns: 1fr 1.25fr;
+    }
+    .rt-home .lg\:self-start {
+      align-self: flex-start;
     }
   }
   @media (width >= 80rem) {
@@ -1241,18 +1241,6 @@ html.lenis body {
   syntax: "*";
   inherits: false;
   initial-value: 0;
-}@property --tw-scale-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}@property --tw-scale-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}@property --tw-scale-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
 }@property --tw-border-style {
   syntax: "*";
   inherits: false;
