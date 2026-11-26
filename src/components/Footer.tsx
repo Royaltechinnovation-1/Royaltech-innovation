@@ -226,7 +226,7 @@ export default function Footer() {
                 <button type="submit">Subscribe</button>
               </div>
             </form>
-            <div className="footer-social" aria-label="Follow us on social media">
+            {/* <div className="footer-social" aria-label="Follow us on social media">
               {socialLinks.map(({ href, label, className, Icon }) => (
                 <a
                   key={label}
@@ -240,7 +240,7 @@ export default function Footer() {
                   <Icon />
                 </a>
               ))}
-            </div>
+            </div> */}
           </div>
 
           <div className="footer-col">

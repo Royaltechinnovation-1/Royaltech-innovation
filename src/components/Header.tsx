@@ -13,43 +13,232 @@ type NavLink = {
   label: string;
 };
 
-const serviceColumns = [
+type ServiceItem = {
+  href: string;
+  label: string;
+  subItems?: string[];
+};
+
+type ServiceColumn = {
+  key: string;
+  title: string;
+  items: ServiceItem[];
+};
+
+const serviceColumns: ServiceColumn[] = [
   {
     key: "core",
     title: "Core Services",
     items: [
-      { href: "/services/website-development", label: "Web Development" },
-      { href: "/services", label: "Mobile App Development" },
-      { href: "/services", label: "Custom Software" },
-      { href: "/services", label: "UI/UX & Product Design" },
-      { href: "/services/crm", label: "ERP & CRM Solutions" },
-      { href: "/services", label: "Digital Marketing" },
-      { href: "/services", label: "IT Consulting" },
-      { href: "/services", label: "Business Automation" },
+      {
+        href: "/services/website-development",
+        label: "Web Development",
+        subItems: [
+          "WordPress Development",
+          "Shopify Development",
+          "Custom Website Development",
+          "E-commerce Development",
+        ],
+      },
+      {
+        href: "/services/mobile-app-development",
+        label: "Mobile App Development",
+        subItems: [
+          "Android App Development",
+          "iOS App Development",
+          "Cross-Platform App Development",
+          "Custom Mobile Apps",
+          "App Maintenance & Support",
+        ],
+      },
+      {
+        href: "/services/software-development",
+        label: "Custom Software",
+        subItems: [
+          "Business Software",
+          "Enterprise Software",
+          "Web-Based Applications",
+          "Workflow Management Software",
+          "Software Integration",
+        ],
+      },
+      {
+        href: "/services/ui-ux-design",
+        label: "UI/UX Design",
+        subItems: [
+          "Website UI/UX Design",
+          "Mobile App UI/UX Design",
+          "Dashboard Design",
+          "Wireframing & Prototyping",
+          "Product Design",
+        ],
+      },
+      {
+        href: "/services/digital-marketing",
+        label: "Digital Marketing",
+        subItems: [
+          "Search Engine Optimization",
+          "Social Media Marketing",
+          "Google Ads & PPC",
+          "Content Marketing",
+          "Email Marketing",
+        ],
+      },
+      {
+        href: "/services/it-consulting",
+        label: "IT Consulting",
+        subItems: [
+          "IT Strategy & Planning",
+          "Digital Transformation",
+          "Technology Consulting",
+          "IT Infrastructure Consulting",
+          "Business Process Optimization",
+        ],
+      },
     ],
   },
   {
     key: "ai",
     title: "AI Services",
     items: [
-      { href: "/services", label: "AI Chatbots & Virtual Assistants" },
-      { href: "/services", label: "AI Agents & Workflow Automation" },
-      { href: "/services", label: "Generative AI Solutions" },
-      { href: "/services", label: "Machine Learning & Predictive Analytics" },
-      { href: "/services", label: "AI Integration & API Solutions" },
-      { href: "/services", label: "AI-powered Business Intelligence" },
+      {
+        href: "/services#ai-chatbots",
+        label: "AI Chatbots & Virtual Assistants",
+        subItems: [
+          "Website Chatbots",
+          "WhatsApp Chatbots",
+          "Customer Support Chatbots",
+          "Voice Assistants",
+          "Conversational AI",
+        ],
+      },
+      {
+        href: "/services#agents-automation",
+        label: "Agents & Workflow Automation",
+        subItems: [
+          "Custom AI Agents",
+          "AI Sales Assistants",
+          "AI Customer Support Agents",
+          "AI Task Automation",
+          "Intelligent Workflows",
+        ],
+      },
+      {
+        href: "/services#generative-ai",
+        label: "Generative AI Solutions",
+        subItems: [
+          "AI Content Generation",
+          "AI Image Generation",
+          "AI Document Generation",
+          "Custom GPT Solutions",
+          "Generative AI Applications",
+        ],
+      },
+      {
+        href: "/services#ai-integration",
+        label: "AI Integration & API Solutions",
+        subItems: [
+          "AI Model Integration",
+          "OpenAI & Gemini Integration",
+          "Custom AI APIs",
+          "Third-Party AI Integration",
+          "AI Application Integration",
+        ],
+      },
+      {
+        href: "/services#machine-learning",
+        label: "Machine Learning & Predictive Analytics",
+        subItems: [
+          "Predictive Analytics",
+          "Business Forecasting",
+          "Recommendation Systems",
+          "Customer Behaviour Analysis",
+          "Intelligent Data Processing",
+        ],
+      },
+      {
+        href: "/services#business-intelligence",
+        label: "AI-Powered Business Intelligence",
+        subItems: [
+          "AI Data Analytics",
+          "Business Intelligence Dashboards",
+          "Automated Reporting",
+          "Predictive Insights",
+          "Data Visualization",
+        ],
+      },
     ],
   },
   {
     key: "business",
     title: "Business Solutions",
     items: [
-      { href: "/services/crm", label: "CRM Development" },
-      { href: "/services/crm", label: "ERP Development" },
-      { href: "/services", label: "Learning Management Systems" },
-      { href: "/services/website-development", label: "E-commerce Management" },
-      { href: "/services", label: "SaaS Platforms" },
-      { href: "/services", label: "Cloud & DevOps" },
+      {
+        href: "/services/crm",
+        label: "CRM Development",
+        subItems: [
+          "Custom CRM Development",
+          "Sales Management Systems",
+          "Lead Management Systems",
+          "Customer Management Systems",
+          "CRM Integration",
+        ],
+      },
+      {
+        href: "/services/crm",
+        label: "ERP Solutions",
+        subItems: [
+          "Custom ERP Development",
+          "Inventory Management",
+          "HR Management Systems",
+          "Finance Management Systems",
+          "Supply Chain Management",
+        ],
+      },
+      {
+        href: "/services#lms",
+        label: "Management Systems",
+        subItems: [
+          "Custom LMS Development",
+          "Online Learning Platforms",
+          "Student Management Systems",
+          "Online Examination Systems",
+          "Course Management Systems",
+        ],
+      },
+      {
+        href: "/services/website-development#ecommerce",
+        label: "E-commerce Development",
+        subItems: [
+          "Online Store Development",
+          "Multi-Vendor Marketplace",
+          "B2B & B2C Solutions",
+          "Shopping Cart Development",
+          "Payment Gateway Integration",
+        ],
+      },
+      {
+        href: "/services#saas",
+        label: "SaaS Platforms",
+        subItems: [
+          "Custom SaaS Development",
+          "SaaS Product Development",
+          "Subscription Management",
+          "Multi-Tenant Applications",
+          "SaaS Integration",
+        ],
+      },
+      {
+        href: "/services#cloud-devops",
+        label: "Cloud & DevOps",
+        subItems: [
+          "Cloud Infrastructure",
+          "Cloud Migration",
+          "Cloud Application Development",
+          "CI/CD & Deployment",
+          "Server Management",
+        ],
+      },
     ],
   },
 ];
@@ -147,18 +336,44 @@ function ServiceMega({ pathname, onNavigate }: { pathname: string; onNavigate: (
                 <ColumnIcon name={column.key} />
                 {column.title}
               </p>
-              <ul>
-                {column.items.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className={pathname === item.href ? "is-active" : undefined}
-                      onClick={onNavigate}
+              <ul className="sh-mega-list">
+                {column.items.map((item) => {
+                  const hasSub = Boolean(item.subItems && item.subItems.length > 0);
+                  return (
+                    <li
+                      key={item.label}
+                      className={`sh-mega-item${hasSub ? " has-sub" : ""}`}
                     >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                      <Link
+                        href={item.href}
+                        className={pathname === item.href ? "is-active" : undefined}
+                        onClick={onNavigate}
+                      >
+                        <span>{item.label}</span>
+                      </Link>
+                      {hasSub && (
+                        <div className="sh-sub-accordion" role="region" aria-label={item.label}>
+                          <div className="sh-sub-accordion-inner">
+                            <ul className="sh-sub-list">
+                              {item.subItems?.map((sub) => (
+                                <li key={sub} className="sh-sub-item">
+                                  <Link
+                                    href={item.href}
+                                    className="sh-sub-link"
+                                    onClick={onNavigate}
+                                  >
+                                    <span className="sh-sub-bullet" aria-hidden="true" />
+                                    <span className="sh-sub-text">{sub}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -416,10 +631,21 @@ export default function Header() {
                       <p>{column.title}</p>
                       <ul className="sh-mobile-sub">
                         {column.items.map((item) => (
-                          <li key={item.label}>
-                            <Link href={item.href} onClick={closeMenu}>
+                          <li key={item.label} className="sh-mobile-item">
+                            <Link href={item.href} onClick={closeMenu} className="sh-mobile-item-link">
                               {item.label}
                             </Link>
+                            {item.subItems && item.subItems.length > 0 && (
+                              <ul className="sh-mobile-nested">
+                                {item.subItems.map((sub) => (
+                                  <li key={sub}>
+                                    <Link href={item.href} onClick={closeMenu}>
+                                      {sub}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
                           </li>
                         ))}
                       </ul>

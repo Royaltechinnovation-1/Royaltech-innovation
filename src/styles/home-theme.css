@@ -83,6 +83,19 @@
   color: #67e8f9;
 }
 
+.home-theme .sh-sub-list {
+  border-left-color: rgba(103, 232, 249, 0.35);
+}
+
+.home-theme .sh-sub-bullet,
+.home-theme .sh-sub-link:hover {
+  color: #67e8f9;
+}
+
+.home-theme .sh-sub-link:hover .sh-sub-bullet {
+  background: #67e8f9;
+}
+
 /* ---------- Header: mobile menu ---------- */
 .home-theme .sh-mobile-groups p,
 .home-theme .sh-mobile-link.is-active,
