@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-/** Full-screen background video: 4K (3840×2160) H.264, made from the 1080p original. */
-const BG_VIDEO_URL = "/video/background-4k.mp4";
+/** Full-screen 3D background video: 2560×1440 H.264, sharpened from the 1280×720 original. */
+const BG_VIDEO_URL = "/video/hero-bg.mp4";
 
 /**
  * One fixed, full-viewport video that lives behind every section.

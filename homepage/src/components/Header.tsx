@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { scrollToTarget } from "@/lib/lenis";
+import { site } from "@/lib/site";
 
 const links = [
-  { href: "#technology", label: "Technology" },
-  { href: "#about", label: "Company" },
-  { href: "#services", label: "Services" },
-  { href: "#ai", label: "AI" },
-  { href: "#projects", label: "Projects" },
-  { href: "#why", label: "Why Us" },
+  { href: `${site.website}about`, label: "About Us" },
+  { href: `${site.website}services`, label: "Services" },
+  { href: `${site.website}portfolio`, label: "Portfolio" },
+  { href: `${site.website}process`, label: "Our Process" },
+  { href: `${site.website}careers`, label: "Careers" },
 ];
 
 /** Full RoyalTech logo. Pass `height` (px) to fix the size; otherwise it scales with the header. */
@@ -73,7 +73,7 @@ export default function Header() {
             <a
               key={l.href}
               href={l.href}
-              onClick={(e) => go(e, l.href)}
+              onClick={l.href.startsWith("#") ? (e) => go(e, l.href) : undefined}
               className="text-[0.72rem] tracking-[0.22em] text-white/70 uppercase transition-colors hover:text-gold"
             >
               {l.label}
@@ -112,7 +112,7 @@ export default function Header() {
           <a
             key={l.href}
             href={l.href}
-            onClick={(e) => go(e, l.href)}
+            onClick={l.href.startsWith("#") ? (e) => go(e, l.href) : undefined}
             style={{ transitionDelay: open ? `${i * 60}ms` : "0ms" }}
             className={`display border-b border-white/10 py-4 text-3xl transition-all duration-500 hover:text-gold ${
               open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"

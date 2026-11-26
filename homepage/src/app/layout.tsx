@@ -6,9 +6,9 @@ const sora = Sora({ subsets: ["latin"], variable: "--font-sora", display: "swap"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "RoyalTech Innovation — Technology, AI & Automation Solutions",
+  title: "RoyalTech Innovation — Custom Software & IT Solutions",
   description:
-    "RoyalTech Innovation designs and builds intelligent software, cloud platforms and AI automation for ambitious businesses.",
+    "RoyalTech Innovation helps businesses grow through custom website development, mobile applications, software solutions, UI/UX design, digital marketing and IT consulting.",
 };
 
 export const viewport: Viewport = {
