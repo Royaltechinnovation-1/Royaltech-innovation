@@ -2777,6 +2777,7 @@ figure {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+  margin-top: 1.25rem;
 }
 
 .footer-social a {
@@ -2842,6 +2843,14 @@ figure {
 .footer-social a.is-youtube:focus-visible {
   background: #ff0000;
   border-color: #ff0000;
+  color: #fff;
+}
+
+.footer-social a.is-behance:hover,
+
+.footer-social a.is-behance:focus-visible {
+  background: #0057ff;
+  border-color: #0057ff;
   color: #fff;
 }
 
