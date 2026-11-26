@@ -2777,6 +2777,7 @@ figure {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+  margin-top: 1.25rem;
 }
 
 .footer-about .footer-social {
@@ -2870,8 +2871,8 @@ figure {
 .footer-social a.is-behance:hover,
 
 .footer-social a.is-behance:focus-visible {
-  background: #1769ff;
-  border-color: #1769ff;
+  background: #0057ff;
+  border-color: #0057ff;
   color: #fff;
 }
 
