@@ -1,0 +1,3497 @@
+/*
+ * /services/custom-software-development
+ *
+ * Loaded after services-showcase.css, which supplies the scoped reset (`.svx-root`) and the Inter font.
+ * Everything here is namespaced `cs-`. Palette: RoyalTech navy and blue, white and tinted sections.
+ * Mobile-first. Breakpoints: 640px (two columns), 960px (split layouts), 1200px (four columns).
+ */
+
+/* ------------------------------------------------------------------ */
+/* Tokens + base                                                       */
+/* ------------------------------------------------------------------ */
+.svx-root.cs-root {
+  --cs-950: #071330;
+  --cs-900: #0f2557;
+  --cs-800: #1e3a8a;
+  --cs-700: #1e40af;
+  --cs-600: #1d4ed8;
+  --cs-500: #2563eb;
+  --cs-400: #60a5fa;
+  --cs-300: #93c5fd;
+  --cs-200: #bfdbfe;
+  --cs-100: #dbeaf7;
+  --cs-50: #eff6ff;
+  --cs-ink: #0b1530;
+  --cs-body: #475569;
+  --cs-muted: #64748b;
+  --cs-line: #e2e8f0;
+  --cs-tint: #f5f8fd;
+  --cs-ok: #059669;
+  --cs-warn: #b45309;
+  --cs-display: var(--font-jakarta, "Plus Jakarta Sans"), var(--font-inter, "Inter"), system-ui, sans-serif;
+
+  background: #fff;
+  color: var(--cs-ink);
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+.cs-root [id] {
+  scroll-margin-top: 5.5rem;
+}
+.cs-root :is(ol, ul) {
+  list-style: none;
+}
+.cs-root :where(h1, h2, h3, h4, p) {
+  margin: 0;
+}
+.cs-root :where(button) {
+  font: inherit;
+  cursor: pointer;
+}
+.cs-root :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+.cs-root :where(svg) {
+  display: block;
+}
+
+/* Small status colours used inside the illustrative screens */
+.cs-root .ok {
+  color: var(--cs-ok);
+}
+.cs-root .blue {
+  color: var(--cs-500);
+}
+.cs-root .sky {
+  color: #38bdf8;
+}
+.cs-root .warn {
+  color: var(--cs-warn);
+}
+.cs-root .mute {
+  color: #94a3b8;
+}
+
+/* Reveal on scroll (applied by the client component only below the fold) */
+.cs-root .cs-pre {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.cs-root .cs-pre.cs-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout + typography                                                 */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-wrap {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-width: 0;
+}
+.cs-root .cs-wrap--narrow {
+  max-width: 56rem;
+}
+.cs-root .cs-section {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--cs-line);
+}
+.cs-root .cs-section--white {
+  background: #fff;
+}
+.cs-root .cs-section--tint {
+  background: var(--cs-tint);
+}
+.cs-root .cs-section--navy {
+  background: linear-gradient(160deg, var(--cs-950), var(--cs-900) 60%, #0b1d4a);
+  color: #fff;
+  border-top: 0;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-section {
+    padding: 6.5rem 0;
+  }
+}
+
+.cs-root .cs-h1 {
+  font-family: var(--cs-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 1.2rem + 2.6vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--cs-950);
+  text-wrap: balance;
+}
+.cs-root .cs-h2 {
+  font-family: var(--cs-display);
+  font-weight: 800;
+  font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--cs-950);
+  text-wrap: balance;
+}
+.cs-root .cs-navy .cs-h2,
+.cs-root .cs-section--navy .cs-h2 {
+  color: #fff;
+}
+.cs-root .cs-h3 {
+  font-family: var(--cs-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+  line-height: 1.2;
+  color: var(--cs-950);
+  text-wrap: balance;
+}
+.cs-root .cs-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cs-500);
+  margin-bottom: 0.85rem;
+}
+.cs-root .cs-kicker--sky {
+  color: var(--cs-300);
+}
+.cs-root .cs-sub,
+.cs-root .cs-prose p,
+.cs-root .cs-prose-p,
+.cs-root .cs-svc-p {
+  color: var(--cs-body);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.cs-root .cs-sub {
+  margin-top: 1rem;
+  max-width: 44rem;
+  font-size: 1.05rem;
+}
+.cs-root .cs-prose {
+  display: grid;
+  gap: 1rem;
+}
+.cs-root .cs-prose strong {
+  color: var(--cs-950);
+  font-weight: 700;
+}
+.cs-root .cs-related {
+  margin-top: 0.25rem;
+  color: var(--cs-body);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.cs-root .cs-related a {
+  color: var(--cs-700);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cs-root .cs-sec-head {
+  max-width: 52rem;
+  margin-bottom: 3rem;
+}
+.cs-root .cs-sec-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+.cs-root .cs-sec-head--center .cs-sub {
+  margin-inline: auto;
+}
+.cs-root .cs-sec-head--dark .cs-h2 {
+  color: #fff;
+}
+.cs-root .cs-sec-head--dark .cs-sub {
+  color: #cbd5e1;
+}
+.cs-root .cs-sec-head--row {
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cs-root .cs-meta {
+  font-size: 0.85rem;
+  color: var(--cs-muted);
+  font-weight: 500;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-sec-head--row {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.cs-root .cs-split {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 4.5rem;
+  }
+  .cs-root .cs-split--top {
+    align-items: start;
+  }
+}
+
+.cs-root .cs-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--cs-500);
+  flex: none;
+}
+.cs-root .cs-dot--blue {
+  background: var(--cs-500);
+}
+.cs-root .cs-dot--sky {
+  background: var(--cs-400);
+}
+
+/* ------------------------------------------------------------------ */
+/* Buttons + links                                                     */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.25rem;
+  border-radius: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s, color 0.2s;
+  max-width: 100%;
+}
+.cs-root .cs-btn--lg {
+  padding: 0.95rem 1.5rem;
+  font-size: 1rem;
+}
+.cs-root .cs-btn--primary {
+  background: linear-gradient(135deg, var(--cs-500), var(--cs-800));
+  color: #fff;
+  box-shadow: 0 10px 24px -12px rgba(37, 99, 235, 0.7);
+}
+.cs-root .cs-btn--primary:hover {
+  box-shadow: 0 14px 30px -12px rgba(37, 99, 235, 0.85);
+  transform: translateY(-1px);
+}
+.cs-root .cs-btn--ghost {
+  background: #fff;
+  color: var(--cs-950);
+  border-color: #cbd5e1;
+}
+.cs-root .cs-btn--ghost:hover {
+  background: #f8fafc;
+}
+.cs-root .cs-btn--light {
+  background: #fff;
+  color: var(--cs-950);
+}
+.cs-root .cs-btn--light:hover {
+  background: var(--cs-50);
+}
+.cs-root .cs-btn--white {
+  background: #fff;
+  color: var(--cs-950);
+  box-shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.5);
+}
+.cs-root .cs-btn--white:hover {
+  background: var(--cs-50);
+}
+.cs-root .cs-btn--outline {
+  background: rgba(7, 19, 48, 0.35);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.cs-root .cs-btn--outline:hover {
+  background: rgba(7, 19, 48, 0.6);
+}
+.cs-root .cs-btn-mini {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.4rem;
+  background: var(--cs-500);
+  color: #fff;
+  white-space: nowrap;
+}
+.cs-root .cs-arrow {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+.cs-root .cs-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cs-300);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.cs-root .cs-link:hover {
+  color: #fff;
+}
+.cs-root .cs-cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-cta-row {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-hero {
+  position: relative;
+  overflow: hidden;
+  /* Clears the fixed site header on every breakpoint */
+  padding: clamp(6.5rem, 5rem + 4vw, 9rem) 0 4.5rem;
+  background:
+    linear-gradient(to bottom, #f8fafc, #fff 70%),
+    #fff;
+  border-bottom: 1px solid var(--cs-line);
+}
+.cs-root .cs-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(15, 37, 87, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 37, 87, 0.045) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 90%);
+}
+.cs-root .cs-hero-grid {
+  position: relative;
+  display: grid;
+  gap: 3.5rem;
+  align-items: center;
+}
+.cs-root .cs-hero-copy {
+  display: grid;
+  gap: 1.35rem;
+  min-width: 0;
+}
+@media (min-width: 1024px) {
+  .cs-root .cs-hero {
+    padding-bottom: 6rem;
+  }
+  .cs-root .cs-hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 3.5rem;
+  }
+}
+.cs-root .cs-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+}
+.cs-root .cs-crumbs a:hover {
+  color: var(--cs-500);
+}
+.cs-root .cs-crumbs [aria-current="page"] {
+  color: var(--cs-700);
+  font-weight: 700;
+}
+.cs-root .cs-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: fit-content;
+  padding: 0.4rem 0.85rem;
+  border-radius: 0.4rem;
+  background: var(--cs-50);
+  border: 1px solid var(--cs-200);
+  color: var(--cs-700);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.cs-root .cs-lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--cs-body);
+  max-width: 36rem;
+}
+.cs-root .cs-pillars {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cs-900);
+  line-height: 1.9;
+}
+.cs-root .cs-pillars .cs-sep {
+  color: var(--cs-400);
+  margin: 0 0.35rem;
+}
+
+.cs-root .cs-hero-visual {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 1.5rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 40rem;
+}
+.cs-root .cs-hero-glow {
+  position: absolute;
+  inset: -1rem -1rem 2rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(96, 165, 250, 0.1), rgba(15, 37, 87, 0.2));
+  filter: blur(28px);
+  pointer-events: none;
+}
+.cs-root .cs-monitor {
+  position: relative;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 0.9rem;
+  padding: 0.6rem;
+  box-shadow: 0 30px 60px -20px rgba(7, 19, 48, 0.45);
+}
+.cs-root .cs-monitor-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: #020617;
+  border-radius: 0.5rem 0.5rem 0 0;
+  border-bottom: 1px solid #1e293b;
+  font-size: 0.65rem;
+}
+.cs-root .cs-tl {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: #334155;
+  flex: none;
+}
+.cs-root .cs-tl--on {
+  background: var(--cs-500);
+}
+.cs-root .cs-url {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.15rem 0.5rem;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 0.3rem;
+  color: #94a3b8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-align: center;
+}
+.cs-root .cs-live {
+  color: var(--cs-400);
+  font-weight: 700;
+  flex: none;
+}
+.cs-root .cs-screen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  background: #f8fafc;
+  border-radius: 0 0 0.5rem 0.5rem;
+  overflow: hidden;
+  min-height: 19rem;
+}
+.cs-root .cs-side {
+  display: none;
+  background: var(--cs-950);
+  color: #cbd5e1;
+  padding: 0.75rem;
+  font-size: 0.66rem;
+}
+.cs-root .cs-side-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 700;
+}
+.cs-root .cs-mark {
+  display: grid;
+  place-items: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0.25rem;
+  background: var(--cs-500);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+}
+.cs-root .cs-side ul {
+  display: grid;
+  gap: 0.25rem;
+}
+.cs-root .cs-side li {
+  padding: 0.3rem 0.45rem;
+  border-radius: 0.3rem;
+  color: #94a3b8;
+}
+.cs-root .cs-side li.on {
+  background: rgba(37, 99, 235, 0.3);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 var(--cs-400);
+}
+.cs-root .cs-side-foot {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cs-root .cs-side-foot span {
+  display: block;
+  font-size: 0.55rem;
+  color: #64748b;
+  text-transform: uppercase;
+}
+.cs-root .cs-side-foot b {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+.cs-root .cs-side-foot i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #34d399;
+}
+.cs-root .cs-main {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  min-width: 0;
+  align-content: start;
+}
+.cs-root .cs-main-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.cs-root .cs-main-head strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-main-head small {
+  display: block;
+  font-size: 0.6rem;
+  color: #64748b;
+}
+.cs-root .cs-chip {
+  display: inline-block;
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.3rem;
+  background: var(--cs-50);
+  border: 1px solid var(--cs-200);
+  color: var(--cs-700);
+  font-size: 0.58rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cs-root .cs-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.cs-root .cs-kpis > div {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  min-width: 0;
+}
+.cs-root .cs-kpis small,
+.cs-root .cs-tiles small,
+.cs-root .cs-node small,
+.cs-root .cs-hub-row small,
+.cs-root .cs-hub-core small,
+.cs-root .cs-nodes small,
+.cs-root .cs-tri small,
+.cs-root .cs-final-step small,
+.cs-root .cs-final-kv small,
+.cs-root .cs-final-card-h small,
+.cs-root .cs-release-h small,
+.cs-root .cs-flow-h small,
+.cs-root .cs-logic small,
+.cs-root .cs-card-h small,
+.cs-root .cs-q small,
+.cs-root .cs-tablet-c small,
+.cs-root .cs-cap-card small,
+.cs-root .cs-ind-h small {
+  display: block;
+  font-size: 0.58rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cs-root .cs-kpis strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  color: var(--cs-950);
+  font-weight: 800;
+  line-height: 1.25;
+}
+.cs-root .cs-kpis em {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.58rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--cs-ok);
+}
+.cs-root .cs-kpis em.blue {
+  color: var(--cs-500);
+}
+.cs-root .cs-bar {
+  display: block;
+  margin-top: 0.35rem;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+.cs-root .cs-bar i {
+  display: block;
+  height: 100%;
+  background: var(--cs-500);
+  border-radius: inherit;
+}
+.cs-root .cs-main-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.4rem;
+}
+.cs-root .cs-panel {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.55rem;
+  min-width: 0;
+}
+.cs-root .cs-panel-t {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--cs-950);
+  margin-bottom: 0.35rem;
+}
+.cs-root .cs-panel svg {
+  width: 100%;
+  height: auto;
+}
+.cs-root .cs-steps {
+  display: grid;
+  gap: 0.25rem;
+}
+.cs-root .cs-steps > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.3rem 0.45rem;
+  border-radius: 0.3rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 0.58rem;
+  color: #334155;
+}
+.cs-root .cs-steps > div.act {
+  background: var(--cs-50);
+  border-color: var(--cs-200);
+  color: var(--cs-800);
+}
+.cs-root .cs-steps b {
+  font-weight: 700;
+}
+.cs-root .cs-steps b.ok {
+  color: var(--cs-ok);
+}
+.cs-root .cs-steps b.mute {
+  color: #94a3b8;
+}
+.cs-root .cs-steps > div.act b {
+  color: var(--cs-500);
+}
+
+.cs-root .cs-monitor-stand {
+  width: 6rem;
+  height: 1.25rem;
+  margin: 0 auto;
+  background: linear-gradient(#334155, #1e293b);
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+}
+.cs-root .cs-hero-visual::after {
+  content: "";
+  display: block;
+  width: 11rem;
+  height: 0.5rem;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: #1e293b;
+}
+
+.cs-root .cs-float {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #e2e8f0;
+  border-radius: 0.8rem;
+  box-shadow: 0 24px 50px -18px rgba(7, 19, 48, 0.35);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.72rem;
+  color: #334155;
+  backdrop-filter: blur(8px);
+}
+.cs-root .cs-float--bridge {
+  display: none;
+  left: -1.25rem;
+  bottom: 0;
+  width: 15rem;
+}
+.cs-root .cs-float--arch {
+  top: -0.9rem;
+  right: -0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--cs-950);
+  border-color: var(--cs-800);
+  color: #fff;
+  padding: 0.6rem 0.8rem;
+}
+.cs-root .cs-float--arch strong {
+  display: block;
+  font-size: 0.72rem;
+}
+.cs-root .cs-float--arch small {
+  display: block;
+  font-size: 0.62rem;
+  color: var(--cs-300);
+}
+.cs-root .cs-float-ic {
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 0.5rem;
+  background: rgba(37, 99, 235, 0.35);
+  color: var(--cs-200);
+  flex: none;
+}
+.cs-root .cs-float-ic svg {
+  width: 1rem;
+  height: 1rem;
+}
+.cs-root .cs-float-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.45rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+.cs-root .cs-float-h strong {
+  color: var(--cs-950);
+  font-size: 0.72rem;
+}
+.cs-root .cs-float-h span {
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+.cs-root .cs-float-r {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.66rem;
+  padding: 0.12rem 0;
+}
+.cs-root .cs-float-r b {
+  color: var(--cs-500);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-monitor {
+    padding: 0.85rem;
+  }
+  .cs-root .cs-screen {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cs-root .cs-side {
+    display: block;
+  }
+  .cs-root .cs-screen {
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+  }
+  .cs-root .cs-main {
+    padding: 0.9rem;
+  }
+  .cs-root .cs-main-split {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+  .cs-root .cs-float--bridge {
+    display: block;
+  }
+  .cs-root .cs-hero-visual {
+    padding-bottom: 2.5rem;
+  }
+}
+@media (max-width: 639px) {
+  .cs-root .cs-kpis {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cs-root .cs-float--arch {
+    top: -0.75rem;
+    right: 0.5rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Intro                                                               */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-intro-copy {
+  display: grid;
+  gap: 1.5rem;
+  min-width: 0;
+}
+.cs-root .cs-points {
+  display: grid;
+  gap: 1.1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cs-line);
+}
+@media (min-width: 640px) {
+  .cs-root .cs-points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+.cs-root .cs-points > div {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+.cs-root .cs-points h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cs-950);
+}
+.cs-root .cs-points p {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--cs-muted);
+  line-height: 1.55;
+}
+.cs-root .cs-num {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.45rem;
+  background: var(--cs-50);
+  color: var(--cs-600);
+  font-size: 0.72rem;
+  font-weight: 800;
+  flex: none;
+}
+
+.cs-root .cs-intro-visual {
+  min-width: 0;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  background: #eef3fb;
+  border: 1px solid #dbe5f3;
+}
+.cs-root .cs-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow: 0 16px 40px -22px rgba(7, 19, 48, 0.3);
+}
+.cs-root .cs-card-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+.cs-root .cs-card-h > span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cs-950);
+}
+.cs-root .cs-card-h small {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.cs-root .cs-card-b {
+  padding: 1.1rem;
+  display: grid;
+  gap: 1rem;
+}
+.cs-root .cs-grid2 {
+  display: grid;
+  gap: 0.9rem;
+}
+@media (min-width: 560px) {
+  .cs-root .cs-grid2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-subpanel {
+  padding: 0.9rem;
+  border-radius: 0.6rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.cs-root .cs-subpanel > small {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cs-root .cs-track {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #334155;
+}
+.cs-root .cs-track i {
+  display: block;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--cs-500);
+}
+.cs-root .cs-records {
+  display: grid;
+  gap: 0.4rem;
+}
+.cs-root .cs-records li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0.55rem;
+  background: #fff;
+  border-radius: 0.4rem;
+  border: 1px solid #e2e8f0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+.cs-root .cs-records b {
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+.cs-root .cs-logic {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.6rem;
+  background: var(--cs-950);
+  color: #fff;
+}
+.cs-root .cs-logic small {
+  color: var(--cs-300);
+}
+.cs-root .cs-logic strong {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.cs-root .cs-logic > span {
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.3rem;
+  background: var(--cs-600);
+  font-size: 0.65rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Services                                                            */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-svc-list {
+  display: grid;
+  gap: 4.5rem;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-svc-list {
+    gap: 6rem;
+  }
+}
+.cs-root .cs-svc {
+  min-width: 0;
+}
+.cs-root .cs-svc--light {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 16px 40px -28px rgba(7, 19, 48, 0.35);
+}
+.cs-root .cs-svc--dark {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--cs-950), var(--cs-900) 55%, #0b1d4a);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  color: #fff;
+  box-shadow: 0 30px 60px -30px rgba(7, 19, 48, 0.6);
+}
+@media (min-width: 640px) {
+  .cs-root .cs-svc--light,
+  .cs-root .cs-svc--dark {
+    padding: 2.5rem;
+  }
+}
+.cs-root .cs-svc-grid,
+.cs-root .cs-svc-dark-grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+  min-width: 0;
+}
+.cs-root .cs-svc-dark-grid {
+  display: flex;
+  flex-direction: column-reverse;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-svc-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 4rem;
+  }
+  .cs-root .cs-svc-dark-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 4rem;
+    flex-direction: row;
+  }
+}
+.cs-root .cs-svc-copy {
+  display: grid;
+  gap: 1.1rem;
+  min-width: 0;
+}
+.cs-root .cs-svc-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cs-600);
+}
+.cs-root .cs-svc--dark .cs-svc-eyebrow {
+  color: var(--cs-300);
+}
+.cs-root .cs-svc-n {
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  background: var(--cs-50);
+  border: 1px solid var(--cs-200);
+  color: var(--cs-700);
+}
+.cs-root .cs-svc--dark .cs-svc-n {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.cs-root .cs-svc--dark .cs-h3,
+.cs-root .cs-svc--dark .cs-svc-p {
+  color: #fff;
+}
+.cs-root .cs-svc--dark .cs-svc-p {
+  color: #cbd5e1;
+}
+.cs-root .cs-checks {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.55rem 1rem;
+  padding-top: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+.cs-root .cs-checks li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+.cs-root .cs-checks li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--cs-500);
+}
+.cs-root .cs-svc--dark .cs-checks {
+  color: #e2e8f0;
+}
+.cs-root .cs-svc--dark .cs-checks li::before {
+  background: var(--cs-400);
+}
+.cs-root .cs-checks--two {
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 560px) {
+  .cs-root .cs-checks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-svc-visual {
+  min-width: 0;
+}
+
+/* Business software: dashboard window */
+.cs-root .cs-win {
+  background: #0f172a;
+  border-radius: 0.9rem;
+  padding: 0.5rem;
+  box-shadow: 0 24px 50px -24px rgba(7, 19, 48, 0.45);
+}
+.cs-root .cs-win-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: var(--cs-950);
+  color: #fff;
+  font-size: 0.78rem;
+}
+.cs-root .cs-win-bar span {
+  font-size: 0.65rem;
+  color: var(--cs-300);
+}
+.cs-root .cs-win-body {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  background: #f8fafc;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.cs-root .cs-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-tiles > div {
+  padding: 0.6rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  min-width: 0;
+}
+.cs-root .cs-tiles b {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--cs-950);
+}
+.cs-root .cs-tiles em {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.66rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--cs-600);
+}
+.cs-root .cs-tiles em.ok {
+  color: var(--cs-ok);
+}
+.cs-root .cs-tiles em.mute {
+  color: #94a3b8;
+}
+.cs-root .cs-win-split {
+  display: grid;
+  gap: 0.6rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-win-split {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+}
+.cs-root .cs-q {
+  display: grid;
+  gap: 0.45rem;
+}
+.cs-root .cs-q > div {
+  position: relative;
+  padding: 0.5rem 1.2rem 0.5rem 0.6rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.4rem;
+}
+.cs-root .cs-q b {
+  display: block;
+  font-size: 0.7rem;
+  color: #1e293b;
+}
+.cs-root .cs-q small {
+  display: block;
+  font-size: 0.6rem;
+  color: #64748b;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.cs-root .cs-q i {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: -0.22rem;
+  border-radius: 999px;
+}
+.cs-root .cs-q i.ok {
+  background: #10b981;
+}
+.cs-root .cs-q i.blue {
+  background: var(--cs-500);
+}
+
+/* Enterprise: dark command window */
+.cs-root .cs-dark-win {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  min-width: 0;
+}
+.cs-root .cs-dark-h {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+}
+.cs-root .cs-dark-h > span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cs-root .cs-dark-h em {
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  font-style: normal;
+  font-size: 0.62rem;
+  font-weight: 600;
+  margin-left: 0.3rem;
+}
+.cs-root .cs-dark-h em.hl {
+  background: rgba(37, 99, 235, 0.3);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #bfdbfe;
+}
+.cs-root .cs-nodes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-nodes {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-nodes > div {
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 0;
+}
+.cs-root .cs-nodes small {
+  color: var(--cs-300);
+}
+.cs-root .cs-nodes b {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  color: #fff;
+}
+.cs-root .cs-nodes span {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.62rem;
+  color: #94a3b8;
+}
+.cs-root .cs-dark-split {
+  display: grid;
+  gap: 0.6rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-dark-split {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  }
+}
+.cs-root .cs-dark-box {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.cs-root .cs-dark-box > strong {
+  font-size: 0.72rem;
+  color: #fff;
+}
+.cs-root .cs-track--dark {
+  color: #cbd5e1;
+  font-size: 0.66rem;
+}
+.cs-root .cs-track--dark i {
+  background: linear-gradient(90deg, var(--cs-400), #818cf8);
+}
+.cs-root .cs-perm {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.66rem;
+  color: #cbd5e1;
+}
+.cs-root .cs-perm b {
+  font-weight: 700;
+}
+
+/* Web applications: browser + tablet */
+.cs-root .cs-browser-wrap {
+  position: relative;
+  padding-bottom: 2.5rem;
+  min-width: 0;
+}
+.cs-root .cs-browser {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow: 0 24px 50px -24px rgba(7, 19, 48, 0.35);
+}
+.cs-root .cs-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+.cs-root .cs-browser-bar .cs-tl {
+  background: #cbd5e1;
+}
+.cs-root .cs-addr {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.6rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.35rem;
+  font-size: 0.66rem;
+  color: #64748b;
+}
+.cs-root .cs-addr span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cs-root .cs-addr b {
+  color: var(--cs-ok);
+  font-weight: 700;
+  flex: none;
+}
+.cs-root .cs-browser-body {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+}
+.cs-root .cs-browser-h {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cs-root .cs-browser-h strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-browser-h small {
+  display: block;
+  font-size: 0.66rem;
+  color: #64748b;
+}
+.cs-root .cs-tri {
+  display: grid;
+  gap: 0.5rem;
+}
+@media (min-width: 560px) {
+  .cs-root .cs-tri {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-tri > div {
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  min-width: 0;
+}
+.cs-root .cs-tri b {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-dir {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-size: 0.7rem;
+}
+.cs-root .cs-dir-h,
+.cs-root .cs-dir > div:not(.cs-dir-h) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 0.7rem;
+}
+.cs-root .cs-dir-h {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+.cs-root .cs-dir > div:not(.cs-dir-h) {
+  border-top: 1px solid #f1f5f9;
+  color: #334155;
+}
+.cs-root .cs-dir > div:not(.cs-dir-h) span:first-child {
+  font-weight: 600;
+  color: #1e293b;
+}
+.cs-root .cs-dir b {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  background: #ecfdf5;
+  color: #047857;
+}
+.cs-root .cs-dir b.blue {
+  background: var(--cs-50);
+  color: var(--cs-700);
+}
+.cs-root .cs-tablet {
+  position: absolute;
+  right: 0.25rem;
+  bottom: 0;
+  width: 9rem;
+  padding: 0.35rem;
+  border-radius: 0.8rem;
+  background: #0f172a;
+  box-shadow: 0 20px 40px -18px rgba(7, 19, 48, 0.6);
+}
+.cs-root .cs-tablet-in {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.55rem;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+.cs-root .cs-tablet-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.6rem;
+}
+.cs-root .cs-tablet-h b {
+  color: var(--cs-950);
+}
+.cs-root .cs-tablet-h i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--cs-500);
+}
+.cs-root .cs-tablet-c {
+  padding: 0.4rem;
+  border-radius: 0.35rem;
+  background: var(--cs-50);
+  border: 1px solid var(--cs-100);
+}
+.cs-root .cs-tablet-c strong {
+  display: block;
+  font-size: 0.62rem;
+  color: var(--cs-900);
+}
+.cs-root .cs-tablet-c small {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.5rem;
+  color: #64748b;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.cs-root .cs-tablet-bars {
+  display: flex;
+  gap: 0.3rem;
+}
+.cs-root .cs-tablet-bars i {
+  flex: 1;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: var(--cs-500);
+}
+.cs-root .cs-tablet-bars i.mute {
+  background: #e2e8f0;
+}
+
+/* Workflow: pipeline */
+.cs-root .cs-flow {
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem;
+  border-radius: 1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  min-width: 0;
+}
+.cs-root .cs-flow-h {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem 0.75rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+.cs-root .cs-flow-h strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-flow-h small {
+  display: block;
+  font-size: 0.66rem;
+  color: #64748b;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.cs-root .cs-flow-h > span {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3rem;
+  background: var(--cs-600);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cs-root .cs-flow-nodes {
+  display: grid;
+  gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-flow-nodes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-node {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+  padding: 0.85rem;
+  border-radius: 0.7rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 6px 16px -12px rgba(7, 19, 48, 0.3);
+  min-width: 0;
+}
+.cs-root .cs-node--active {
+  border: 2px solid var(--cs-500);
+  box-shadow: 0 14px 28px -16px rgba(37, 99, 235, 0.5);
+}
+.cs-root .cs-node > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cs-root .cs-node small {
+  color: var(--cs-600);
+  font-weight: 700;
+}
+.cs-root .cs-node i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+}
+.cs-root .cs-node i.ok {
+  background: #10b981;
+}
+.cs-root .cs-node i.sky {
+  background: var(--cs-400);
+}
+.cs-root .cs-node em {
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  background: var(--cs-50);
+  color: var(--cs-700);
+  font-size: 0.56rem;
+  font-style: normal;
+  font-weight: 700;
+}
+.cs-root .cs-node strong {
+  font-size: 0.8rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-node p {
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: #64748b;
+}
+.cs-root .cs-node footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.62rem;
+}
+.cs-root .cs-node footer span {
+  color: #64748b;
+}
+.cs-root .cs-node footer b {
+  font-weight: 700;
+  color: #1e293b;
+}
+.cs-root .cs-flow-rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.6rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  font-size: 0.7rem;
+  color: #475569;
+}
+.cs-root .cs-flow-rule code {
+  margin-left: auto;
+  font-size: 0.6rem;
+  color: #94a3b8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Integration: hub diagram */
+.cs-root .cs-hub {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 24px 50px -24px rgba(7, 19, 48, 0.3);
+  min-width: 0;
+}
+.cs-root .cs-hub-h {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.8rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-hub-h code {
+  font-size: 0.62rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  background: var(--cs-50);
+  border: 1px solid var(--cs-200);
+  color: var(--cs-700);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.cs-root .cs-hub-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.cs-root .cs-hub-row > div {
+  padding: 0.6rem 0.5rem;
+  border-radius: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  min-width: 0;
+}
+.cs-root .cs-hub-row small {
+  color: var(--cs-600);
+  font-weight: 700;
+}
+.cs-root .cs-hub-row b {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-hub-row span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.6rem;
+  color: #64748b;
+}
+.cs-root .cs-hub-core {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.7rem;
+  background: linear-gradient(90deg, var(--cs-950), var(--cs-800), var(--cs-950));
+  color: #fff;
+}
+.cs-root .cs-hub-core small {
+  color: var(--cs-300);
+}
+.cs-root .cs-hub-core strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+}
+.cs-root .cs-hub-core > span {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3rem;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: #6ee7b7;
+  font-size: 0.6rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Capabilities                                                        */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-cap-shell {
+  border-radius: 1.25rem;
+  background: var(--cs-tint);
+  border: 1px solid #e2e8f0;
+  padding: 1rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-cap-shell {
+    padding: 2rem;
+  }
+}
+.cs-root .cs-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+.cs-root .cs-tab {
+  padding: 0.6rem 0.95rem;
+  border-radius: 0.6rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.cs-root .cs-tab:hover {
+  border-color: var(--cs-300);
+}
+.cs-root .cs-tab.on {
+  background: var(--cs-600);
+  border-color: var(--cs-600);
+  color: #fff;
+  box-shadow: 0 8px 18px -10px rgba(37, 99, 235, 0.8);
+}
+.cs-root .cs-cap-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  min-width: 0;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-cap-grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+.cs-root .cs-cap-list {
+  padding: 1.1rem;
+  border-radius: 0.9rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  min-width: 0;
+}
+.cs-root .cs-cap-list-t {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cs-600);
+  margin-bottom: 0.9rem;
+}
+.cs-root .cs-cap-list ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.45rem;
+}
+@media (min-width: 560px) {
+  .cs-root .cs-cap-list ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 960px) {
+  .cs-root .cs-cap-list ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.cs-root .cs-cap-list li {
+  padding: 0.5rem 0.65rem;
+  border-radius: 0.4rem;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+.cs-root .cs-screen-win {
+  border-radius: 0.9rem;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 24px 50px -26px rgba(7, 19, 48, 0.35);
+  min-width: 0;
+}
+.cs-root .cs-screen-h {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.4rem 0.75rem;
+  padding: 0.85rem 1.1rem;
+  background: var(--cs-950);
+  color: #fff;
+}
+.cs-root .cs-screen-h > span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+}
+.cs-root .cs-screen-h small {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.66rem;
+  color: var(--cs-300);
+}
+.cs-root .cs-screen-b {
+  padding: 1.1rem;
+}
+.cs-root .cs-cap-panel {
+  display: grid;
+  gap: 1rem;
+}
+.cs-root .cs-cap-3,
+.cs-root .cs-cap-2 {
+  display: grid;
+  gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-cap-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .cs-root .cs-cap-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-cap-card {
+  padding: 0.9rem;
+  border-radius: 0.6rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  min-width: 0;
+}
+.cs-root .cs-cap-card--hl {
+  background: var(--cs-50);
+  border-color: var(--cs-100);
+}
+.cs-root .cs-cap-card strong {
+  font-size: 0.86rem;
+  color: var(--cs-950);
+  line-height: 1.3;
+}
+.cs-root .cs-cap-card p {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: #475569;
+}
+.cs-root .cs-cap-card small.blue {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--cs-500);
+}
+.cs-root .cs-cap-card svg {
+  width: 100%;
+  height: auto;
+  margin-top: 0.4rem;
+}
+.cs-root .cs-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.6rem;
+}
+.cs-root .cs-table {
+  width: 100%;
+  min-width: 26rem;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  text-align: left;
+}
+.cs-root .cs-table th {
+  padding: 0.6rem 0.75rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+  font-weight: 700;
+}
+.cs-root .cs-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  font-weight: 600;
+}
+.cs-root .cs-table tr:last-child td {
+  border-bottom: 0;
+}
+.cs-root .cs-table td:first-child {
+  color: var(--cs-950);
+  font-weight: 700;
+}
+.cs-root .cs-table td.ok {
+  color: var(--cs-ok);
+}
+.cs-root .cs-table td.blue {
+  color: var(--cs-700);
+}
+.cs-root .cs-table td.mute {
+  color: #94a3b8;
+}
+.cs-root .cs-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.cs-root .cs-filter span {
+  flex: 1 1 14rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+.cs-root .cs-filter b {
+  font-size: 0.75rem;
+  color: var(--cs-600);
+  padding: 0.5rem 0.4rem;
+}
+.cs-root .cs-filter em {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--cs-50);
+  border: 1px solid var(--cs-200);
+  color: var(--cs-700);
+  font-style: normal;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ */
+/* Technologies                                                        */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-tech-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: stretch;
+  min-width: 0;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-tech-grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 2.5rem;
+  }
+}
+.cs-root .cs-tech-layers {
+  display: grid;
+  gap: 0.9rem;
+  min-width: 0;
+}
+.cs-root .cs-layer {
+  padding: 1.1rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: border-color 0.2s;
+  min-width: 0;
+}
+.cs-root .cs-layer:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+}
+.cs-root .cs-layer-h {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.9rem;
+}
+.cs-root .cs-layer-h > div {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.cs-root .cs-layer-h h3 {
+  font-family: var(--cs-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+}
+.cs-root .cs-layer-h small {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+.cs-root .cs-badge {
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  background: rgba(37, 99, 235, 0.35);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #bfdbfe;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cs-root .cs-badge-t {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cs-300);
+  margin-bottom: 0.3rem;
+}
+.cs-root .cs-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cs-root .cs-pills span {
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.4rem;
+  background: rgba(2, 6, 23, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #bfdbfe;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.cs-root .cs-layer-pair {
+  display: grid;
+  gap: 0.9rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-layer-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-layer--sm {
+  background: rgba(255, 255, 255, 0.06);
+}
+.cs-root .cs-layer--sm h3 {
+  font-family: var(--cs-display);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.7rem;
+}
+.cs-root .cs-layer--sm .cs-pills span {
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.6rem;
+}
+
+.cs-root .cs-blueprint {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.5rem;
+  border-radius: 1.1rem;
+  background: rgba(2, 6, 23, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  min-width: 0;
+}
+.cs-root .cs-bp-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cs-root .cs-bp-h strong {
+  font-size: 0.85rem;
+  color: #fff;
+}
+.cs-root .cs-bp-h span {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  background: var(--cs-600);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+.cs-root .cs-blueprint > p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+.cs-root .cs-bp-flow {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cs-root .cs-bp-flow > div {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.5rem;
+  background: rgba(30, 58, 138, 0.35);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+.cs-root .cs-bp-flow b {
+  font-size: 0.82rem;
+  color: #fff;
+}
+.cs-root .cs-bp-flow span {
+  font-size: 0.72rem;
+  color: #cbd5e1;
+}
+.cs-root .cs-bp-flow em {
+  font-style: normal;
+  font-size: 0.62rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--cs-300);
+}
+.cs-root .cs-bp-flow > div.cs-bp-data {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.cs-root .cs-bp-flow > div.cs-bp-data em {
+  color: #94a3b8;
+}
+.cs-root .cs-bp-arrow {
+  text-align: center;
+  font-size: 0.66rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--cs-400);
+}
+.cs-root .cs-bp-foot {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* ------------------------------------------------------------------ */
+/* Comparison                                                          */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-compare {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-compare {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: stretch;
+    gap: 2rem;
+  }
+}
+.cs-root .cs-off,
+.cs-root .cs-custom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  min-width: 0;
+}
+.cs-root .cs-off {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+.cs-root .cs-custom {
+  background: linear-gradient(160deg, #f5f9ff, #fff 60%, #f8fafc);
+  border: 2px solid var(--cs-200);
+  box-shadow: 0 20px 44px -30px rgba(37, 99, 235, 0.45);
+}
+@media (min-width: 640px) {
+  .cs-root .cs-off,
+  .cs-root .cs-custom {
+    padding: 2.25rem;
+  }
+}
+.cs-root .cs-tag {
+  align-self: flex-start;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.35rem;
+  background: var(--cs-600);
+  color: #fff;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cs-root .cs-tag--grey {
+  background: #e2e8f0;
+  color: #334155;
+}
+.cs-root .cs-off h3,
+.cs-root .cs-custom h3 {
+  font-family: var(--cs-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--cs-950);
+}
+.cs-root .cs-off > p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--cs-body);
+}
+.cs-root .cs-off ul {
+  display: grid;
+  gap: 0.85rem;
+}
+.cs-root .cs-off li {
+  display: flex;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #475569;
+}
+.cs-root .cs-off li > span {
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #475569;
+  font-weight: 800;
+  flex: none;
+  line-height: 1;
+}
+.cs-root .cs-off-foot {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+.cs-root .cs-pillars-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-pillars-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-pillars-grid > div {
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  min-width: 0;
+}
+.cs-root .cs-pillars-grid h4 {
+  font-family: var(--cs-display);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--cs-950);
+}
+.cs-root .cs-pillars-grid p {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--cs-body);
+}
+
+/* ------------------------------------------------------------------ */
+/* Industries                                                          */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-ind-grid {
+  display: grid;
+  gap: 1.1rem;
+}
+@media (min-width: 560px) {
+  .cs-root .cs-ind-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 960px) {
+  .cs-root .cs-ind-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1200px) {
+  .cs-root .cs-ind-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-ind {
+  height: 100%;
+  padding: 1.25rem;
+  border-radius: 0.9rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  min-width: 0;
+}
+.cs-root .cs-ind:hover {
+  border-color: var(--cs-400);
+  box-shadow: 0 16px 30px -22px rgba(37, 99, 235, 0.55);
+}
+.cs-root .cs-ind-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+.cs-root .cs-ind-h span {
+  padding: 0.12rem 0.4rem;
+  border-radius: 0.25rem;
+  background: var(--cs-50);
+  color: var(--cs-600);
+  font-size: 0.7rem;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.cs-root .cs-ind-h small {
+  text-align: right;
+  font-size: 0.58rem;
+  color: #94a3b8;
+}
+.cs-root .cs-ind h3 {
+  font-family: var(--cs-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--cs-950);
+}
+.cs-root .cs-ind p {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--cs-body);
+}
+
+/* ------------------------------------------------------------------ */
+/* Process                                                             */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-steps-grid {
+  display: grid;
+  gap: 1rem;
+  counter-reset: none;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-steps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1100px) {
+  .cs-root .cs-steps-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-step-li {
+  min-width: 0;
+}
+.cs-root .cs-step {
+  height: 100%;
+  padding: 1.25rem;
+  border-radius: 0.9rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid var(--cs-500);
+  min-width: 0;
+}
+.cs-root .cs-step-n {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--cs-500), var(--cs-800));
+  color: #fff;
+  font-family: var(--cs-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: 0 10px 18px -12px rgba(37, 99, 235, 0.8);
+}
+.cs-root .cs-step h3 {
+  margin-top: 0.9rem;
+  font-family: var(--cs-display);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--cs-950);
+}
+.cs-root .cs-step p {
+  margin-top: 0.5rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--cs-body);
+}
+
+/* ------------------------------------------------------------------ */
+/* Why RoyalTech                                                       */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-why-side {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+@media (min-width: 960px) {
+  .cs-root .cs-why-side {
+    position: sticky;
+    top: 6.5rem;
+  }
+}
+.cs-root .cs-gov {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.1rem;
+  border-radius: 0.9rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 16px 36px -26px rgba(7, 19, 48, 0.35);
+}
+.cs-root .cs-gov-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.2rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.8rem;
+}
+.cs-root .cs-gov-h strong {
+  color: var(--cs-950);
+}
+.cs-root .cs-gov-h span {
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.3rem;
+  background: var(--cs-50);
+  color: var(--cs-700);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+.cs-root .cs-gov > div:not(.cs-gov-h) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.45rem;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  font-size: 0.78rem;
+  color: #334155;
+}
+.cs-root .cs-gov b {
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cs-root .cs-why-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid #e2e8f0;
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  padding: 0.25rem 1.25rem;
+  min-width: 0;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-why-list {
+    padding: 0.25rem 2rem;
+  }
+}
+.cs-root .cs-why-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.35rem 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+.cs-root .cs-why-row:last-child {
+  border-bottom: 0;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-why-row {
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+  }
+}
+.cs-root .cs-why-row > span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--cs-600);
+  padding-top: 0.25rem;
+}
+.cs-root .cs-why-row h3 {
+  font-family: var(--cs-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--cs-950);
+}
+.cs-root .cs-why-row p {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--cs-body);
+}
+
+/* ------------------------------------------------------------------ */
+/* Engineering standards                                               */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-eng-copy {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+.cs-root .cs-safe {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.6rem;
+  padding-top: 0.5rem;
+}
+@media (min-width: 560px) {
+  .cs-root .cs-safe {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.cs-root .cs-safe li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+.cs-root .cs-safe li > span {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--cs-400);
+  flex: none;
+}
+.cs-root .cs-console {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem;
+  border-radius: 1.1rem;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6);
+  min-width: 0;
+}
+.cs-root .cs-console-h {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 0.75rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cs-root .cs-console-h strong {
+  font-size: 0.85rem;
+  color: #fff;
+}
+.cs-root .cs-console-h span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  color: #34d399;
+}
+.cs-root .cs-console-l {
+  padding: 0.9rem;
+  border-radius: 0.6rem;
+  background: rgba(2, 6, 23, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  gap: 0.35rem;
+}
+.cs-root .cs-console-l--sky {
+  border-color: rgba(96, 165, 250, 0.35);
+}
+.cs-root .cs-console-l--ok {
+  border-color: rgba(52, 211, 153, 0.3);
+}
+.cs-root .cs-console-l strong {
+  font-size: 0.82rem;
+  color: #fff;
+}
+.cs-root .cs-console-l--sky strong {
+  color: var(--cs-300);
+}
+.cs-root .cs-console-l--ok strong {
+  color: #6ee7b7;
+}
+.cs-root .cs-console-l small {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.64rem;
+  color: #94a3b8;
+}
+.cs-root .cs-console-l p {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* ------------------------------------------------------------------ */
+/* Maintenance                                                         */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-release {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.25rem;
+  border-radius: 1.1rem;
+  background: var(--cs-tint);
+  border: 1px solid #e2e8f0;
+  min-width: 0;
+}
+.cs-root .cs-release-h {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem 0.75rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+.cs-root .cs-release-h strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-release-h small {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.66rem;
+  color: #64748b;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.cs-root .cs-release-h > span {
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.3rem;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  font-size: 0.62rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cs-root .cs-rel {
+  display: grid;
+  gap: 0.6rem;
+}
+.cs-root .cs-rel > div {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.9rem;
+  border-radius: 0.7rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  min-width: 0;
+}
+.cs-root .cs-rel > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cs-root .cs-rel strong {
+  font-size: 0.82rem;
+  color: var(--cs-950);
+}
+.cs-root .cs-rel p {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: #475569;
+}
+.cs-root .cs-rel > div > b {
+  justify-self: start;
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+.cs-root .cs-ver {
+  padding: 0.12rem 0.4rem;
+  border-radius: 0.25rem;
+  background: var(--cs-600);
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.64rem;
+  font-weight: 800;
+}
+.cs-root .cs-ver--soft {
+  background: var(--cs-100);
+  color: var(--cs-800);
+}
+.cs-root .cs-ver--grey {
+  background: #e2e8f0;
+  color: #334155;
+}
+.cs-root .cs-maint-copy {
+  display: grid;
+  gap: 1.1rem;
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* FAQ                                                                 */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-acc {
+  display: grid;
+  gap: 0.6rem;
+}
+.cs-root .cs-acc-i {
+  border-radius: 0.8rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cs-root .cs-acc-i.on {
+  border-color: var(--cs-300);
+  box-shadow: 0 16px 30px -24px rgba(37, 99, 235, 0.6);
+}
+.cs-root .cs-acc-h {
+  font-size: inherit;
+}
+.cs-root .cs-acc-h button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: var(--cs-950);
+}
+.cs-root .cs-acc-h button:hover {
+  background: #f8fafc;
+}
+.cs-root .cs-acc-h button:focus-visible {
+  outline: 2px solid var(--cs-500);
+  outline-offset: -2px;
+}
+.cs-root .cs-acc-q {
+  font-family: var(--cs-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.cs-root .cs-acc-ic {
+  position: relative;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background: var(--cs-50);
+  flex: none;
+}
+.cs-root .cs-acc-ic::before,
+.cs-root .cs-acc-ic::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.7rem;
+  height: 2px;
+  margin: -1px 0 0 -0.35rem;
+  background: var(--cs-600);
+  border-radius: 2px;
+  transition: transform 0.25s ease;
+}
+.cs-root .cs-acc-ic::after {
+  transform: rotate(90deg);
+}
+.cs-root .cs-acc-i.on .cs-acc-ic::after {
+  transform: rotate(0deg);
+}
+.cs-root .cs-acc-p {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+.cs-root .cs-acc-i.on .cs-acc-p {
+  grid-template-rows: 1fr;
+}
+.cs-root .cs-acc-p > div {
+  overflow: hidden;
+  min-height: 0;
+}
+.cs-root .cs-acc-p p {
+  padding: 0 1.2rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--cs-body);
+}
+
+/* ------------------------------------------------------------------ */
+/* Final CTA                                                           */
+/* ------------------------------------------------------------------ */
+.cs-root .cs-final-wrap {
+  padding-bottom: 5rem;
+}
+.cs-root .cs-final {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 2.5rem;
+  padding: 2.25rem 1.5rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, var(--cs-950), var(--cs-800) 60%, var(--cs-600));
+  color: #fff;
+  box-shadow: 0 30px 60px -28px rgba(7, 19, 48, 0.6);
+  min-width: 0;
+}
+@media (min-width: 640px) {
+  .cs-root .cs-final {
+    padding: 3.5rem;
+  }
+}
+@media (min-width: 960px) {
+  .cs-root .cs-final {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    padding: 4rem;
+  }
+}
+.cs-root .cs-final::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.cs-root .cs-final-copy {
+  position: relative;
+  display: grid;
+  gap: 1.2rem;
+  min-width: 0;
+}
+.cs-root .cs-final-tag {
+  justify-self: start;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--cs-200);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.cs-root .cs-final h2 {
+  font-family: var(--cs-display);
+  font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+  text-wrap: balance;
+}
+.cs-root .cs-final-copy > p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #dbeafe;
+  max-width: 40rem;
+}
+.cs-root .cs-final-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.82rem;
+  color: var(--cs-200);
+}
+.cs-root .cs-final-meta a:hover {
+  color: #fff;
+}
+.cs-root .cs-final-card {
+  position: relative;
+  display: grid;
+  gap: 0.9rem;
+  padding: 0.9rem;
+  border-radius: 1rem;
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  min-width: 0;
+}
+.cs-root .cs-final-card-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.4rem 0.7rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.cs-root .cs-final-card-h > span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+}
+.cs-root .cs-final-card-h small {
+  color: var(--cs-300);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.cs-root .cs-final-step {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.9rem;
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.cs-root .cs-final-step small {
+  color: var(--cs-300);
+  font-size: 0.6rem;
+}
+.cs-root .cs-final-step strong {
+  font-size: 0.92rem;
+  color: #fff;
+}
+.cs-root .cs-final-step p {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+.cs-root .cs-final-kv {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.cs-root .cs-final-kv > div {
+  padding: 0.7rem;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cs-root .cs-final-kv small {
+  color: var(--cs-300);
+  font-size: 0.58rem;
+}
+.cs-root .cs-final-kv b {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion safety                                                       */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .svx-root.cs-root {
+    scroll-behavior: auto;
+  }
+  .cs-root *,
+  .cs-root *::before,
+  .cs-root *::after {
+    transition-duration: 0.01ms !important;
+  }
+  .cs-root .cs-pre {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Home-page colour and type (shared service theme): navy #020617, cyan #67e8f9,
+ * white text, glass cards, Inter 600 headings on the home scale. Light product
+ * mockups keep their own ink. Compact on small screens, spread on wide ones.
+ * ------------------------------------------------------------------ */
+.svx-root.cs-root {
+  --cs-ink: #ffffff;
+  --cs-body: rgba(255, 255, 255, 0.78);
+  --cs-muted: rgba(255, 255, 255, 0.62);
+  --cs-line: rgba(255, 255, 255, 0.12);
+  --cs-glass: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)), rgba(10, 18, 32, 0.6);
+  --cs-tint: var(--cs-glass);
+  --cs-display: var(--font-inter, "Inter"), ui-sans-serif, system-ui, sans-serif;
+  background: #020617;
+  color: #ffffff;
+  font-family: var(--font-inter, "Inter"), ui-sans-serif, system-ui, sans-serif;
+}
+.svx-root.cs-root .cs-hero,
+.svx-root.cs-root .cs-section,
+.svx-root.cs-root .cs-section--white,
+.svx-root.cs-root .cs-section--tint,
+.svx-root.cs-root .cs-section--navy,
+.svx-root.cs-root .cs-svc,
+.svx-root.cs-root .cs-svc--dark,
+.svx-root.cs-root .cs-svc--light,
+.svx-root.cs-root .cs-final-wrap {
+  background: radial-gradient(60% 45% at 100% 0%, rgba(103, 232, 249, 0.1), transparent 65%), #020617;
+  color: #ffffff;
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+.svx-root.cs-root .cs-final {
+  background:
+    radial-gradient(420px 180px at 100% 0%, rgba(103, 232, 249, 0.22), transparent 60%),
+    linear-gradient(145deg, #020617, #0b1d44);
+}
+.svx-root.cs-root .cs-kicker,
+.svx-root.cs-root .cs-kicker--cyan,
+.svx-root.cs-root .cs-kicker--sky,
+.svx-root.cs-root .cs-eyebrow,
+.svx-root.cs-root .cs-stage > span,
+.svx-root.cs-root .cs-step > span,
+.svx-root.cs-root .cs-aside small {
+  color: #67e8f9;
+}
+.svx-root.cs-root .cs-h1,
+.svx-root.cs-root .cs-h2,
+.svx-root.cs-root .cs-h2--light,
+.svx-root.cs-root .cs-h3,
+.svx-root.cs-root .cs-h3--sm,
+.svx-root.cs-root .cs-final h2,
+.svx-root.cs-root .cs-hero-sub,
+.svx-root.cs-root .cs-btn {
+  font-family: var(--font-inter, "Inter"), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.svx-root.cs-root .cs-hero-sub { color: #a5f3fc; }
+.svx-root.cs-root .cs-h2,
+.svx-root.cs-root .cs-h2--light,
+.svx-root.cs-root .cs-final h2 {
+  font-size: 1.5rem;
+  line-height: 1.12;
+}
+.svx-root.cs-root .cs-h3 {
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+.svx-root.cs-root .cs-lead,
+.svx-root.cs-root .cs-sub,
+.svx-root.cs-root .cs-prose p,
+.svx-root.cs-root .cs-prose-p {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: rgba(255, 255, 255, 0.82);
+}
+.svx-root.cs-root .cs-btn {
+  border-radius: 999px;
+  font-weight: 500;
+}
+.svx-root.cs-root .cs-btn--primary,
+.svx-root.cs-root .cs-btn--cyan,
+.svx-root.cs-root .cs-btn--white,
+.svx-root.cs-root .cs-btn--light {
+  background: #67e8f9;
+  border-color: #67e8f9;
+  color: #0b1220;
+  box-shadow: 0 10px 40px -8px rgba(103, 232, 249, 0.55);
+}
+.svx-root.cs-root .cs-btn--ghost,
+.svx-root.cs-root .cs-btn--outline {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+.svx-root.cs-root .cs-related a,
+.svx-root.cs-root .cs-prose a,
+.svx-root.cs-root .cs-section a.cs-link {
+  color: #67e8f9;
+}
+.svx-root.cs-root .cs-section .cs-visual,
+.svx-root.cs-root .cs-section .cs-modules,
+.svx-root.cs-root .cs-section .cs-nodes,
+.svx-root.cs-root .cs-section .cs-nodes > div,
+.svx-root.cs-root .cs-section .cs-stage,
+.svx-root.cs-root .cs-section .cs-step,
+.svx-root.cs-root .cs-section .cs-ind article,
+.svx-root.cs-root .cs-section .cs-why > div > div,
+.svx-root.cs-root .cs-section .cs-tech-card,
+.svx-root.cs-root .cs-section .cs-quality li,
+.svx-root.cs-root .cs-section .cs-aside,
+.svx-root.cs-root .cs-section .cs-acc-i,
+.svx-root.cs-root .cs-tiles li,
+.svx-root.cs-root .cs-diff > div:not(.core),
+.svx-root.cs-root .cs-jump a {
+  background: var(--cs-glass);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(24px) saturate(140%);
+}
+.svx-root.cs-root .cs-acc-ic { background: rgba(103, 232, 249, 0.14); }
+.svx-root.cs-root .cs-acc-ic::before,
+.svx-root.cs-root .cs-acc-ic::after { background: #67e8f9; }
+.svx-root.cs-root .cs-acc-i.on { border-color: rgba(103, 232, 249, 0.45); }
+.svx-root.cs-root .cs-acc-i.on .cs-acc-ic { background: #67e8f9; }
+.svx-root.cs-root .cs-acc-i.on .cs-acc-ic::before,
+.svx-root.cs-root .cs-acc-i.on .cs-acc-ic::after { background: #0b1220; }
+
+/* Responsive scale */
+.svx-root.cs-root .cs-section { padding: clamp(2.75rem, 2rem + 3vw, 4.5rem) 0; }
+.svx-root.cs-root .cs-split,
+.svx-root.cs-root .cs-hero-grid,
+.svx-root.cs-root .cs-svc-grid { gap: clamp(1.5rem, 1rem + 2vw, 3rem); }
+@media (min-width: 640px) {
+  .svx-root.cs-root .cs-h2,
+  .svx-root.cs-root .cs-h2--light,
+  .svx-root.cs-root .cs-final h2 { font-size: 1.875rem; }
+  .svx-root.cs-root .cs-lead,
+  .svx-root.cs-root .cs-sub { font-size: 1rem; }
+}
+@media (min-width: 768px) {
+  .svx-root.cs-root .cs-h2,
+  .svx-root.cs-root .cs-h2--light,
+  .svx-root.cs-root .cs-final h2 { font-size: 2.25rem; }
+  .svx-root.cs-root .cs-h3 { font-size: 1.25rem; }
+  .svx-root.cs-root .cs-lead { font-size: 1.125rem; }
+}
+@media (min-width: 960px) {
+  .svx-root.cs-root .cs-section { padding: clamp(4rem, 3rem + 4vw, 6.5rem) 0; }
+}
+@media (min-width: 1280px) {
+  .svx-root.cs-root .cs-h2,
+  .svx-root.cs-root .cs-h2--light,
+  .svx-root.cs-root .cs-final h2 { font-size: 3rem; }
+}
+@media (min-width: 1536px) {
+  .svx-root.cs-root .cs-wrap { max-width: 96rem; }
+  .svx-root.cs-root .cs-lead { max-width: 52rem; }
+}
+@media (min-width: 1920px) {
+  .svx-root.cs-root .cs-wrap { max-width: 112rem; }
+}
+
+/* ------------------------------------------------------------------
+ * Hard-coded light surfaces converted to home glass; product mockups stay light.
+ * ------------------------------------------------------------------ */
+.svx-root.cs-root .cs-eyebrow,
+.svx-root.cs-root .cs-steps > div,
+.svx-root.cs-root .cs-card,
+.svx-root.cs-root .cs-card-h,
+.svx-root.cs-root .cs-tiles > div,
+.svx-root.cs-root .cs-q > div,
+.svx-root.cs-root .cs-tri > div,
+.svx-root.cs-root .cs-flow,
+.svx-root.cs-root .cs-node,
+.svx-root.cs-root .cs-node em,
+.svx-root.cs-root .cs-flow-rule,
+.svx-root.cs-root .cs-hub,
+.svx-root.cs-root .cs-hub-h code,
+.svx-root.cs-root .cs-hub-row > div,
+.svx-root.cs-root .cs-cap-shell,
+.svx-root.cs-root .cs-tab,
+.svx-root.cs-root .cs-cap-list,
+.svx-root.cs-root .cs-cap-list li,
+.svx-root.cs-root .cs-cap-card,
+.svx-root.cs-root .cs-off,
+.svx-root.cs-root .cs-custom,
+.svx-root.cs-root .cs-off li > span,
+.svx-root.cs-root .cs-pillars-grid > div,
+.svx-root.cs-root .cs-ind,
+.svx-root.cs-root .cs-ind-h span,
+.svx-root.cs-root .cs-step,
+.svx-root.cs-root .cs-gov,
+.svx-root.cs-root .cs-gov-h span,
+.svx-root.cs-root .cs-gov > div:not(.cs-gov-h),
+.svx-root.cs-root .cs-why-list,
+.svx-root.cs-root .cs-release,
+.svx-root.cs-root .cs-release-h > span,
+.svx-root.cs-root .cs-rel > div,
+.svx-root.cs-root .cs-acc-i {
+  background: var(--cs-glass);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+.svx-root.cs-root .cs-steps > div.act,
+.svx-root.cs-root .cs-cap-card--hl,
+.svx-root.cs-root .cs-tag--grey,
+.svx-root.cs-root .cs-ver--soft,
+.svx-root.cs-root .cs-ver--grey {
+  background: var(--cs-glass);
+  border-color: rgba(103, 232, 249, 0.38);
+  box-shadow: none;
+}
+.svx-root.cs-root [class*="cs-screen"],
+.svx-root.cs-root [class*="cs-browser"],
+.svx-root.cs-root [class*="cs-tablet"],
+.svx-root.cs-root [class*="cs-win"],
+.svx-root.cs-root [class*="cs-float"],
+.svx-root.cs-root [class*="cs-intro-visual"],
+.svx-root.cs-root [class*="cs-kpis"],
+.svx-root.cs-root [class*="cs-bar"],
+.svx-root.cs-root [class*="cs-panel"],
+.svx-root.cs-root [class*="cs-chip"],
+.svx-root.cs-root [class*="cs-table"],
+.svx-root.cs-root [class*="cs-filter"],
+.svx-root.cs-root [class*="cs-dir"],
+.svx-root.cs-root [class*="cs-records"],
+.svx-root.cs-root [class*="cs-addr"],
+.svx-root.cs-root [class*="cs-subpanel"] {
+  --cs-ink: #0b1530;
+  --cs-body: #475569;
+  --cs-muted: #64748b;
+  --cs-line: #e2e8f0;
+  --cs-tint: #f4f7fb;
+  --cs-glass: #f4f7fb;
+  color: #0b1530;
+}
+
+/* Text colours remapped from the light theme to the home palette. */
+.svx-root.cs-root .ok:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #6ee7b7; }
+.svx-root.cs-root .warn:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #fcd34d; }
+.svx-root.cs-root .cs-h1:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-h2:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-h3:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-prose strong:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-related a:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-crumbs ol:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-crumbs [aria-current="page"]:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-eyebrow:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-pillars:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-side-foot span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-main-head strong:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-main-head small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-tiles small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-node small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-hub-row small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-hub-core small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-nodes small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-tri small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-final-step small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-final-kv small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-final-card-h small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-release-h small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-flow-h small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-logic small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-card-h small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-q small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-cap-card small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-ind-h small:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-steps > div:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-steps > div.act:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-steps b.ok:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #6ee7b7; }
+.svx-root.cs-root .cs-points h3:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-num:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-card-h > span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-track:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-svc-eyebrow:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-svc-n:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-checks:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-tiles b:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-tiles em:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-tiles em.ok:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #6ee7b7; }
+.svx-root.cs-root .cs-q b:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-tri b:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-flow-h strong:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-node em:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-node strong:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-node p:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-node footer span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-node footer b:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-flow-rule:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-hub-h:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-hub-h code:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-hub-row b:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-hub-row span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-tab:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-cap-list-t:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-cap-list li:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-cap-card strong:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-cap-card p:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-tag--grey:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-off h3:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-custom h3:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-off li:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-off li > span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-off-foot:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.62); }
+.svx-root.cs-root .cs-pillars-grid h4:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-ind-h span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-ind h3:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-step h3:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-gov-h strong:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-gov-h span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-gov > div:not(.cs-gov-h):not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-why-row > span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #67e8f9; }
+.svx-root.cs-root .cs-why-row h3:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-release-h strong:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-release-h > span:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #6ee7b7; }
+.svx-root.cs-root .cs-rel strong:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-rel p:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-ver--soft:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-ver--grey:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: rgba(255, 255, 255, 0.78); }
+.svx-root.cs-root .cs-acc-h button:not(:is([class*="cs-screen"], [class*="cs-browser"], [class*="cs-tablet"], [class*="cs-win"], [class*="cs-float"], [class*="cs-intro-visual"], [class*="cs-kpis"], [class*="cs-bar"], [class*="cs-panel"], [class*="cs-chip"], [class*="cs-table"], [class*="cs-filter"], [class*="cs-dir"], [class*="cs-records"], [class*="cs-addr"], [class*="cs-subpanel"], [class*="cs-screen"] *, [class*="cs-browser"] *, [class*="cs-tablet"] *, [class*="cs-win"] *, [class*="cs-float"] *, [class*="cs-intro-visual"] *, [class*="cs-kpis"] *, [class*="cs-bar"] *, [class*="cs-panel"] *, [class*="cs-chip"] *, [class*="cs-table"] *, [class*="cs-filter"] *, [class*="cs-dir"] *, [class*="cs-records"] *, [class*="cs-addr"] *, [class*="cs-subpanel"] *)) { color: #ffffff; }
+.svx-root.cs-root .cs-num,
+.svx-root.cs-root .cs-svc-n {
+  background: rgba(103, 232, 249, 0.12); border-color: rgba(103, 232, 249, 0.32); color: #67e8f9;
+}
+.svx-root.cs-root :is(b, em, td, span, i).mute { color: #64748b; }
+.svx-root.cs-root .cs-float--arch,
+.svx-root.cs-root .cs-float--arch *,
+.svx-root.cs-root .cs-win-bar,
+.svx-root.cs-root .cs-win-bar *,
+.svx-root.cs-root .cs-screen-h,
+.svx-root.cs-root .cs-screen-h * { color: #ffffff; }
+
+/* ------------------------------------------------------------------
+ * Unified card headings: weight 600, Inter, home-style tracking on every service page.
+ * ------------------------------------------------------------------ */
+.svx-root.cs-root h2,
+.svx-root.cs-root h3,
+.svx-root.cs-root h4 {
+  font-family: var(--font-inter, "Inter"), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: normal;
+}
