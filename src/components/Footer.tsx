@@ -18,6 +18,12 @@ const quickLinks = [
 ];
 
 const serviceLinks = [
+  { href: "/services/cloud-devops", label: "Cloud & DevOps" },
+  { href: "/services/saas-development", label: "SaaS Development" },
+  { href: "/services/ecommerce-development", label: "E-commerce Development" },
+  { href: "/services/crm-development", label: "CRM Development" },
+  { href: "/services/erp-solutions", label: "ERP Solutions" },
+  { href: "/services/management-systems", label: "Management Systems" },
   { href: "/services", label: "Website Development" },
   { href: "/services", label: "Software Development" },
   { href: "/services", label: "Mobile Apps" },

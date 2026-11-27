@@ -14,7 +14,7 @@ const links: NavLink[] = [
     href: "/services",
     label: "Services",
     submenu: [
-      { href: "/services/crm", label: "CRM Software" },
+      { href: "/services/crm-development", label: "CRM Software" },
       { href: "/services/website-development", label: "Website Development" },
       { href: "/services/software-development", label: "Software Development" },
       { href: "/services/mobile-app-development", label: "Mobile App Development" },

@@ -174,7 +174,7 @@ const serviceColumns: ServiceColumn[] = [
     title: "Business Solutions",
     items: [
       {
-        href: "/services/crm",
+        href: "/services/crm-development",
         label: "CRM Development",
         subItems: [
           "Custom CRM Development",
@@ -185,7 +185,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#erp-dev",
+        href: "/services/erp-solutions",
         label: "ERP Solutions",
         subItems: [
           "Custom ERP Development",
@@ -196,7 +196,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#lms-platforms",
+        href: "/services/management-systems",
         label: "Management Systems",
         subItems: [
           "Custom LMS Development",
@@ -207,7 +207,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#ecommerce-mgmt",
+        href: "/services/ecommerce-development",
         label: "E-commerce Development",
         subItems: [
           "Online Store Development",
@@ -218,8 +218,8 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#saas-platforms",
-        label: "SaaS Platforms",
+        href: "/services/saas-development",
+        label: "SaaS Development",
         subItems: [
           "Custom SaaS Development",
           "SaaS Product Development",
@@ -229,7 +229,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#cloud-devops",
+        href: "/services/cloud-devops",
         label: "Cloud & DevOps",
         subItems: [
           "Cloud Infrastructure",
@@ -281,7 +281,13 @@ const searchPages: { href: string; title: string; keywords: string }[] = [
   { href: "/", title: "Home", keywords: "home royaltech" },
   { href: "/about", title: "About Us", keywords: "about company team" },
   { href: "/services", title: "Services", keywords: "services what we do" },
-  { href: "/services/crm", title: "CRM Software", keywords: "crm software leads" },
+  { href: "/services/crm-development", title: "CRM Development", keywords: "crm software customer relationship management leads sales pipeline" },
+  { href: "/services/cloud-devops", title: "Cloud & DevOps", keywords: "cloud devops infrastructure migration cicd server management" },
+  { href: "/services/saas-development", title: "SaaS Development", keywords: "saas software product subscription multi-tenant integration custom platform" },
+  { href: "/services/ecommerce-development", title: "E-commerce Development", keywords: "ecommerce online store marketplace shopping cart payment gateway b2b b2c shopify woocommerce" },
+  { href: "/services/management-systems", title: "Management Systems", keywords: "management systems lms learning student course training education software examination" },
+  { href: "/services/erp-solutions", title: "ERP Solutions", keywords: "erp inventory hr finance supply chain management" },
+  { href: "/services#ecommerce-mgmt", title: "E-commerce Management", keywords: "ecommerce management store inventory orders fulfillment" },
   { href: "/services/website-development", title: "Website Development", keywords: "website web design" },
   { href: "/services/software-development", title: "Software Development", keywords: "software custom" },
   { href: "/services/mobile-app-development", title: "Mobile App Development", keywords: "mobile app android ios" },

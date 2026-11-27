@@ -458,10 +458,11 @@ export default function ServicesShowcase({ rootClass = "" }: { rootClass?: strin
       current.includes(index) ? current.filter((i) => i !== index) : [...current, index],
     );
 
-  // Header / footer links such as /services#web-dev: show every card, scroll to the one asked for and flash it.
-  // Next.js changes the hash without a scroll event when we are already on this page, so this handles it ourselves.
+  // Header / footer links such as /services#web-dev: show every card, scroll to it, flash it and open its details.
+  // Next.js can change the hash without a scroll event, so this handles anchors on this page ourselves.
   useEffect(() => {
     let flashTimer: number | undefined;
+    const serviceIds = new Set(SERVICES.map((service) => service.id));
 
     const goTo = (id: string) => {
       setFilter("all");
@@ -469,13 +470,15 @@ export default function ServicesShowcase({ rootClass = "" }: { rootClass?: strin
       setActiveId(null);
       window.setTimeout(() => {
         const el = document.getElementById(id);
-        if (!el) return;
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        el.classList.remove("svx-flash");
-        void el.offsetWidth;
-        el.classList.add("svx-flash");
-        window.clearTimeout(flashTimer);
-        flashTimer = window.setTimeout(() => el.classList.remove("svx-flash"), 2200);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          el.classList.remove("svx-flash");
+          void el.offsetWidth;
+          el.classList.add("svx-flash");
+          window.clearTimeout(flashTimer);
+          flashTimer = window.setTimeout(() => el.classList.remove("svx-flash"), 2200);
+        }
+        if (serviceIds.has(id)) setActiveId(id);
       }, 60);
     };
 
@@ -489,22 +492,25 @@ export default function ServicesShowcase({ rootClass = "" }: { rootClass?: strin
       const anchor = (event.target as Element | null)?.closest?.("a[href]");
       const id = anchor ? idFromHref(anchor.getAttribute("href") ?? "") : null;
       if (!anchor || !id) return;
+      // Keep the event flowing so the header can close its mega menu before we scroll.
       event.preventDefault();
-      event.stopPropagation();
       window.history.pushState(null, "", `/services#${id}`);
       goTo(id);
     };
 
-    const onPopState = () => {
+    const onHashChange = () => {
       const id = window.location.hash.slice(1);
       if (id) goTo(decodeURIComponent(id));
     };
 
     document.addEventListener("click", onClick, true);
-    window.addEventListener("popstate", onPopState);
+    window.addEventListener("popstate", onHashChange);
+    window.addEventListener("hashchange", onHashChange);
+    onHashChange();
     return () => {
       document.removeEventListener("click", onClick, true);
-      window.removeEventListener("popstate", onPopState);
+      window.removeEventListener("popstate", onHashChange);
+      window.removeEventListener("hashchange", onHashChange);
       window.clearTimeout(flashTimer);
     };
   }, []);

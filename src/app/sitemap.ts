@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const base = "https://royaltechinnovation.com";
+const base = "https://www.royaltechinnovation.co.in";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -8,6 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/services",
+    "/services/cloud-devops",
+    "/services/crm-development",
+    "/services/saas-development",
+    "/services/ecommerce-development",
+    "/services/erp-solutions",
+    "/services/management-systems",
     "/portfolio",
     "/careers",
     "/process",

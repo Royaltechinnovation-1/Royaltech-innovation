@@ -147,7 +147,7 @@ const services = [
       "Customer interaction management and communication tracking",
       "Real-time CRM analytics, reporting, and workflow automation",
     ],
-    link: "/services/crm",
+    link: "/services/crm-development",
     ctaText: "Explore CRM Software",
   },
 ];

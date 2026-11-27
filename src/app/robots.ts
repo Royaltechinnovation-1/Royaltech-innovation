@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/dashboard", "/login", "/api/"],
     },
-    sitemap: "https://royaltechinnovation.com/sitemap.xml",
-    host: "https://royaltechinnovation.com",
+    sitemap: "https://www.royaltechinnovation.co.in/sitemap.xml",
+    host: "https://www.royaltechinnovation.co.in",
   };
 }
