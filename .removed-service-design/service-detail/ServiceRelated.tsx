@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Globe, Code, Smartphone, BarChart3, Palette, Headphones } from "lucide-react";
-import { getRelatedServices } from "@/data/services-data";
+import { getRelatedServices, serviceImageBySlug } from "@/data/services-data";
 
 interface ServiceRelatedProps {
   currentSlug: string;
@@ -55,6 +56,23 @@ export default function ServiceRelated({
                 href={`/services/${service.slug}`}
                 className="hover-lift group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-8"
               >
+                {/* Photo header */}
+                {serviceImageBySlug[service.slug] && (
+                  <div className="relative -mx-8 -mt-8 mb-6 h-44 overflow-hidden">
+                    <Image
+                      src={serviceImageBySlug[service.slug]}
+                      alt={`${service.title} service`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{ background: "linear-gradient(to top, var(--card) 0%, transparent 100%)" }}
+                    />
+                  </div>
+                )}
+
                 {/* Expanding background on hover */}
                 <span className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-accent/0 transition-all duration-500 group-hover:scale-[3] group-hover:bg-secondary pointer-events-none" />
 

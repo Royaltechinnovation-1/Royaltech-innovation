@@ -1,6 +1,7 @@
 "use client";
 
 import { OpenFormButton, useFormModal } from "@/components/FormModal";
+import "@/styles/field-shine.css";
 import { submitLead } from "@/lib/submitLead";
 import Image from "next/image";
 import Link from "next/link";
@@ -321,12 +322,23 @@ export default function ContactPageContent() {
       </section>
 
       <section className="cu-book" id="booking" aria-label="Book a session">
-        <span>Let&apos;s Work Together</span>
-        <h2>Book a Session with Our Experts!</h2>
-        <p>
-          Have an idea, a website, or a problem you want to solve? Book a first conversation and we will walk through scope, timeline, and a practical way to start. There is no charge for that session.
-        </p>
-        <Link href="tel:+918679016505">Call now →</Link>
+        <figure className="cu-book-art">
+          <Image
+            src="https://res.cloudinary.com/ugqc5gb8/image/upload/v1795729624/Untitled_Design.png"
+            alt="Friendly RoyalTech guide pointing to Contact Us, Email, Call and Live Chat options"
+            width={1500}
+            height={1000}
+            sizes="(max-width: 900px) 80vw, 46vw"
+          />
+        </figure>
+        <div className="cu-book-text">
+          <span>Let&apos;s Work Together</span>
+          <h2>Book a Session with Our Experts!</h2>
+          <p>
+            Have an idea, a website, or a problem you want to solve? Book a first conversation and we will walk through scope, timeline, and a practical way to start. There is no charge for that session.
+          </p>
+          <Link href="tel:+918679016505">Call now →</Link>
+        </div>
       </section>
     </div>
   );

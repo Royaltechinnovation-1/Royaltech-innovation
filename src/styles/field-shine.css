@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Field shine: when a visitor clicks into a form field, the box lights up
+   with a sheen sweep and a glowing border, to invite them to fill it in.
+   Applies to the contact page fields (.cu-box) and the shared quote /
+   consultation popup fields (.fm-field). Motion is skipped for users who
+   prefer reduced motion.
+   ========================================================================== */
+
+/* ---------- Contact page field boxes (.cu-box) ---------- */
+.cu-box {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cu-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(103, 232, 249, 0.28) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.cu-box:focus-within {
+  border-color: rgba(103, 232, 249, 0.7);
+  box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.12), 0 0 26px rgba(103, 232, 249, 0.18);
+}
+
+.cu-box:focus-within::after {
+  opacity: 1;
+  animation: field-shine-sweep 1.1s ease-out 1;
+}
+
+/* Once a valid value is typed, keep a steady highlight so it reads as "done". */
+.cu-box:has(:is(input, textarea):valid) {
+  border-color: rgba(103, 232, 249, 0.35);
+}
+
+/* ---------- Popup / quote form field boxes (.fm-field) ---------- */
+.fm-field input,
+.fm-field select,
+.fm-field textarea {
+  background-image: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(103, 232, 249, 0.35) 50%,
+    transparent 65%
+  );
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  background-position: 120% 0;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fm-field input:focus,
+.fm-field select:focus,
+.fm-field textarea:focus {
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18), 0 0 22px rgba(103, 232, 249, 0.3);
+  animation: field-shine-bg 1.1s ease-out 1;
+}
+
+/* ---------- Shared keyframes ---------- */
+@keyframes field-shine-sweep {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes field-shine-bg {
+  from {
+    background-position: 120% 0;
+  }
+  to {
+    background-position: -20% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cu-box::after,
+  .cu-box:focus-within::after,
+  .fm-field input:focus,
+  .fm-field select:focus,
+  .fm-field textarea:focus {
+    animation: none;
+  }
+}

@@ -891,3 +891,10 @@
     animation: none;
   }
 }
+
+/* After a click on "Services" the page opens without the hover drop-down covering it. */
+.sh-dd.is-suppressed .sh-mega {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

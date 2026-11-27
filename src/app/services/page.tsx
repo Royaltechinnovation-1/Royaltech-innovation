@@ -2,9 +2,13 @@
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import ServicesPageContent from "@/components/ServicesPageContent";
+import ServicesShowcase from "@/components/ServicesShowcase";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "@/styles/home-theme.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
   title: "IT Services & Software Solutions | RoyalTech Innovation",
@@ -48,11 +52,15 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <Header />
+      <div className="home-theme">
+        <Header />
+      </div>
       <main>
-        <ServicesPageContent />
+        <ServicesShowcase rootClass={inter.variable} />
       </main>
-      <Footer />
+      <div className="home-theme">
+        <Footer />
+      </div>
       <BackToTop />
       <WhatsAppButton />
     </>

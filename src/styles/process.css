@@ -114,11 +114,12 @@
 .opx-hero {
   position: relative;
   isolation: isolate;
-  min-height: clamp(30rem, 78vh, 42rem);
+  min-height: min(92svh, 48rem);
   display: flex;
-  align-items: center;
-  padding: clamp(6.5rem, 12vw, 8rem) 0 clamp(3rem, 7vw, 4.5rem);
+  align-items: flex-end;
+  padding: clamp(6.5rem, 12vw, 8rem) 0 clamp(4rem, 8vw, 6.5rem);
   overflow: hidden;
+  color: #fff;
   background: var(--opx-soft-warm);
 }
 
@@ -133,20 +134,54 @@
   object-position: center right;
 }
 
+/* Same shading as the services hero: dark on the text side, the photo shows through on the right. */
 .opx-hero-bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
     linear-gradient(
-      90deg,
-      rgba(2, 6, 23, 0.94) 0%,
-      rgba(2, 6, 23, 0.78) 34%,
-      rgba(2, 6, 23, 0.32) 56%,
-      rgba(2, 6, 23, 0.1) 72%,
-      transparent 100%
-    );
+      100deg,
+      rgba(2, 6, 23, 0.9) 0%,
+      rgba(2, 6, 23, 0.6) 46%,
+      rgba(2, 6, 23, 0.22) 78%
+    ),
+    linear-gradient(0deg, rgba(2, 6, 23, 0.5) 0%, transparent 48%);
   pointer-events: none;
+}
+
+.opx-hero-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.75rem);
+  margin-top: 2.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  max-width: min(56rem, 100%);
+}
+
+.opx-hero-feature {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.opx-hero-feature span {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(103, 232, 249, 0.2);
+  color: var(--opx-lime);
+}
+
+.opx-hero-feature strong {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 650;
+  color: #f1f5f9;
 }
 
 .opx-hero-grid {
@@ -161,7 +196,7 @@
 .opx-hero-copy h1 {
   margin: 0;
   font-family: var(--font-display), Outfit, sans-serif;
-  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  font-size: clamp(2.3rem, 5.4vw, 3.8rem);
   font-weight: 750;
   letter-spacing: -0.035em;
   line-height: 1.12;
@@ -443,18 +478,6 @@
   gap: clamp(1.6rem, 4vw, 2.4rem);
 }
 
-.op-timeline::before {
-  content: "";
-  position: absolute;
-  top: 2rem;
-  bottom: 2rem;
-  left: 50%;
-  width: 0;
-  border-left: 2px dashed rgba(255, 255, 255, 0.22);
-  transform: translateX(-50%);
-  z-index: 0;
-}
-
 .op-flow-step {
   position: relative;
   z-index: 1;
@@ -613,115 +636,129 @@
   background: var(--opx-soft-warm);
 }
 
-.opx-ind-panel {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.3fr) minmax(0, 0.85fr);
-  gap: 1rem;
-  align-items: center;
-}
-
-.opx-ind-list {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.opx-ind-media {
+/* Industry pictures that glide from left to right in a loop. */
+.opx-marquee {
+  --opx-tile-gap: clamp(0.8rem, 1.4vw, 1.25rem);
   position: relative;
-  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  padding: 0.4rem 0 1.2rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+.opx-marquee-track {
+  display: flex;
+  gap: var(--opx-tile-gap);
+  width: max-content;
+  margin: 0;
+  /* The trailing space makes half the track exactly one full list, so the loop has no jump. */
+  padding: 0 var(--opx-tile-gap) 0 0;
+  list-style: none;
+  animation: opx-marquee-ltr var(--opx-marquee-time, 70s) linear infinite;
+  will-change: transform;
+}
+
+.opx-marquee:hover .opx-marquee-track,
+.opx-marquee:focus-within .opx-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes opx-marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.opx-ind-tile {
+  position: relative;
+  display: block;
+  width: clamp(14rem, 21vw, 19rem);
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 1.35rem;
   background: var(--opx-soft);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(103, 232, 249, 0.22);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+  color: #fff;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.opx-ind-media img {
+.opx-ind-tile img {
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.opx-ind-card {
+.opx-ind-tile-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(2, 6, 23, 0.88) 0%, rgba(2, 6, 23, 0.1) 46%, transparent 70%);
+}
+
+.opx-ind-tile strong {
+  position: absolute;
+  left: 1.1rem;
+  right: 3.6rem;
+  bottom: 1.05rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.opx-ind-tile-arrow {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.85rem;
+  width: 2.1rem;
+  height: 2.1rem;
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.75rem 0.95rem 0.75rem 0.75rem;
-  border-radius: 1rem;
-  background: var(--opx-soft);
-  border: 1px solid transparent;
-  color: var(--opx-ink);
-  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease,
-    box-shadow 0.2s ease;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--opx-lime);
+  color: #020617;
+  font-weight: 700;
+  transition: transform 0.25s ease;
 }
 
-.opx-ind-card:hover {
-  background: #0f172a;
-  border-color: rgba(103, 232, 249, 0.35);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+.opx-ind-tile:hover,
+.opx-ind-tile:focus-visible {
+  border-color: rgba(103, 232, 249, 0.7);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), 0 0 28px rgba(34, 211, 238, 0.22);
 }
 
-.opx-ind-thumb {
-  width: 3.25rem;
-  height: 3.25rem;
-  overflow: hidden;
-  border-radius: 0.8rem;
-  background: #0f172a;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+.opx-ind-tile:hover img {
+  transform: scale(1.06);
 }
 
-.opx-ind-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.opx-ind-tile:hover .opx-ind-tile-arrow {
+  transform: translateX(3px);
 }
 
-.opx-ind-card strong {
-  font-size: 1rem;
+/* People who prefer less motion get a plain row they can scroll by hand. */
+@media (prefers-reduced-motion: reduce) {
+  .opx-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .opx-marquee-track {
+    animation: none;
+  }
 }
 
-.opx-ind-card > span:last-child {
-  color: var(--opx-lime);
-  font-size: 1.1rem;
-}
-
-/* Technology stack */
+/* Technology stack: two rows of real logos gliding in opposite directions. */
 .opx-tech {
   position: relative;
-  isolation: isolate;
   padding: clamp(3.5rem, 8vw, 5.5rem) 0;
   overflow: hidden;
   color: #fff;
-  background: #020617;
-}
-
-.opx-tech-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.opx-tech-bg img {
-  object-fit: cover;
-  object-position: center bottom;
-}
-
-.opx-tech-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
   background:
-    linear-gradient(
-      180deg,
-      rgba(2, 6, 23, 0.55) 0%,
-      rgba(2, 6, 23, 0.42) 45%,
-      rgba(2, 6, 23, 0.58) 100%
-    );
-  pointer-events: none;
-}
-
-.opx-tech-inner {
-  position: relative;
-  z-index: 1;
+    radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.12), transparent 62%),
+    var(--opx-soft);
 }
 
 .opx-tech-head h2,
@@ -733,44 +770,63 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
-.opx-tech-grid {
+.opx-tech-rows {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: clamp(0.8rem, 1.4vw, 1.25rem);
 }
 
-.opx-tech-card {
-  padding: 1.2rem 1.15rem 1.3rem;
-  border-radius: 1.15rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+.opx-tech-rows .opx-marquee {
+  padding: 0.3rem 0;
 }
 
-.opx-tech-card h3 {
-  margin: 0 0 0.9rem;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
-  color: #e2e8f0;
+/* The second row glides the other way. */
+.opx-marquee-rtl .opx-marquee-track {
+  animation-name: opx-marquee-rtl;
 }
 
-.opx-tech-tags {
+@keyframes opx-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.opx-tech-tile {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: clamp(6.6rem, 8.6vw, 8rem);
+  height: clamp(6.4rem, 8vw, 7.4rem);
+  padding: 0.7rem 0.45rem;
+  border-radius: 1.1rem;
+  /* Light tiles, so dark logos (Next.js, Express, Vercel) stay visible on the navy page. */
+  background: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.opx-tech-tags span {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.38rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(103, 232, 249, 0.14);
-  border: 1px solid rgba(103, 232, 249, 0.28);
-  color: #0b1220;
+.opx-tech-tile svg {
+  flex: none;
+  width: clamp(2rem, 2.8vw, 2.6rem);
+  height: clamp(2rem, 2.8vw, 2.6rem);
+}
+
+.opx-tech-tile span {
+  color: #0f172a;
   font-size: 0.78rem;
   font-weight: 650;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.opx-tech-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4), 0 0 24px rgba(34, 211, 238, 0.25);
 }
 
 /* CTA */
@@ -793,11 +849,36 @@
 }
 
 .opx-cta-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.opx-cta-media {
   display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: space-between;
-  gap: 1.5rem;
+  justify-content: flex-end;
+}
+
+.opx-cta-media img {
+  width: 100%;
+  max-width: 40rem;
+  height: auto;
+  filter: drop-shadow(0 24px 48px rgba(34, 211, 238, 0.18));
+}
+
+@media (max-width: 900px) {
+  .opx-cta-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .opx-cta-media {
+    justify-content: center;
+  }
+
+  .opx-cta-media img {
+    max-width: 30rem;
+  }
 }
 
 .opx-cta-inner h2 {
@@ -820,6 +901,7 @@
 .opx-cta-actions {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 1.5rem;
   gap: 0.7rem;
 }
 
@@ -861,28 +943,14 @@
 
   .opx-hero-grid,
   .opx-dash-split,
-  .opx-why-grid,
-  .opx-ind-panel,
-  .opx-tech-grid {
+  .opx-why-grid {
     grid-template-columns: 1fr;
-  }
-
-  .opx-ind-media {
-    order: -1;
-    max-width: 32rem;
-    margin-inline: auto;
-    width: 100%;
   }
 
   .opx-float {
     position: static;
     margin-top: 0.9rem;
     width: fit-content;
-  }
-
-  .op-timeline::before {
-    left: 1.1rem;
-    transform: none;
   }
 
   .op-flow-step,
@@ -909,16 +977,14 @@
     order: 2 !important;
     grid-column: 2;
   }
-    .opx-ind-list{
-    grid-template-columns: repeat(3,1fr);
-  }
 }
 
 @media (max-width: 640px) {
   .opx {
     --opx-wide: min(100% - 1.5rem, 1120px);
   }
-    .opx-ind-list{
+
+  .opx-hero-features {
     grid-template-columns: 1fr;
   }
 
@@ -942,16 +1008,6 @@
 
   .opx-why-grid {
     grid-template-columns: 1fr;
-  }
-
-  .opx-tech-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1100px) {
-  .opx-tech-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

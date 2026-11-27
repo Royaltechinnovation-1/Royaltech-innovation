@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Globe, Code, Smartphone, BarChart3, Palette, Headphones } from "lucide-react";
 import { useFormModal } from "@/components/FormModal";
-import type { ServiceStat } from "@/data/services-data";
+import { serviceImageBySlug, type ServiceStat } from "@/data/services-data";
 
 interface ServiceHeroProps {
   slug: string;
@@ -27,6 +28,7 @@ export default function ServiceHero({
   iconSlug = "web",
 }: ServiceHeroProps) {
   const { openForm } = useFormModal();
+  const bgImage = serviceImageBySlug[slug];
 
   const renderIcon = () => {
     switch (iconSlug) {
@@ -49,6 +51,28 @@ export default function ServiceHero({
     <section className="service-hero-section relative overflow-hidden bg-deep-gradient pb-24 pt-44 text-deep-foreground">
       {/* Background Grids & Glow */}
       <div className="grid-lines absolute inset-0 pointer-events-none" />
+
+      {/* Photo background with dark overlay for legibility */}
+      {bgImage && (
+        <>
+          <Image
+            src={bgImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover pointer-events-none"
+            style={{ opacity: 0.4 }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to right, color-mix(in oklab, var(--deep) 96%, transparent) 0%, color-mix(in oklab, var(--deep) 85%, transparent) 50%, color-mix(in oklab, var(--deep) 55%, transparent) 100%)",
+            }}
+          />
+        </>
+      )}
       <div className="absolute -left-32 top-40 h-96 w-96 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-[1.2fr_1fr]">

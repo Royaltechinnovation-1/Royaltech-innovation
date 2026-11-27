@@ -1,0 +1,91 @@
+/* ==========================================================================
+   Services pages: home-page colour emotion.
+
+   The home page uses a deep navy ink background (#050b17), cyan (#67e8f9)
+   accents and soft glass panels. This file re-maps the services palette
+   (services list page + service detail pages) to those same colours.
+   Layout, typography and motion are unchanged - only colour tokens move.
+   Loaded after services.css / service-detail.css so it wins the cascade.
+   ========================================================================== */
+
+/* ---------- Services list page (.svc-page) ---------- */
+.svc-page {
+  --svc-forest: #050b17;
+  --svc-forest-mid: #67e8f9;
+  --svc-forest-deep: #020617;
+  --svc-card: #0b1424;
+  --svc-olive-badge: #22d3ee;
+  --svc-lime: #67e8f9;
+  --svc-lime-soft: #a5f3fc;
+  --svc-lime-glow: #cffafe;
+  --svc-ink: #e6f7fb;
+  --svc-muted: #94a3b8;
+  --svc-line: rgba(103, 232, 249, 0.16);
+  --svc-soft: #050b17;
+  --svc-soft-warm: #0a1424;
+  --svc-team-tone: #22d3ee;
+  background: #050b17;
+  color: #e6f7fb;
+}
+
+/* Hard-coded light/forest surfaces in services.css that the variables above do not reach. */
+.svc-page .svc-approach {
+  background: #050b17;
+}
+
+.svc-page .svc-offer-stack-front {
+  background: #0b1424;
+}
+
+.svc-page .svc-offer-copy li {
+  color: #cbd5e1;
+}
+
+.svc-page .svc-btn-lime,
+.svc-page .svc-btn-lime:hover {
+  color: #0b1220;
+}
+
+.svc-page .svc-btn-forest {
+  background: #0e1f38;
+  border-color: rgba(103, 232, 249, 0.4);
+  color: #e6f7fb;
+}
+
+.svc-page .svc-btn-forest:hover {
+  background: #123050;
+  border-color: #67e8f9;
+  color: #67e8f9;
+}
+
+/* ---------- Service detail pages (.service-detail-page) ---------- */
+.service-detail-page {
+  --background: #050b17;
+  --foreground: #e6f7fb;
+  --card: #0b1424;
+  --card-foreground: #e6f7fb;
+  --popover: #0b1424;
+  --popover-foreground: #e6f7fb;
+  --primary: #67e8f9;
+  --primary-foreground: #0b1220;
+  --secondary: #0f1d33;
+  --secondary-foreground: #e6f7fb;
+  --muted: #0d1628;
+  --muted-foreground: #94a3b8;
+  --accent: #67e8f9;
+  --accent-foreground: #0b1220;
+  --border: rgba(103, 232, 249, 0.16);
+  --input: rgba(103, 232, 249, 0.16);
+  --ring: #22d3ee;
+  --deep: #050b17;
+  --deep-foreground: #e6f7fb;
+  --gradient-deep:
+    radial-gradient(ellipse at 20% 0%, rgba(103, 232, 249, 0.14), transparent 60%),
+    radial-gradient(ellipse at 90% 100%, rgba(56, 189, 248, 0.10), transparent 55%),
+    #050b17;
+  --gradient-accent: linear-gradient(120deg, #67e8f9, #22d3ee);
+  --shadow-glow: 0 20px 50px -20px rgba(103, 232, 249, 0.45);
+  --shadow-card: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  background: #050b17;
+  color: #e6f7fb;
+}

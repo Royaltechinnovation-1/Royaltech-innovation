@@ -9,7 +9,18 @@ import { submitLead } from "@/lib/submitLead";
 import Link from "next/link";
 
 import { FormEvent, useState } from "react";
+import "@/styles/about-consult.css";
+import Image from "next/image";
+import {
+  COUNTRY_CODES,
+  DEFAULT_COUNTRY_ISO,
+  cleanNationalNumber,
+} from "@/lib/countryCodes";
 // import "./AboutConsult.validation.css";
+
+/* Blue office banner behind the "Book a Session" card. */
+const SESSION_BG_URL =
+  "https://res.cloudinary.com/ugqc5gb8/image/upload/v1795733468/Modern_Blue_Office_with_Laptop_and_Plant.png";
 
 
 
@@ -20,6 +31,11 @@ export default function AboutConsult() {
   const [sending, setSending] = useState(false);
 
   const [error, setError] = useState("");
+
+  const [countryIso, setCountryIso] = useState(DEFAULT_COUNTRY_ISO);
+  const country =
+    COUNTRY_CODES.find((item) => item.iso === countryIso) ??
+    COUNTRY_CODES.find((item) => item.iso === DEFAULT_COUNTRY_ISO)!;
 
 
 
@@ -76,7 +92,7 @@ export default function AboutConsult() {
 
         email: String(data.get("email") || ""),
 
-        phone: String(data.get("phone") || ""),
+        phone: `${country.dial} ${String(data.get("phone") || "").trim()}`,
 
         message: String(data.get("project") || ""),
 
@@ -85,6 +101,7 @@ export default function AboutConsult() {
       });
 
       form.reset();
+      setCountryIso(DEFAULT_COUNTRY_ISO);
 
       showThanks();
 
@@ -120,15 +137,15 @@ export default function AboutConsult() {
 
           <div className="ax-heading">
 
-            <p>Let's bring your ideas to life!</p>
+            <p>Let&apos;s bring your ideas to life!</p>
 
-            <h2>Let's Create, Innovate, and Lead!</h2>
+            <h2>Let&apos;s Create, Innovate, and Lead!</h2>
 
             <p className="ax-lead">
 
-              Every great project starts with a simple conversation. Let's
+              Every great project starts with a simple conversation. Let&apos;s
 
-              bring your ideas to life! Your next big success starts here—let's
+              bring your ideas to life! Your next big success starts here—let&apos;s
 
               talk! Simply drop us a message, and our experts will reach out to
 
@@ -210,7 +227,7 @@ export default function AboutConsult() {
 
                   Contact number
 
-                  <span className="ax-field">
+                  <span className="ax-field ax-phone-field">
 
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
 
@@ -218,7 +235,41 @@ export default function AboutConsult() {
 
                     </svg>
 
-                    <input name="phone" type="tel" autoComplete="tel" inputMode="numeric" maxLength={10} pattern="[6-9][0-9]{9}" title="Enter a valid 10-digit Indian mobile number." placeholder="e.g. 9876543210" required />
+                    <select
+                      className="ax-cc"
+                      name="countryCode"
+                      aria-label="Country code"
+                      value={countryIso}
+                      onChange={(event) => setCountryIso(event.target.value)}
+                    >
+                      {COUNTRY_CODES.map((item) => (
+                        <option key={item.iso} value={item.iso}>
+                          {item.flag} {item.dial} {item.name}
+                        </option>
+                      ))}
+                    </select>
+
+                    <span className="ax-phone-divider" aria-hidden="true" />
+
+                    <input
+                      className="ax-phone-input"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel-national"
+                      inputMode="numeric"
+                      aria-label="Phone number"
+                      pattern={country.pattern}
+                      title={
+                        country.example
+                          ? `Enter a valid ${country.name} number, e.g. ${country.example}`
+                          : `Enter a valid ${country.name} phone number (digits only)`
+                      }
+                      placeholder={country.example ?? "Phone number"}
+                      onInput={(event) => {
+                        event.currentTarget.value = cleanNationalNumber(event.currentTarget.value, country);
+                      }}
+                      required
+                    />
 
                   </span>
 
@@ -272,7 +323,7 @@ export default function AboutConsult() {
 
                     By checking Submit, you confirm your agreement to
 
-                    RoyalTech's{" "}
+                    RoyalTech&apos;s{" "}
 
                     <Link href="/terms">Terms of Use</Link> and{" "}
 
@@ -430,7 +481,7 @@ export default function AboutConsult() {
 
                   </span>
 
-                  <strong>We'll respond within 24 hours.</strong>
+                  <strong>We&apos;ll respond within 24 hours.</strong>
 
                 </li>
 
@@ -484,7 +535,7 @@ export default function AboutConsult() {
 
                   </span>
 
-                  We'll prepare estimates and share a project proposal.
+                  We&apos;ll prepare estimates and share a project proposal.
 
                 </li>
 
@@ -504,15 +555,25 @@ export default function AboutConsult() {
 
         <div className="ax-session-card">
 
+          <Image
+            className="ax-session-bg"
+            src={SESSION_BG_URL}
+            alt=""
+            fill
+            sizes="(max-width: 1400px) 100vw, 1400px"
+          />
+
           <div className="ax-session-copy-col">
 
             <p className="ax-session-label">Free Consultation</p>
 
-            <h2>Book a Session with Our Experts!</h2>
+            <h2>
+              Book a Session with <span className="ax-session-accent">Our Experts!</span>
+            </h2>
 
             <p className="ax-session-copy">
 
-              Have a project in mind? Let's discuss your goals and find the
+              Have a project in mind? Let&apos;s discuss your goals and find the
 
               right solution together.
 

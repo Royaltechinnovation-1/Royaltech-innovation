@@ -1,5 +1,6 @@
 "use client";
 
+import "@/styles/field-shine.css";
 import { submitLead } from "@/lib/submitLead";
 import Link from "next/link";
 import {

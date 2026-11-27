@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Booking strip ("Book a Session with Our Experts!") on the contact page.
+   Desktop: picture on the left, text on the right.
+   Tablet and phone: picture stacks above a centred text block.
+   ========================================================================== */
+
+.cu-book {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3.5vw, 4rem);
+  text-align: left;
+}
+
+.cu-book-art {
+  margin: 0;
+  min-width: 0;
+}
+
+.cu-book-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.cu-book-text {
+  min-width: 0;
+}
+
+/* The base rule keeps the heading on one line; in a column it must wrap. */
+.cu-book-text h2 {
+  white-space: normal;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.cu-book-text p {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ---------- Tablet and below: stack, centred ---------- */
+@media (max-width: 900px) {
+  .cu-book {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .cu-book-art img {
+    max-width: min(100%, 420px);
+  }
+
+  .cu-book-text h2,
+  .cu-book-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ---------- Phones: a little tighter ---------- */
+@media (max-width: 640px) {
+  .cu-book-art img {
+    max-width: min(100%, 300px);
+  }
+}

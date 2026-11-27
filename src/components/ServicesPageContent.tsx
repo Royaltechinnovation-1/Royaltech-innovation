@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "@/styles/home.css";
 import "@/styles/services.css";
+import "@/styles/services-theme.css";
 
 const heroFeatures = [
   {
@@ -36,7 +37,7 @@ const services = [
       "Responsive, accessible builds with speed optimisation",
       "CMS setup, forms, analytics, and ongoing website care",
     ],
-    link: "#",
+    link: "/services/website-development",
     ctaText: "Explore Website Development",
   },
   {
@@ -54,7 +55,7 @@ const services = [
       "Workflow automation, APIs, and third-party integrations",
       "Secure architecture, dashboards, and role-based access",
     ],
-    link: "#",
+    link: "/services/software-development",
     ctaText: "Explore Software Development",
   },
   {
@@ -72,7 +73,7 @@ const services = [
       "Secure API integrations with web and backend systems",
       "App Store / Play Store readiness and post-launch updates",
     ],
-    link: "#",
+    link: "/services/mobile-app-development",
     ctaText: "Explore App Development",
   },
   {
@@ -90,7 +91,7 @@ const services = [
       "Google Ads, Meta Ads, and PPC campaign management",
       "Social media, creatives, and lead-generation funnels",
     ],
-    link: "#",
+    link: "/services/digital-marketing",
     ctaText: "Explore Digital Marketing",
   },
   {
@@ -108,7 +109,7 @@ const services = [
       "Brand identity, logos, and marketing creatives",
       "Posters, social creatives, and campaign visual assets",
     ],
-    link: "#",
+    link: "/services/ui-ux-design",
     ctaText: "Explore UI/UX Design",
   },
   {
@@ -127,7 +128,7 @@ const services = [
       "Scalable architecture and security planning",
       "Delivery planning, risk review, and growth priorities",
     ],
-    link: "#",
+    link: "/services/it-consulting",
     ctaText: "Explore IT Consulting",
   },
   {

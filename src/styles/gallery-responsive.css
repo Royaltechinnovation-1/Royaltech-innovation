@@ -1,0 +1,492 @@
+/* ==========================================================================
+   Gallery page: fluid, screen-size-adaptive layout.
+
+   - Wide screens: the content grows to 2600px and the photo grid goes to
+     four columns (five on very wide monitors), instead of stopping at
+     1400px with three columns.
+   - Tablets: two columns.
+   - Phones: one column, smaller type, tighter spacing, and a hero that
+     sizes to its content instead of the full viewport.
+   Loaded after gallery.css so these rules win the cascade.
+   ========================================================================== */
+
+.gal {
+  --gal-gutter: clamp(1rem, 3.2vw, 4.5rem);
+}
+
+.gal .gal-shell,
+.gal .gal-hero-grid {
+  width: min(100% - (2 * var(--gal-gutter)), 2600px);
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.gal-hero-copy h1 {
+  font-size: clamp(2.1rem, 4.2vw, 4.6rem);
+}
+
+.gal-hero-copy > p {
+  font-size: clamp(0.95rem, 1.05vw, 1.25rem);
+  max-width: 36rem;
+}
+
+.gal-hero-copy {
+  max-width: none;
+}
+
+.gal-cta-inner h2 {
+  font-size: clamp(1.5rem, 2.4vw, 3rem);
+}
+
+.gal-cta-inner > div > p,
+.gal-crumb,
+.gal-filter,
+.gal-hero-btn,
+.gal-cta-btn {
+  font-size: clamp(0.82rem, 0.85vw, 1.05rem);
+}
+
+/* Mosaic like the gallery reference: one tall photo, a wide photo beside it,
+   a portrait, then a wide band, then a mixed bottom row. The pattern repeats. */
+.gal-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.gal-bar .gal-crumb {
+  margin-bottom: 0;
+}
+
+.gal-bar .gal-filters {
+  margin-bottom: 0;
+  justify-content: center;
+}
+
+.gal-count {
+  margin: 0;
+  justify-self: end;
+  color: var(--gal-muted);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.gal-filter.is-active {
+  background: #67e8f9;
+  color: #041018;
+}
+
+/* Masonry by image size: each tile's height follows its photo's shape
+   (set inline from the file's width and height), flowing down the columns. */
+.gal-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.75rem, 1vw, 1.1rem);
+}
+
+/* One flex column per grid column. Photos are dealt into whichever column is
+   currently shortest, so every column ends at about the same height. */
+.gal-col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1vw, 1.1rem);
+}
+
+.gal-card {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 1.15rem;
+  box-shadow:
+    0 0 0 1px rgba(103, 232, 249, 0.55),
+    0 0 26px rgba(34, 211, 238, 0.22);
+  cursor: pointer;
+}
+
+button.gal-card {
+  display: block;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+/* Hero slider: several photos side by side, each at its own 3:4 shape.
+   The track scrolls with snapping, so it can be swiped on touch screens too. */
+.gal-hero-slider {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  --gal-slide-gap: clamp(0.6rem, 1.2vw, 1.1rem);
+}
+
+.gal-slider {
+  position: relative;
+}
+
+.gal-slider-viewport {
+  display: flex;
+  gap: var(--gal-slide-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0.4rem 0.2rem 0.8rem;
+}
+
+.gal-slider-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.gal-slide {
+  position: relative;
+  flex: 0 0 calc((100% - 3 * var(--gal-slide-gap)) / 4);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid rgba(186, 230, 253, 0.85);
+  border-radius: 1.1rem;
+  background: #07101c;
+  cursor: pointer;
+  scroll-snap-align: start;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4), 0 0 24px rgba(34, 211, 238, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gal-slide img {
+  object-fit: cover;
+}
+
+.gal-slide:hover,
+.gal-slide:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 32px rgba(34, 211, 238, 0.35);
+}
+
+.gal-slider-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  transform: translateY(-50%);
+  border: 1px solid rgba(103, 232, 249, 0.45);
+  border-radius: 999px;
+  background: rgba(6, 14, 28, 0.78);
+  color: #e6f7fb;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.gal-slider-arrow:hover {
+  background: #67e8f9;
+  border-color: #67e8f9;
+  color: #041018;
+}
+
+.gal-slider-arrow.is-prev {
+  left: -0.6rem;
+}
+
+.gal-slider-arrow.is-next {
+  right: -0.6rem;
+}
+
+.gal-slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+}
+
+.gal-slider-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(186, 230, 253, 0.35);
+  cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.gal-slider-dot.is-active {
+  width: 1.5rem;
+  background: #67e8f9;
+}
+
+/* Tablet: three photos side by side. */
+@media (max-width: 1100px) {
+  .gal-slide {
+    flex-basis: calc((100% - 2 * var(--gal-slide-gap)) / 3);
+  }
+}
+
+/* Phones: two photos side by side, arrows moved inside the edges. */
+@media (max-width: 640px) {
+  .gal-slide {
+    flex-basis: calc((100% - var(--gal-slide-gap)) / 2);
+  }
+
+  .gal-slider-arrow {
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 1.25rem;
+  }
+
+  .gal-slider-arrow.is-prev {
+    left: 0.25rem;
+  }
+
+  .gal-slider-arrow.is-next {
+    right: 0.25rem;
+  }
+}
+
+/* Call-to-action background: campus photo on the right, dark on the left so the text stays readable. */
+.gal-cta {
+  isolation: isolate;
+  background: #020617;
+}
+
+.gal-cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gal-cta-bg img {
+  object-fit: cover;
+  object-position: 70% 50%;
+}
+
+.gal-cta-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 6, 23, 0.94) 0%,
+    rgba(2, 6, 23, 0.78) 42%,
+    rgba(2, 6, 23, 0.35) 100%
+  );
+}
+
+.gal-cta-inner {
+  z-index: 1;
+}
+
+/* Show the whole photo inside the frame instead of cropping it. */
+.gal-card img {
+  object-fit: contain !important;
+  background: #07101c;
+}
+
+.gal-card-tag {
+  top: 0.75rem;
+  bottom: auto;
+  left: 0.75rem;
+  background: rgba(6, 14, 28, 0.72);
+  color: #e6f7fb;
+  border: 1px solid rgba(103, 232, 249, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.gal-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.72), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.gal-card-view {
+  position: absolute;
+  left: 0.9rem;
+  bottom: 0.85rem;
+  z-index: 1;
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 650;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.gal-card:hover::after,
+.gal-card:focus-visible::after,
+.gal-card:hover .gal-card-view,
+.gal-card:focus-visible .gal-card-view {
+  opacity: 1;
+  transform: none;
+}
+
+.gal-float {
+  border: 3px solid rgba(186, 230, 253, 0.9);
+  box-shadow:
+    0 0 0 8px rgba(8, 18, 36, 0.45),
+    0 18px 40px rgba(34, 211, 238, 0.28);
+  padding: 0;
+  cursor: pointer;
+  background: #07101c;
+}
+
+.gal-float img {
+  object-fit: contain !important;
+}
+
+.gal-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(3.5rem, 8vh, 5rem) clamp(1rem, 4vw, 3rem);
+  background: rgba(2, 6, 23, 0.88);
+}
+
+.gal-lightbox-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(1200px, 100%);
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 1rem;
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.55), 0 0 36px rgba(34, 211, 238, 0.25);
+  background: #020617;
+}
+
+.gal-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  padding: 0.45rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: #67e8f9;
+  color: #041018;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .gal-bar {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .gal-bar .gal-filters {
+    justify-content: flex-start;
+  }
+
+  .gal-count {
+    justify-self: start;
+  }
+}
+
+/* ---------- Phones: compact ---------- */
+@media (max-width: 640px) {
+  .gal-hero {
+    height: auto;
+    min-height: 0;
+    padding: 6.4rem 0 2.6rem;
+  }
+
+  .gal-hero-grid {
+    gap: 1.4rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .gal-hero-copy h1 {
+    font-size: clamp(1.7rem, 8vw, 2.15rem);
+  }
+
+  .gal-hero-copy > p {
+    margin-top: 0.7rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .gal-hero-btn {
+    margin-top: 1rem;
+    padding: 0.7rem 1.05rem;
+  }
+
+  .gal-hero-collage {
+    min-height: 14rem;
+    max-width: 22rem;
+  }
+
+  .gal-main {
+    padding: 1.2rem 0 2.2rem;
+  }
+
+  .gal-crumb {
+    margin-bottom: 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .gal-filters {
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .gal-filter {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .gal-grid,
+  .gal-col {
+    gap: 0.7rem;
+  }
+
+  .gal-card {
+    border-radius: 0.75rem;
+  }
+
+  .gal-cta {
+    padding: 1.8rem 0 2.2rem;
+  }
+
+  .gal-cta-inner h2 {
+    font-size: 1.35rem;
+  }
+
+  .gal-cta-inner > div > p {
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .gal-hero-copy h1 {
+    font-size: 1.55rem;
+  }
+
+  .gal-hero-collage {
+    min-height: 12rem;
+  }
+}

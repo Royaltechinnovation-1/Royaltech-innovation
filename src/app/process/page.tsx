@@ -4,7 +4,12 @@ import Header from "@/components/Header";
 import ProcessPageContent from "@/components/ProcessPageContent";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "@/styles/home-theme.css";
+import "@/styles/process-font.css";
+
+/* Same typeface the home page uses (Inter), so the process page matches it. */
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Our Development Process & Tech Methodology | RoyalTech Innovation",
@@ -41,7 +46,7 @@ export default function ProcessPage() {
       <div className="home-theme">
         <Header />
       </div>
-      <main>
+      <main className={`process-inter ${inter.variable}`}>
         <ProcessPageContent />
       </main>
       <div className="home-theme">

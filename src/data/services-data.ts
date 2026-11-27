@@ -1339,6 +1339,17 @@ export const techIconMap: Record<string, string> = {
   "REST APIs": "swagger"
 };
 
+// Photos used for hero backgrounds and related-service cards (keyed by service slug)
+export const serviceImageBySlug: Record<string, string> = {
+  "crm-software": "/svc-crm.jpg",
+  "website-development": "/home-services/web development.png",
+  "software-development": "/home-services/Software Development.jpg",
+  "mobile-app-development": "/home-services/App Development.jpg",
+  "digital-marketing-seo": "/digital-marketing-seo.png",
+  "ui-ux-graphic-design": "/home-services/UI UX Design.jpg",
+  "it-consulting": "/it consultant.jpeg",
+};
+
 export function getServiceBySlug(slug: string): ServiceDetail | undefined {
   return servicesData.find((s) => s.slug === slug);
 }
