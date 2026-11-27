@@ -1,0 +1,266 @@
+/*
+ * /services page ("Our Services" showcase).
+ *
+ * Tailwind is imported with the same `tw:` prefix and without its base reset as the homepage
+ * (src/app/home.css), so none of these utilities can restyle the rest of the site.
+ * Because the reset is missing, `.svx-root` / `.svx-portal` carry a tiny scoped one below,
+ * written with :where() so every `tw:` utility still wins over it.
+ */
+@import "tailwindcss/theme.css" prefix(tw);
+@import "tailwindcss/utilities.css" prefix(tw);
+
+@theme {
+  --color-obsidian: #020617;
+  --color-cyanGlow: #67e8f9;
+  --color-cyanDeep: #22d3ee;
+  --color-warmGold: #22d3ee;
+  --color-goldLight: #a5f3fc;
+}
+
+/* ---------- Scoped base ---------- */
+.svx-root,
+.svx-portal {
+  /* Inter, the same typeface as the About, Process, Contact and Gallery pages. */
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  color: #f1f5f9;
+  line-height: 1.5;
+  overflow-wrap: normal;
+  word-break: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.svx-root {
+  position: relative;
+  isolation: isolate;
+  background-color: #020617;
+  overflow-x: clip;
+}
+
+/* Layered, so any un-layered utility (including zero-specificity ones such as space-y-*) wins. */
+@layer svx-reset {
+  :where(.svx-root, .svx-portal) *,
+  :where(.svx-root, .svx-portal) *::before,
+  :where(.svx-root, .svx-portal) *::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+  }
+
+  :where(.svx-root, .svx-portal) :is(h1, h2, h3, h4, p, ul, li) {
+    margin: 0;
+    padding: 0;
+  }
+
+  :where(.svx-root, .svx-portal) :is(h1, h2, h3, h4) {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  :where(.svx-root, .svx-portal) ul {
+    list-style: none;
+  }
+
+  :where(.svx-root, .svx-portal) :is(button, input) {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    background: transparent;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  :where(.svx-root, .svx-portal) button {
+    padding: 0;
+    cursor: pointer;
+  }
+
+  :where(.svx-root, .svx-portal) input[type="search"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  :where(.svx-root, .svx-portal) svg {
+    display: inline-block;
+    vertical-align: -0.125em;
+    flex-shrink: 0;
+  }
+}
+
+.svx-root :focus-visible,
+.svx-portal :focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 2px;
+}
+
+/* Headings use Inter too, matching the other pages. */
+.svx-display {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- Glass surfaces ---------- */
+.svx-glass-panel {
+  background: rgba(11, 18, 32, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.svx-card-core,
+.svx-card-ai,
+.svx-card-business {
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.svx-card-core {
+  background: linear-gradient(145deg, rgba(19, 28, 44, 0.8), rgba(11, 17, 28, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.svx-card-core:hover,
+.svx-card-core:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(103, 232, 249, 0.45);
+  box-shadow: 0 18px 40px -12px rgba(103, 232, 249, 0.18);
+}
+
+.svx-card-ai {
+  background: linear-gradient(145deg, rgba(16, 33, 52, 0.88), rgba(10, 18, 30, 0.95));
+  border: 1px solid rgba(103, 232, 249, 0.28);
+  box-shadow: 0 0 28px -8px rgba(103, 232, 249, 0.15);
+}
+.svx-card-ai:hover,
+.svx-card-ai:focus-visible {
+  transform: translateY(-6px);
+  border-color: #67e8f9;
+  box-shadow: 0 20px 45px -10px rgba(103, 232, 249, 0.32);
+}
+
+.svx-card-business {
+  background: linear-gradient(145deg, rgba(28, 25, 23, 0.72), rgba(12, 17, 27, 0.92));
+  border: 1px solid rgba(34, 211, 238, 0.25);
+}
+.svx-card-business:hover,
+.svx-card-business:focus-visible {
+  transform: translateY(-6px);
+  border-color: #22d3ee;
+  box-shadow: 0 18px 40px -12px rgba(34, 211, 238, 0.24);
+}
+
+.svx-ambient-grid {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+.svx-btn-glow {
+  box-shadow: 0 0 24px rgba(103, 232, 249, 0.35);
+  transition: all 0.25s ease;
+}
+.svx-btn-glow:hover {
+  box-shadow: 0 0 34px rgba(103, 232, 249, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Dialog entrance */
+@keyframes svx-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.svx-modal-in {
+  animation: svx-fade-in 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svx-modal-in {
+    animation: none;
+  }
+  .svx-card-core,
+  .svx-card-ai,
+  .svx-card-business,
+  .svx-btn-glow {
+    transition: none;
+  }
+  .svx-card-core:hover,
+  .svx-card-ai:hover,
+  .svx-card-business:hover,
+  .svx-btn-glow:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Fluid sizing: roomier on wide screens, compact on small ones ---------- */
+.svx-wrap,
+.svx-wrap-narrow {
+  margin-inline: auto;
+  width: min(100% - clamp(2rem, 1rem + 4vw, 8rem), 1920px);
+}
+.svx-wrap-narrow {
+  width: min(100% - clamp(2rem, 1rem + 4vw, 8rem), clamp(52rem, 20rem + 48vw, 84rem));
+}
+
+.svx-section {
+  padding-block: clamp(2.75rem, 1.5rem + 4.5vw, 7rem);
+}
+.svx-section-sm {
+  padding-block: clamp(2rem, 1rem + 3vw, 5rem);
+}
+.svx-hero {
+  padding-top: clamp(7.5rem, 4rem + 7vw, 13rem);
+  padding-bottom: clamp(2.75rem, 1.5rem + 5vw, 8rem);
+}
+
+.svx-measure-lg {
+  max-width: clamp(56rem, 10rem + 52vw, 90rem);
+}
+.svx-measure-md {
+  max-width: clamp(42rem, 8rem + 40vw, 70rem);
+}
+
+.svx-h1 {
+  font-size: clamp(1.85rem, 1rem + 3.4vw, 5.25rem);
+}
+.svx-h2 {
+  font-size: clamp(1.5rem, 1rem + 1.7vw, 3.5rem);
+}
+.svx-lead {
+  font-size: clamp(1rem, 0.85rem + 0.5vw, 1.6rem);
+}
+
+/* Card and panel copy grows a little with the screen (same specificity trick as the reset above). */
+.svx-root :is(.svx-card-core, .svx-card-ai, .svx-card-business) h3 {
+  font-size: clamp(1.05rem, 0.9rem + 0.45vw, 1.5rem);
+}
+.svx-root :is(.svx-card-core, .svx-card-ai, .svx-card-business) p {
+  font-size: clamp(0.8rem, 0.7rem + 0.3vw, 1.1rem);
+}
+.svx-root :is(.svx-card-core, .svx-card-ai, .svx-card-business) li {
+  font-size: clamp(0.72rem, 0.65rem + 0.25vw, 1rem);
+}
+.svx-root :is(.svx-card-core, .svx-card-ai, .svx-card-business) {
+  padding: clamp(1.1rem, 0.8rem + 0.9vw, 2rem);
+}
+
+/* Brief highlight on the card a header link jumped to. */
+@keyframes svx-flash {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(103, 232, 249, 0); }
+  25%, 70% { box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.85), 0 0 36px 4px rgba(103, 232, 249, 0.35); }
+}
+.svx-flash {
+  animation: svx-flash 2.2s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .svx-flash { animation: none; box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.85); }
+}

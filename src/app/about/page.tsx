@@ -4,9 +4,14 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "@/styles/home-theme.css";
 import "@/styles/about-theme.css";
 import "@/styles/about-hero.css";
+import "@/styles/about-font.css";
+
+/* Same typeface the home page uses (Inter), so the about page matches it. */
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
   // title: "About Us | IT Company in Mohali",
@@ -29,7 +34,7 @@ export default function AboutPage() {
       <div className="home-theme">
         <Header />
       </div>
-      <main className="about-theme">
+      <main className={`about-theme about-inter ${inter.variable}`}>
         <AboutPageContent />
       </main>
       <div className="home-theme">

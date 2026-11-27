@@ -3,27 +3,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import {
-  ServiceHero,
-  ServiceMarquee,
-  ServiceOverview,
-  ServiceFeatures,
-  ServiceTypes,
-  ServiceTechGrid,
-  ServiceProcess,
-  ServiceIndustries,
-  ServiceFaq,
-  ServiceRelated,
-  ServiceCtaBand,
-} from "@/components/service-detail";
-import {
-  getServiceBySlug,
-  serviceSpecializedMap,
-} from "@/data/services-data";
-import "@/styles/service-detail.css";
+import { getServiceBySlug } from "@/data/services-data";
+import "@/styles/home-theme.css";
 
 const service = getServiceBySlug("ui-ux-graphic-design")!;
-const specializedTypes = serviceSpecializedMap["ui-ux-graphic-design"];
 
 export const metadata: Metadata = {
   title: service.metaTitle || "Website Development Company | Responsive & SEO-Friendly Websites | RoyalTech",
@@ -67,77 +50,11 @@ export const metadata: Metadata = {
 export default function WebsiteDevelopmentPage() {
   return (
     <>
-      <Header />
-        <main className="service-detail-page">
-          {/* 1. Hero Section */}
-          <ServiceHero
-            slug={service.slug}
-            title={service.title}
-            tagline={service.tagline}
-            heroTitle={service.heroTitle}
-            heroHighlight={service.heroHighlight}
-            heroText={service.heroText}
-            stats={service.stats}
-            iconSlug={service.icon}
-          />
-
-          {/* 2. Technologies Logo Marquee Ticker */}
-          <ServiceMarquee technologies={service.technologies} />
-
-          {/* 3. Overview Section */}
-          <ServiceOverview
-            serviceTitle={service.title}
-            overview={service.overview}
-            features={service.features}
-          />
-
-          {/* 4. Capabilities / "What's included" Section (Dark Gradient) */}
-          <ServiceFeatures
-            serviceTitle={service.title}
-            features={service.features}
-          />
-
-          {/* 5. Specialized Solution / Types Grid */}
-          {specializedTypes && (
-            <ServiceTypes
-              eyebrow={specializedTypes.eyebrow}
-              title={specializedTypes.title}
-              text={specializedTypes.text}
-              items={specializedTypes.items}
-            />
-          )}
-
-          {/* 6. Tools & Technologies Grid */}
-          <ServiceTechGrid
-            serviceTitle={service.title}
-            technologies={service.technologies}
-          />
-
-          {/* 7. Proven Delivery Process Timeline */}
-          <ServiceProcess
-            serviceTitle={service.title}
-            steps={service.process}
-          />
-
-          {/* 8. Industries We Serve (with dynamic hover reveal) */}
-          <ServiceIndustries
-            serviceTitle={service.title}
-            industries={service.industries}
-          />
-
-          {/* 9. Interactive FAQ Accordion */}
-          <ServiceFaq
-            serviceTitle={service.title}
-            faqs={service.faqs}
-          />
-
-          {/* 10. Related Services Grid */}
-          <ServiceRelated currentSlug={service.slug} />
-
-          {/* 11. Bottom Conversion CTA Band */}
-          <ServiceCtaBand serviceTitle={service.title} />
+      <div className="home-theme"><Header /></div>
+        <main style={{ minHeight: "60vh", background: "#050b17" }}>
+          {/* New design for this service page goes here. */}
         </main>
-        <Footer />
+        <div className="home-theme"><Footer /></div>
         <BackToTop />
         <WhatsAppButton />
       </>

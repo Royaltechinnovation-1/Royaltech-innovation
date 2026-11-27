@@ -1,0 +1,11 @@
+/* ==========================================================================
+   Contact page typeface: Inter, the same font the home page uses.
+   The base contact styles set Sora on headings and Arial on buttons, so this
+   rule applies to all text inside the contact <main> (scoped by .contact-inter)
+   and overrides those declarations. The header and footer are not affected.
+   ========================================================================== */
+
+.contact-inter,
+.contact-inter * {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif !important;
+}

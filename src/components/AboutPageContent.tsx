@@ -1,5 +1,4 @@
 import AboutConsult from "@/components/AboutConsult";
-import AboutHeroVideoButton from "@/components/AboutHeroVideoButton";
 import { OpenFormButton } from "@/components/FormModal";
 import Image from "next/image";
 import CardSlider from './CardSlider'
@@ -216,7 +215,6 @@ export default function AboutPageContent() {
             >
               Talk to us <span aria-hidden="true">→</span>
             </OpenFormButton>
-            <AboutHeroVideoButton />
           </div>
         </div>
       </section>

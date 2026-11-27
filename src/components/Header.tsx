@@ -113,7 +113,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#agents-automation",
+        href: "/services#ai-agents",
         label: "Agents & Workflow Automation",
         subItems: [
           "Custom AI Agents",
@@ -146,7 +146,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#machine-learning",
+        href: "/services#ml-predictive",
         label: "Machine Learning & Predictive Analytics",
         subItems: [
           "Predictive Analytics",
@@ -157,7 +157,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#business-intelligence",
+        href: "/services#ai-bi",
         label: "AI-Powered Business Intelligence",
         subItems: [
           "AI Data Analytics",
@@ -185,7 +185,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services/crm",
+        href: "/services#erp-dev",
         label: "ERP Solutions",
         subItems: [
           "Custom ERP Development",
@@ -196,7 +196,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#lms",
+        href: "/services#lms-platforms",
         label: "Management Systems",
         subItems: [
           "Custom LMS Development",
@@ -207,7 +207,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services/website-development#ecommerce",
+        href: "/services#ecommerce-mgmt",
         label: "E-commerce Development",
         subItems: [
           "Online Store Development",
@@ -218,7 +218,7 @@ const serviceColumns: ServiceColumn[] = [
         ],
       },
       {
-        href: "/services#saas",
+        href: "/services#saas-platforms",
         label: "SaaS Platforms",
         subItems: [
           "Custom SaaS Development",
@@ -270,6 +270,7 @@ const heroOverlayPaths = new Set([
   "/terms",
 ]);
 
+const SERVICES_CLICK_FLAG = "sh-services-clicked";
 const LOGO_SRC = "/portfolio/brand/royaltech-logo.png";
 const EMAIL = "info@royaltechinnovation.co.in";
 const PHONE_LABEL = "+91 86790 16505";
@@ -420,6 +421,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
   const [query, setQuery] = useState("");
+  const [megaSuppressed, setMegaSuppressed] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -469,6 +471,33 @@ export default function Header() {
   }, [searchOpen]);
 
   const closeMenu = () => setMenuOpen(false);
+
+  /* A plain click on "Services" just opens the services page: the hover drop-down stays hidden until the
+     pointer leaves it. The header remounts on navigation, so the click is remembered for the new page. */
+  const onServicesClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    closeMenu();
+    setMegaSuppressed(true);
+    event.currentTarget.blur();
+    try {
+      window.sessionStorage.setItem(SERVICES_CLICK_FLAG, "1");
+    } catch {}
+  };
+
+  /* Runs on mount and whenever Next.js shows a kept-alive page again: start with every menu closed. */
+  useEffect(() => {
+    let clicked = false;
+    try {
+      clicked = Boolean(window.sessionStorage.getItem(SERVICES_CLICK_FLAG));
+    } catch {}
+    const timer = window.setTimeout(() => {
+      try {
+        window.sessionStorage.removeItem(SERVICES_CLICK_FLAG);
+      } catch {}
+      setMenuOpen(false);
+      setMegaSuppressed(clicked);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const goToResult = (href: string) => {
     setQuery("");
@@ -564,12 +593,16 @@ export default function Header() {
           <nav className="sh-nav" aria-label="Primary">
             {links.map((link) =>
               link.href === "/services" ? (
-                <div key={link.href} className="sh-dd">
+                <div
+                  key={link.href}
+                  className={`sh-dd${megaSuppressed ? " is-suppressed" : ""}`}
+                  onMouseLeave={() => setMegaSuppressed(false)}
+                >
                   <Link
                     href={link.href}
                     aria-haspopup="true"
                     className={`sh-link${isActive(link.href) ? " is-active" : ""}`}
-                    onClick={closeMenu}
+                    onClick={onServicesClick}
                   >
                     {link.label}
                     <Chevron />

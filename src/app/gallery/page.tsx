@@ -4,7 +4,12 @@ import GalleryPageContent from "@/components/GalleryPageContent";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "@/styles/home-theme.css";
+import "@/styles/gallery-font.css";
+
+/* Same typeface the home page uses (Inter), so the gallery matches it. */
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Gallery | Team, Office & Culture Moments",
@@ -26,7 +31,7 @@ export default function GalleryPage() {
       <div className="home-theme">
         <Header />
       </div>
-      <main>
+      <main className={`gallery-inter ${inter.variable}`}>
         <GalleryPageContent />
       </main>
       <div className="home-theme">
