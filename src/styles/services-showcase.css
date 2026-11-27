@@ -264,3 +264,103 @@
 @media (prefers-reduced-motion: reduce) {
   .svx-flash { animation: none; box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.85); }
 }
+
+/* Gently floating mockup cards in the hero (Web Development page). */
+@keyframes svx-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.svx-float {
+  animation: svx-float 6s ease-in-out infinite;
+}
+.svx-float-delayed {
+  animation: svx-float 7s ease-in-out 1.5s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .svx-float,
+  .svx-float-delayed {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Service page hero typography: matches the home page hero            */
+/* Home: Inter, semibold, 1.65rem > 1.875 > 2.25 > 3 > 3.75rem,         */
+/* line-height 1.12; paragraph 0.875 > 1.125 > 1.25rem, relaxed.        */
+/* Doubled .svx-root raises specificity over each page's own sheet.     */
+/* ------------------------------------------------------------------ */
+.svx-root.svx-root :is(
+  h1.svx-h1,
+  h1.cs-h1,
+  h1.bx-h1,
+  h1.mx-h1,
+  h1.gx-h1,
+  h1.ix-h1,
+  h1.ag-h1,
+  h1.ab-h1,
+  h1.ic-h1 .ic-h1-main
+) {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+.svx-root.svx-root :is(.svx-hero .svx-lead, .cs-lead, .bx-lead, .mx-lead, .gx-lead, .ix-lead, .ag-lead, .ab-lead, .ic-hero .ic-hero-lead) {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+.svx-root.svx-root :is(.bx-hero-sub, .mx-hero-sub, .gx-hero-sub) {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+@media (min-width: 640px) {
+  .svx-root.svx-root :is(h1.svx-h1, h1.cs-h1, h1.bx-h1, h1.mx-h1, h1.gx-h1, h1.ix-h1, h1.ag-h1, h1.ab-h1, h1.ic-h1 .ic-h1-main) {
+    font-size: 1.875rem;
+  }
+  .svx-root.svx-root :is(.svx-hero .svx-lead, .cs-lead, .bx-lead, .mx-lead, .gx-lead, .ix-lead, .ag-lead, .ab-lead, .ic-hero .ic-hero-lead) {
+    font-size: 1.125rem;
+  }
+}
+@media (min-width: 768px) {
+  .svx-root.svx-root :is(h1.svx-h1, h1.cs-h1, h1.bx-h1, h1.mx-h1, h1.gx-h1, h1.ix-h1, h1.ag-h1, h1.ab-h1, h1.ic-h1 .ic-h1-main) {
+    font-size: 2.25rem;
+  }
+  .svx-root.svx-root :is(.svx-hero .svx-lead, .cs-lead, .bx-lead, .mx-lead, .gx-lead, .ix-lead, .ag-lead, .ab-lead, .ic-hero .ic-hero-lead) {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 1280px) {
+  .svx-root.svx-root :is(h1.svx-h1, h1.cs-h1, h1.bx-h1, h1.mx-h1, h1.gx-h1, h1.ix-h1, h1.ag-h1, h1.ab-h1, h1.ic-h1 .ic-h1-main) {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 1536px) {
+  .svx-root.svx-root :is(h1.svx-h1, h1.cs-h1, h1.bx-h1, h1.mx-h1, h1.gx-h1, h1.ix-h1, h1.ag-h1, h1.ab-h1, h1.ic-h1 .ic-h1-main) {
+    font-size: 3.75rem;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Home heading style on the /services index and website development:
+ * Inter 600 with the same H2 steps as the other service pages
+ * (1.5rem, 1.875rem at 640px, 2.25rem at 768px, 3rem at 1280px).
+ * ------------------------------------------------------------------ */
+.svx-root.svx-root :is(h2, h3, h4) {
+  font-weight: 600;
+  letter-spacing: normal;
+}
+.svx-root.svx-root h2.svx-h2 {
+  font-size: 1.5rem;
+  line-height: 1.12;
+}
+@media (min-width: 640px) {
+  .svx-root.svx-root h2.svx-h2 { font-size: 1.875rem; }
+}
+@media (min-width: 768px) {
+  .svx-root.svx-root h2.svx-h2 { font-size: 2.25rem; }
+}
+@media (min-width: 1280px) {
+  .svx-root.svx-root h2.svx-h2 { font-size: 3rem; }
+}
